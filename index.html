@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Wedding-Dobby | 備婚知識+ 🤩</title>
+    <title>✨ 備婚小精靈 | 姊焦過的慮，不允許你們焦 🤩</title>
     <style>
         :root {
             --primary-brown: #D09E88; /* 霧粉褐 */
@@ -39,26 +39,66 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
             border-bottom: 2px solid var(--primary-pink);
         }
 
         header h1 {
             color: var(--primary-brown);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 8px;
         }
 
         header p {
             font-size: 0.95rem;
             color: #8C8C8C;
+            font-weight: bold;
         }
 
+        /* 分頁標籤樣式 */
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: #F2ECE4;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 10px 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #7A7A7A;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--primary-brown);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 內容樣式 */
         .section-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--primary-purple);
-            margin: 30px 0 12px 0;
+            margin: 25px 0 12px 0;
             display: flex;
             align-items: center;
             border-left: 4px solid var(--primary-green);
@@ -74,23 +114,17 @@
             margin-bottom: 20px;
         }
 
-        /* 世代對照切換樣式 */
         .era-box {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 15px;
         }
-        .era-card {
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
+        .era-card { padding: 12px; border-radius: 8px; font-size: 0.85rem; }
         .era-parent { background-color: #F5EBE6; border-top: 3px solid var(--primary-brown); }
         .era-modern { background-color: #EEF5F5; border-top: 3px solid var(--primary-green); }
-        .era-title { font-weight: bold; margin-bottom: 5px; font-size: 0.95rem; display: flex; align-items: center; }
+        .era-title { font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
 
-        /* 時程階段樣式 */
         .timeline-phase {
             border: 1px solid #EAEAEA;
             border-radius: 12px;
@@ -98,222 +132,273 @@
             margin-bottom: 15px;
             background: #FFFDFB;
         }
-        .phase-title { font-weight: bold; color: var(--primary-brown); font-size: 1.05rem; margin-bottom: 8px; }
-        .phase-detail { font-size: 0.9rem; margin-bottom: 6px; padding-left: 14px; position: relative;}
+        .phase-title { font-weight: bold; color: var(--primary-brown); font-size: 1rem; margin-bottom: 8px; }
+        .phase-detail { font-size: 0.85rem; margin-bottom: 6px; padding-left: 14px; position: relative;}
         .phase-detail::before { content: "•"; position: absolute; left: 0; color: var(--primary-purple); }
 
-        /* 流程時間軸樣式 */
-        .flow-step {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 20px;
-            border-left: 2px dashed var(--primary-green);
-        }
-        .flow-step:last-child { border-left: none; }
-        .flow-badge {
-            position: absolute;
-            left: -11px;
-            top: 2px;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-purple);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 0.75rem;
-            line-height: 20px;
-        }
-        .flow-title { font-weight: bold; font-size: 1rem; color: #333; }
-        .flow-desc { font-size: 0.85rem; color: #666; background: #FAFAFA; padding: 6px 10px; border-radius: 4px; margin-top: 4px; }
-
-        /* 字卡樣式 */
-        .card {
-            background: #ffffff;
-            border: 1px solid #EAEAEA;
-            border-radius: 12px;
-            padding: 16px;
+        .input-group {
             margin-bottom: 15px;
+            background: #FAFAFA;
+            padding: 12px;
+            border-radius: 8px;
         }
-        .card-header { font-weight: bold; color: var(--primary-brown); display: flex; justify-content: space-between; align-items: center; font-size: 1rem; }
-        .card-reason { font-size: 0.85rem; color: #8C8C8C; margin-top: 5px; background: #F4F7F6; padding: 6px 10px; border-radius: 4px; }
-        .card-toggle-btn { background: var(--primary-green); color: white; border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; }
-        .card-body { margin-top: 12px; padding-top: 12px; border-top: 1px dashed #EAEAEA; color: #555555; font-size: 0.95rem; background-color: #FFF2F2; padding: 10px; border-radius: 6px; }
-        
+        .input-group label { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 6px; color: #555; }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .result-box {
+            background: #F4F7F6;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--primary-green);
+        }
+
         .checklist { background: #FAFAFA; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
-        .check-item { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 0.95rem; cursor: pointer; }
+        .check-item { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 0.9rem; cursor: pointer; }
         .check-item input { margin-right: 10px; margin-top: 4px; width: 16px; height: 16px; accent-color: var(--primary-brown); }
 
+        .flow-step { position: relative; padding-left: 30px; margin-bottom: 20px; border-left: 2px dashed var(--primary-green); }
+        .flow-step:last-child { border-left: none; }
+        .flow-badge { position: absolute; left: -11px; top: 2px; width: 20px; height: 20px; background: var(--primary-purple); color: white; border-radius: 50%; text-align: center; font-size: 0.75rem; line-height: 20px; }
+        .flow-title { font-weight: bold; font-size: 0.95rem; color: #333; }
+        .flow-desc { font-size: 0.85rem; color: #666; background: #FAFAFA; padding: 6px 10px; border-radius: 4px; margin-top: 4px; }
+
+        .card { background: #ffffff; border: 1px solid #EAEAEA; border-radius: 12px; padding: 12px; margin-top: 8px; }
+        .card-header { font-weight: bold; color: var(--primary-brown); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+        .card-toggle-btn { background: var(--primary-green); color: white; border: none; padding: 3px 8px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
+        .card-body { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #EAEAEA; color: #555555; font-size: 0.85rem; background-color: #FFF2F2; padding: 8px; border-radius: 6px; }
+
+        .alert-error { background-color: #FDE8E8; color: #E02424; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.85rem; display: none; font-weight: bold; }
+
         .hidden { display: none; }
-        footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #BFBFBF; }
+        footer { text-align: center; margin-top: 40px; font-size: 0.75rem; color: #BFBFBF; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>✨ Wedding-Dobby | 備婚知識+ 🤩</h1>
-        <p>為妳建立備婚全景 Preview，打通長輩觀念關卡！</p>
+        <h1>備婚小精靈</h1>
+        <p>💕 姊焦過的慮，不允許你們焦 💕</p>
     </header>
 
-    <div class="section-title">🧭 第 0 站：認識婚禮 —— 世代備婚大對照</div>
-    <div class="intro-text">💡 讓新人快速看懂「為什麼爸媽會這樣想？」先建立同理心，談起婚事更順手！</div>
-    
-    <p style="font-weight:bold; font-size:0.95rem; margin-bottom:8px;">💡 核心思維對照</p>
-    <div class="era-box">
-        <div class="era-card era-parent">
-            <div class="era-title">🧓 爸媽年代的思維</div>
-            結婚是「兩個家族的結盟與大事」，流程越隆重繁複、聘金排場擺越大，代表男方越重視女方、雙方長輩在親友面前越有面子。
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-consensus')">🕊️ 兩人口共識</button>
+        <button class="tab-btn" onclick="switchTab('tab-family')">💬 長輩溝通</button>
+        <button class="tab-btn" onclick="switchTab('tab-execution')">🏁 當天與登記</button>
+    </div>
+
+    <div id="tab-consensus" class="tab-content active">
+        <div class="intro-text">
+            📢 <strong>姊的叮嚀：</strong> 別一開始就去找長輩！小倆口要先對「預算」跟「想要的風格」有底氣，才不會被各方意見牽著鼻子走。
         </div>
-        <div class="era-card era-modern">
-            <div class="era-title">🧑 現代新人的思維</div>
-            結婚是「新人宣告攜手成家的派對」。主張平權與獨立，傾向將繁複古禮簡化或紅包化，把資源留給成家基金或出國蜜月。
+
+        <div class="section-title">🧭 世代備婚大對照（調適心態）</div>
+        <div class="era-box">
+            <div class="era-card era-parent">
+                <div class="era-title">🧓 爸媽那年代</div>
+                大動員分兩三天辦、長途奔波，注重排場與大發喜餅，因為這是家族外交的大事。
+            </div>
+            <div class="era-card era-modern">
+                <div class="era-title">🧑 我們這年代</div>
+                高達八成訂結同天。直接在飯店一小時內優雅奉茶拜別，化繁為簡，省時省力。
+            </div>
+        </div>
+
+        <div class="section-title">💍 求婚戒圍秘密對照與求婚救援</div>
+        <div class="input-group">
+            <label>測量偷撇步：拿她常戴的戒指平放在尺上，量測「內直徑」</label>
+            <input type="number" step="0.1" id="ring-input" placeholder="請輸入內直徑 (例如: 15.2)" oninput="calcRingSize()">
+            <div id="ring-result" class="result-box hidden"></div>
+            <div class="card" style="border-left: 3px solid var(--primary-brown); margin-top:10px; background:#FFFDF9;">
+                <p style="font-size:0.85rem; color:#666;">✨ <strong>小本本求婚救援：</strong> 別擔心！亞立詩提供「求婚鑽戒外借服務」，訂購 GIA 鑽石就能借去完成求婚，事後再帶她回店挑款式！原尺寸上下 1-3 圍內提供終身免費修改圍數，但特殊材質款式購買前要確認清楚喔！</p>
+            </div>
+        </div>
+
+        <div class="section-title">💰 婚禮大項花費預估（排坑預覽）</div>
+        <div class="input-group">
+            <label>宴客桌價預估 (單桌金額)：</label>
+            <input type="number" id="cost-table" value="20000" oninput="calcTotalBudget()">
+        </div>
+        <div class="input-group">
+            <label>預計桌數：</label>
+            <input type="number" id="count-table" value="15" oninput="calcTotalBudget()">
+        </div>
+        <div class="input-group">
+            <label>婚紗攝影套裝與跟拍安瓶等雜費：</label>
+            <input type="number" id="cost-photo" value="50000" oninput="calcTotalBudget()">
+        </div>
+        <div class="input-group">
+            <label>新娘秘書 + 婚禮紀錄 (平面/動態)：</label>
+            <input type="number" id="cost-service" value="45000" oninput="calcTotalBudget()">
+        </div>
+        <div class="input-group">
+            <label>場地佈置 + 主持人/樂團 + 送客小物：</label>
+            <input type="number" id="cost-etc" value="30000" oninput="calcTotalBudget()">
+        </div>
+        <div class="result-box" style="background:#FFF2F2; border-left:3px solid var(--primary-brown);">
+            🔥 <strong>小倆口預算粗估總額：NT$ <span id="total-budget-view">0</span> 元</strong>
+            <p style="font-size:0.8rem; color:#888; margin-top:5px;">⚠️ 姊的排坑提示：婚紗公司的「造型師跟拍、外景雜費、相片加購、安瓶」往往是隱形加價大坑，一開始預算就要抓寬鬆喔！</p>
         </div>
     </div>
 
-    <p style="font-weight:bold; font-size:0.95rem; margin-bottom:8px;">⏱️ 流程型態對照</p>
-    <div class="era-box">
-        <div class="era-card era-parent">
-            <div class="era-title">🧓 爸媽年代的流程</div>
-            訂婚、結婚、歸寧通常大動員分成兩到三天辦。禮車需要 6 台或 12 台在路上放鞭炮、跨縣市長途奔波，考驗親友體力。
+
+    <div id="tab-family" class="tab-content">
+        <div class="intro-text">
+            📢 <strong>姊的叮嚀：</strong> 提親目的是敲定婚事與婚期，展現尊重。建議於「婚期前半年至一年」進行。回家問父母要用「請教」代替「對抗」！
         </div>
-        <div class="era-card era-modern">
-            <div class="era-title">🧑 現代新人的流程</div>
-            高達八成以上新人選擇「訂結同天」。直接在婚宴飯店房間內一小時內優雅奉茶拜別，中午直接下樓宴客，省時省力不折騰。
+
+        <div class="section-title">📋 提親前「探聽長輩底線」點檢表</div>
+        <div class="checklist">
+            <label class="check-item">
+                <input type="checkbox" id="chk-pinhong" onchange="togglePinhongTip()">
+                <span><strong>大小聘看法：</strong> 探探長輩是否收聘？(點選看小本本行情)</span>
+            </label>
+            <div id="tip-pinhong" class="card-reason hidden" style="background:#FFF9F2; border-left:3px solid var(--primary-brown);">
+                💡 <strong>小本本行情：</strong> 大聘以 36、60、66 萬為主（多為檯面上收取，宴客後退還）；小聘（北部稱做衫錢、南部客家稱乳母錢）為 10 萬至 36 萬不等，多流為新人成家基金。
+            </div>
+            <label class="check-item"><input type="checkbox"> <span><strong>喜餅決定權：</strong> 喜餅由男方負責出錢，但款式規格要問女方家長意見。</span></label>
+            <label class="check-item"><input type="checkbox"> <span><strong>宴客場地形式：</strong> 確認家長對婚宴現場、女方家或提貨的地點期望。</span></label>
+        </div>
+
+        <div class="section-title">⚖️ 現代六禮 v.s 傳統十二禮（點擊看涵義與簡化提案）</div>
+        <div class="checklist">
+            <div class="flow-title">1. 盒餅、2. 日頭餅 (基本六禮)</div>
+            <div class="flow-desc">代表甜甜重重、敬告祖先。現代多以西式喜餅與中式大餅為主。</div>
+            
+            <div class="flow-title" style="margin-top:10px;">3. 大小聘與金首飾、4. 香炮燭、5. 六色喜糖</div>
+            <div class="flow-desc">代表富貴吉祥、美滿姻緣、敬神祈福。男方準備項鍊戒指，女方準備項鍊、戒指、手鍊、耳環。</div>
+
+            <div class="flow-title" style="margin-top:10px;">6. 頭尾禮 (基本六禮)</div>
+            <div class="flow-desc">代表錦衣玉食。從頭到腳的 6 或 12 件衣物飾品，女方回禮男方以 6 或 12 盒為佳。</div>
+            
+            <div class="card" style="margin-top:10px; border-left:3px solid var(--primary-green);">
+                <div class="card-header">
+                    <span>💡 後續 7-12 禮（麵線、木炭、豬肉、閹雞肚圍等）太難準備？</span>
+                    <button class="card-toggle-btn" onclick="toggleCard('body-12禮', this)">查看雙贏提案</button>
+                </div>
+                <div id="body-12禮" class="card-body hidden">
+                    ✨ <strong>姊的雙贏提案：</strong> 後續增加的十二禮（象徵美滿姻緣、興旺興業、衣食無缺、一年24節氣平安），現代高達 90% 的新人都改用<strong>「紅包代替」</strong>，在紅包袋上寫明品項（例如：木炭禮、麵線禮），既有面子又不用搬一堆回娘家堆著！
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="section-title">🏁 第一站：備婚全景 Preview 與四大戰役</div>
-    <div class="intro-text">💡 備婚全期大約需要 6 至 12 個月，提前預覽各階段會發生的事與挑戰，打好預防針！</div>
 
-    <div class="timeline-phase">
-        <div class="phase-title">🥊 階段一：婚前 6 - 12 個月「共識與提親」</div>
-        <div class="phase-detail"><strong>會發生什麼事：</strong> 新人確認意願，各自回家探聽長輩底線，並正式舉辦提親。</div>
-        <div class="phase-detail"><strong>隱形挑戰：</strong> 雙方家長對大小聘金數字認知落差、喜餅由男方出錢但由誰決定款式。</div>
-        <div class="phase-detail"><strong>做好哪些準備：</strong> 取得雙方生辰八字準備擇日、敲定聘金收退共識、預估喜餅數量。</div>
-    </div>
-
-    <div class="timeline-phase">
-        <div class="phase-title">🥊 階段二：婚前 4 - 6 個月「預算與門面」</div>
-        <div class="phase-detail"><strong>會發生什麼事：</strong> 搶訂婚宴場地、挑喜餅、預約婚紗拍攝、尋找新秘與攝影師。</div>
-        <div class="phase-detail"><strong>隱形挑戰：</strong> 婚紗包套容易有隱形加價坑（如安瓶、造型師跟拍費、加購組數）；熱門新秘檔期極難搶。</div>
-        <div class="phase-detail"><strong>做好哪些準備：</strong> 列出婚宴花費預估表（桌價、酒水、佈置）、評估蜜月預算與天數。</div>
-    </div>
-
-    <div class="timeline-phase">
-        <div class="phase-title">🥊 階段三：婚前 1 - 2 個月「細節與魔鬼」</div>
-        <div class="phase-detail"><strong>會發生什麼事：</strong> 寄發喜帖、確認最終宴客桌數、排定婚禮當天工作人員名單。</div>
-        <div class="phase-detail"><strong>隱形挑戰：</strong> 賓客出席人數變動、排座位表排到懷疑人生；文定與迎娶兩大儀式並行時時間易大延誤。</div>
-        <div class="phase-detail"><strong>做好哪些準備：</strong> 排定總招待/伴郎伴娘名單、準備好六禮/十二禮實體物、包好各項工作人員紅包。</div>
-    </div>
-
-    <div class="timeline-phase">
-        <div class="phase-title">🥊 階段四：當天與婚後「完美落幕與登記」</div>
-        <div class="phase-detail"><strong>會發生什麼事：</strong> 頂住婚禮當天突發狀況、順利宴客；婚後 3 天內前往戶政事務所登記。</div>
-        <div class="phase-detail"><strong>隱形挑戰：</strong> 迎娶當天新娘不能吃自己喜餅；去戶政事務所若遇假日需「提早 3 天以上預約」否則會撲空。</div>
-        <div class="phase-detail"><strong>做好哪些準備：</strong> 帶齊登記 5 大法寶（雙方身分證、戶口名簿、照片、結婚書約、規費）。</div>
-    </div>
-
-    <p style="font-weight:bold; font-size:0.95rem; margin: 15px 0 8px 0;">📋 探聽長輩需求底線小清單</p>
-    <div class="checklist">
-        <label class="check-item">
-            <input type="checkbox" id="chk-pinhong" onchange="toggleTips()">
-            <span><strong>女方聘金想法：</strong> 父母有提過大聘或小聘嗎？(點選看行情提示)</span>
-        </label>
-        <div id="tip-pinhong" class="card-reason hidden" style="background:#FFF9F2; border-left:3px solid var(--primary-brown);">
-            ✏️ <strong>小本本備忘：</strong> 大聘行情通常為 36、60、66 萬；小聘多為 10 萬到 36 萬不等。現今多數家庭選擇「收小聘、退大聘」，或將小聘轉為新人的成家基金（乳母錢）。
+    <div id="tab-execution" class="tab-content">
+        <div class="intro-text">
+            📢 <strong>姊的叮嚀：</strong> 到了儀式當天，記得放寬心！三大禮俗禁忌跟各項工作人員紅包，小精靈都幫妳精準算好防錯了。
         </div>
-        <label class="check-item"><input type="checkbox"> <span><strong>喜餅挑選主導權：</strong> 媽媽有指定一定要漢餅、西式，還是特定品牌？</span></label>
-        <label class="check-item"><input type="checkbox"> <span><strong>迎娶禮車安排：</strong> 男方長輩是否有要求一定要 6 台或 12 台禮車相迎？</span></label>
-    </div>
 
-    <div class="section-title">💬 第二站：文定迎娶 9 大流程沉浸式 Preview</div>
-    <div class="intro-text">💡 這是傳統精華流程，當天跟著時間軸一關一關過，並點擊查看與長輩和解的現代雙贏提案！</div>
+        <div class="section-title">⏱️ 文定迎娶精華流程與眉角</div>
+        <div class="flow-step">
+            <div class="flow-badge">1</div>
+            <div class="flow-title">奉甜茶與壓茶甌 $\rightarrow$ 互戴婚戒金飾</div>
+            <div class="flow-desc">古禮一金一銅以紅線綁活結。
+                <div class="card">
+                    <div class="card-header">
+                        <span>⚠️ 戴戒指一定要套到底？</span>
+                        <button class="card-toggle-btn" onclick="toggleCard('body-ring-tip', this)">查看雙贏提案</button>
+                    </div>
+                    <div id="body-ring-tip" class="card-body hidden">
+                        套到底傳統上有「壓到底」的意思。新人私下講好，戴到<strong>「第二指節」</strong>就停住，代表婚後彼此互相尊重！
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="flow-step">
-        <div class="flow-badge">1</div>
-        <div class="flow-title">男方出發與女方梳化</div>
-        <div class="flow-desc">男方在家祭祖後出發；女方則提早開化訂婚彩妝。</div>
-    </div>
+        <div class="flow-step">
+            <div class="flow-badge">2</div>
+            <div class="flow-title">文定宴會（長輩提前離席）</div>
+            <div class="flow-desc">款待親友。
+                <div class="card">
+                    <div class="card-header">
+                        <span>⚠️ 男方親友不能吃到最後？</span>
+                        <button class="card-toggle-btn" onclick="toggleCard('body-fish-tip', this)">查看雙贏提案</button>
+                    </div>
+                    <div id="body-fish-tip" class="card-body hidden">
+                        習俗怕把女方「吃過頭（吃垮）」，男方親友通常在「魚料理」上桌時默默離席不說再見。但<strong>「新郎本人」可以悄悄折返</strong>，最後回來陪新娘一起送客拍美照！
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="flow-step">
-        <div class="flow-badge">2</div>
-        <div class="flow-title">納采迎納與雙方鳴炮</div>
-        <div class="flow-desc">男方車隊到達女方家，雙方放鞭炮迎接，由女方晚輩（小舅子）開車門迎接男方新郎。</div>
-    </div>
+        <div class="flow-step">
+            <div class="flow-badge">3</div>
+            <div class="flow-title">闖關 $\rightarrow$ 拜別父母 $\rightarrow$ 擲扇潑水 $\rightarrow$ 進洞房坐財庫</div>
+            <div class="flow-desc">新娘上車擲扇（丟掉壞脾氣）、家長潑水（大展鴻圖）。進洞房後新人一起坐在墊有新郎長褲的高低椅（坐財庫），吃甜湯圓象徵圓滿。</div>
+        </div>
 
-    <div class="flow-step">
-        <div class="flow-badge">3</div>
-        <div class="flow-title">奉甜茶與壓茶甌</div>
-        <div class="flow-desc">好命婆牽新娘出來，向男方長輩奉甜茶，隨後收回茶杯並收取男方長輩壓在杯下的紅包（壓茶甌）。</div>
-    </div>
-
-    <div class="flow-step">
-        <div class="flow-badge">4</div>
-        <div class="flow-title">交換戒指與互戴金飾</div>
-        <div class="flow-desc">舉辦戴婚戒儀式，並由雙方父母幫新人戴上金項鍊、手鍊、耳環等見面禮。</div>
+        <div class="section-title">🧧 當天工作人員紅包行情即時計算（防錯）</div>
+        <p style="font-size:0.8rem; color:#666; margin-bottom:10px;">請輸入各項目預計的「工作人員人數」，系統會自動幫妳加總並依習俗防錯：</p>
         
-        <div class="card" style="margin-top: 10px;">
-            <div class="card-header">
-                <span style="font-size:0.9rem;">💍 禮俗眉角：戴戒指一定要「套到底」？</span>
-                <button class="card-toggle-btn" onclick="toggleCard('body2', this)">查看雙贏提案</button>
-            </div>
-            <div id="body2" class="card-body hidden">
-                ✨ <strong>現代雙贏提案：</strong> 傳統上戒指套到底有把對方「壓到底」的隱喻。現代新人可以先私下約定好，當天互戴戒指時，戴到<strong>「第二指節」</strong>就停住並溫柔微笑。代表婚後彼此互相尊重、留有甜蜜台階！
-            </div>
+        <div class="input-group">
+            <label>好命婆 / 開新車門 / 小舅子 人數總和：</label>
+            <input type="number" id="hb-count1" value="3" oninput="calcRedEnvelope()">
         </div>
-    </div>
-
-    <div class="flow-step">
-        <div class="flow-badge">5</div>
-        <div class="flow-title">女方祭祖與回禮</div>
-        <div class="flow-desc">新人祭拜女方祖先稟告婚事；隨後女方回贈男方 6 或 12 盒喜餅與男方的頭尾禮。</div>
-    </div>
-
-    <div class="flow-step">
-        <div class="flow-badge">6</div>
-        <div class="flow-title">文定宴會（男方長輩提前離席）</div>
-        <div class="flow-desc">辦文定宴款待親友。</div>
-        
-        <div class="card" style="margin-top: 10px;">
-            <div class="card-header">
-                <span style="font-size:0.9rem;">🍽️ 禮俗眉角：男方親友吃喜酒不能吃到最後？</span>
-                <button class="card-toggle-btn" onclick="toggleCard('body3', this)">查看雙贏提案</button>
-            </div>
-            <div id="body3" class="card-body hidden">
-                ✨ <strong>現代雙贏提案：</strong> 傳統文定宴怕男方「吃過頭」代表把女方吃垮，所以長輩通常在「魚料理」上桌時默默離席且不說再見。但<strong>「新郎本人」可以悄悄折返</strong>，在最後回到新娘身邊，一起大方送客、拍滿漂亮照片！
-            </div>
+        <div class="input-group">
+            <label>單包紅包預算金額 (小本本建議 1200 - 3600元)：</label>
+            <input type="number" id="hb-money1" value="1200" oninput="calcRedEnvelope()">
         </div>
-    </div>
+        <div class="input-group">
+            <label>伴郎娘 / 招待 / 收禮 / 攝影工作人員人數總和：</label>
+            <input type="number" id="hb-count2" value="6" oninput="calcRedEnvelope()">
+        </div>
+        <div class="input-group">
+            <label>單包紅包預算金額 (小本本建議 600 - 1200元)：</label>
+            <input type="number" id="hb-money2" value="600" oninput="calcRedEnvelope()">
+        </div>
 
-    <div class="flow-step">
-        <div class="flow-badge">7</div>
-        <div class="flow-title">男方結完婚迎娶與闖關討喜</div>
-        <div class="flow-desc">男方回到新家再次祭祖出發迎娶；到達女方家後，新郎要經歷伴娘群的「闖關遊戲」才能見到新娘。</div>
-    </div>
+        <div id="hb-error" class="alert-error"></div>
 
-    <div class="flow-step">
-        <div class="flow-badge">8</div>
-        <div class="flow-title">拜別父母、出門擲扇與潑水</div>
-        <div class="flow-desc">新人跪拜感謝女方父母養育之恩。新娘上禮車後擲扇（象徵丟掉壞脾氣）、女方家長潑水（象徵大展鴻圖、衣食無缺）。</div>
-    </div>
+        <div class="result-box" style="background:#FFFDF2; border-left:3px solid var(--primary-purple);">
+            💰 <strong>當天預計準備紅包總額：NT$ <span id="total-hb-view">0</span> 元</strong>
+            <p style="font-size:0.8rem; color:#888; margin-top:5px;">⚠️ 小本本叮嚀：紅包最低 600 元起跳，數字記得選雙數，且絕對要避開「4」跟「單數」喔！新娘記得自己的喜餅自己絕對不能吃！</p>
+        </div>
 
-    <div class="flow-step">
-        <div class="flow-badge">9</div>
-        <div class="flow-title">入家門、進洞房與吃甜湯圓</div>
-        <div class="flow-desc">來到男方家拜祖先，進入洞房「坐財庫」（坐在一張墊有新郎長褲的高低椅上），互相餵吃甜湯圓，象徵甜蜜圓滿。</div>
+        <div class="section-title">🏛️ 正式結為夫妻：結婚登記打包 Check</div>
+        <div class="intro-text">
+            📌 <strong>登記 4 步驟：</strong> 提前致電預約（假日需提前 3 天以上預約，超過 15 分鐘視同取消） $\rightarrow$ 抽號碼牌 $\rightarrow$ 繳文件書約 $\rightarrow$ 繳費領證。當事人兩位必須親自到場，證人有簽名即可不需到場。
+        </div>
+        <div class="checklist">
+            <label class="check-item"><input type="checkbox"> <span>雙方國民身分證、戶口名簿、印章</span></label>
+            <label class="check-item"><input type="checkbox"> <span>2 年內拍攝正面半身彩色照片各 1 張 (身分證規格)</span></label>
+            <label class="check-item"><input type="checkbox"> <span>結婚書約 (建議多準備一份自己留做紀念)</span></label>
+            <label class="check-item"><input type="checkbox"> <span>換領身分證工本費 (50元/張) + 換發戶口名簿 (30元/份)</span></label>
+            <label class="check-item"><input type="checkbox"> <span>(選備) 結婚證明書規費 (100元/張)</span></label>
+        </div>
     </div>
 
     <footer>
-        <p>Made with ❤️ by 侑潔 | Wedding-Dobby v2.0</p>
+        <p>Made with ❤️ by 侑潔 | 備婚小精靈 v3.0</p>
     </footer>
 </div>
 
 <script>
-    function toggleCard(bodyId, btn) {
-        const body = document.getElementById(bodyId);
-        if (body.classList.contains('hidden')) {
+    // 分頁切換邏輯
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // 控制翻牌
+    function toggleCard(id, btn) {
+        const body = document.getElementById(id);
+        if(body.classList.contains('hidden')) {
             body.classList.remove('hidden');
-            btn.innerText = '收合提案';
+            btn.innerText = '收合提示';
             btn.style.backgroundColor = '#AAABD3';
         } else {
             body.classList.add('hidden');
@@ -322,15 +407,77 @@
         }
     }
 
-    function toggleTips() {
-        const checkbox = document.getElementById('chk-pinhong');
-        const tip = document.getElementById('tip-pinhong');
-        if (checkbox.checked) {
-            tip.classList.remove('hidden');
-        } else {
-            tip.classList.add('hidden');
+    function togglePinhongTip() {
+        const chk = document.getElementById('chk-pinhong');
+        document.getElementById('tip-pinhong').classList.toggle('hidden', !chk.checked);
+    }
+
+    // 戒圍即時對照邏輯 (精準對齊小本本第2頁)
+    const ringData = [
+        { d: 14.2, h: 6, e: 45, j: 4, i: 8.5 },
+        { d: 14.4, h: 7, e: 46, j: 5, i: 7 },
+        { d: 14.6, h: 8, e: 47, j: 6, i: 8 },
+        { d: 14.8, h: 9, e: 40, j: 7, i: 8.5 },
+        { d: 15.2, h: 10, e: 49, j: 7.25, i: 8.5 },
+        { d: 15.5, h: 11, e: 50, j: 8.25, i: 9.25 },
+        { d: 15.9, h: 12, e: 51, j: 9.5, i: 10 },
+        { d: 16.5, h: 13, e: 52, j: 10.5, i: 10.7 },
+        { d: 16.8, h: 14, e: 59, j: 11.5, i: 11.5 },
+        { d: 16.9, h: 15, e: 54, j: 12.5, i: 12.5 },
+        { d: 17.2, h: 16, e: 55, j: 13.5, i: 13 },
+        { d: 17.6, h: 17, e: 56, j: 14.75, i: 13.5 },
+        { d: 18.0, h: 18, e: 57, j: 15.75, i: 14 }
+    ];
+
+    function calcRingSize() {
+        const val = parseFloat(document.getElementById('ring-input').value);
+        const resBox = document.getElementById('ring-result');
+        if (!val) { resBox.classList.add('hidden'); return; }
+        
+        // 尋找最接近的內直徑
+        let closest = ringData.reduce((prev, curr) => Math.abs(curr.d - val) < Math.abs(prev.d - val) ? curr : prev);
+        
+        resBox.innerHTML = `🔮 <strong>最接近的戒圍對照結果 (內直徑約 ${closest.d}mm)：</strong><br>
+            • 國際戒圍：<b>${closest.i}</b><br>
+            • 香港戒圖：<b>${closest.h} 號</b><br>
+            • 歐洲戒圍：<b>${closest.e}</b><br>
+            • 日本戒圍：<b>${closest.j} 號</b>`;
+        resBox.classList.remove('hidden');
+    }
+
+    // 預算加總計算
+    function calcTotalBudget() {
+        const tCost = (parseInt(document.getElementById('cost-table').value)||0) * (parseInt(document.getElementById('count-table').value)||0);
+        const pCost = parseInt(document.getElementById('cost-photo').value)||0;
+        const sCost = parseInt(document.getElementById('cost-service').value)||0;
+        const eCost = parseInt(document.getElementById('cost-etc').value)||0;
+        document.getElementById('total-budget-view').innerText = (tCost + pCost + sCost + eCost).toLocaleString();
+    }
+
+    // 紅包行情計算與習俗防錯
+    function calcRedEnvelope() {
+        const c1 = parseInt(document.getElementById('hb-count1').value)||0;
+        const m1 = parseInt(document.getElementById('hb-money1').value)||0;
+        const c2 = parseInt(document.getElementById('hb-count2').value)||0;
+        const m2 = parseInt(document.getElementById('hb-money2').value)||0;
+        
+        const total = (c1 * m1) + (c2 * m2);
+        document.getElementById('total-hb-view').innerText = total.toLocaleString();
+
+        const errBox = document.getElementById('hb-error');
+        errBox.style.display = 'none';
+
+        // 習俗防錯檢查
+        if ((m1 > 0 && (m1 < 600 || m1 % 2 !== 0 || m1.toString().includes('4'))) || 
+            (m2 > 0 && (m2 < 600 || m2 % 2 !== 0 || m2.toString().includes('4')))) {
+            errBox.innerHTML = `⚠️ 💡 姊的雷達提醒：發現紅包金額不太對喔！請檢查金額是否低於 600 元、或者是單數、或者包含了數字「4」？傳統禮俗記得要避開喔！`;
+            errBox.style.display = 'block';
         }
     }
+
+    // 初始化計算
+    calcTotalBudget();
+    calcRedEnvelope();
 </script>
 
 </body>
