@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Wedding-Dobby | 備婚知識+ 🤩</title>
+    <style>
+        /* 莫蘭迪溫柔配色定義 */
+        :root {
+            --primary-brown: #D09E88; /* 霧粉褐 */
+            --primary-green: #ABD0CE; /* 灰綠 */
+            --primary-pink: #FADAD8;  /* 柔粉 */
+            --primary-purple: #AAABD3;/* 藍紫 */
+            --bg-light: #F9F6F0;      /* 減壓米白 */
+            --text-dark: #4A4A4A;     /* 深灰 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 24px;
+        }
+
+        /* 標題區 */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-pink);
+        }
+
+        header h1 {
+            color: var(--primary-brown);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            color: #8C8C8C;
+        }
+
+        /* 區塊樣式 */
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary-purple);
+            margin: 20px 0 12px 0;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--primary-green);
+            padding-left: 8px;
+        }
+
+        .intro-text {
+            background-color: #FFFDF9;
+            border-left: 4px solid var(--primary-brown);
+            padding: 12px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* 點檢表樣式 */
+        .checklist {
+            background: #FAFAFA;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .check-item input {
+            margin-right: 10px;
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary-brown);
+        }
+
+        /* 翻牌字卡樣式 */
+        .card-container {
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card-header {
+            font-weight: bold;
+            color: var(--primary-brown);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .card-reason {
+            font-size: 0.85rem;
+            color: #8C8C8C;
+            margin-top: 5px;
+            background: #F4F7F6;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+
+        .card-toggle-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .card-body {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #EAEAEA;
+            color: #555555;
+            font-size: 0.95rem;
+            background-color: #FFF2F2;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #BFBFBF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>✨ Wedding-Dobby | 備婚知識+ 🤩</h1>
+        <p>陪著妹妹與閨蜜，優雅化解「世代觀念大戰」的備婚小精靈</p>
+    </header>
+
+    <div class="intro-text">
+        💡 <strong>暖心備忘：</strong> 備婚的第一步，不是急著訂場地，而是先聽懂爸爸媽媽的真心話。新人和父母各自都沒經歷過現代與傳統的碰撞，先做好底線探聽，就能把「對抗」變成「溫馨提案」！
+    </div>
+
+    <div class="section-title">📋 第一站：長輩需求底線探聽</div>
+    <p style="font-size: 0.85rem; color:#666; margin-bottom:10px;">各自回家用「請教」的口吻跟父母聊聊，勾選出他們在意的項目：</p>
+    
+    <div class="checklist">
+        <label class="check-item">
+            <input type="checkbox" id="chk-pinhong" onchange="toggleTips()">
+            <span><strong>女方聘金想法：</strong> 父母有提過大聘或小聘嗎？(點選看行情提示)</span>
+        </label>
+        <div id="tip-pinhong" class="card-reason hidden" style="background:#FFF9F2; border-left:3px solid var(--primary-brown);">
+            [span_0](start_span)✏️ <strong>小本本備忘：</strong> 傳統大聘通常以 36、60、66 萬為主；小聘多為 10 萬到 36 萬不等[span_0](end_span)[span_1](start_span)。現今多數家庭選擇「收小聘、退大聘」，或將小聘轉為新人的成家基金（乳母錢）[span_1](end_span)。
+        </div>
+
+        <label class="check-item">
+            <input type="checkbox">
+            [span_2](start_span)<span><strong>喜餅挑選主導權：</strong> 媽媽有指定一定要漢餅、西式，還是特定品牌嗎？[span_2](end_span)</span>
+        </label>
+
+        <label class="check-item">
+            <input type="checkbox">
+            [span_3](start_span)[span_4](start_span)<span><strong>儀式繁複度：</strong> 父母是否堅持要在家裡辦傳統文定與祭祖？[span_3](end_span)[span_4](end_span)</span>
+        </label>
+
+        <label class="check-item">
+            <input type="checkbox">
+            [span_5](start_span)<span><strong>迎娶禮車安排：</strong> 男方長輩是否有要求一定要 6 台或 12 台禮車相迎？[span_5](end_span)</span>
+        </label>
+    </div>
+
+    <div class="section-title">💬 第二站：禮俗白話文與現代雙贏提案</div>
+    <p style="font-size: 0.85rem; color:#666; margin-bottom:10px;">點擊綠色按鈕，看看如何用現代又有面子的方式，滿足父母的底層邏輯：</p>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <span>🏮 關卡一：長輩堅持「傳統十二禮」？</span>
+                <button class="card-toggle-btn" onclick="toggleCard('body1', this)">查看雙贏提案</button>
+            </div>
+            [span_6](start_span)<div class="card-reason">🧠 長輩底層邏輯：象徵錦衣玉食、興旺家業、多子多孫的祝福[span_6](end_span)。</div>
+            <div id="body1" class="card-body hidden">
+                ✨ <strong>現代雙贏提案：</strong> 
+                [span_7](start_span)與長輩商量精簡為「基本六禮」[span_7](end_span)[span_8](start_span)。其餘較難買到或實用性低的傳統物品（如木炭、麥、肚圍等）[span_8](end_span)，直接改用<strong>「紅包（在袋上寫明品項與吉祥話）」</strong>代替！既有大氣的紅包排場，又省去買一堆現代用不到的雜物。
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <span>💍 關卡二：戴戒指儀式一定要「套到底」？</span>
+                <button class="card-toggle-btn" onclick="toggleCard('body2', this)">查看雙贏提案</button>
+            </div>
+            [span_9](start_span)<div class="card-reason">🧠 長輩底層邏輯：古禮一金一銅以紅線綁活結代表「永結同心」[span_9](end_span)。</div>
+            <div id="body2" class="card-body hidden">
+                ✨ <strong>現代雙贏提案：</strong> 
+                [span_10](start_span)傳統上戒指套到底有把對方「壓到底」的隱喻[span_10](end_span)[span_11](start_span)。現代新人可以先私下約定好，當天戴戒指時，互相配合戴到<strong>「第二指節」</strong>就停住並溫柔微笑[span_11](end_span)。這樣既符合禮俗，也代表婚後彼此互相尊重、留有台階！
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <span>🍽️ 關卡三：男方親友吃喜酒不能吃到最後？</span>
+                <button class="card-toggle-btn" onclick="toggleCard('body3', this)">查看雙贏提案</button>
+            </div>
+            [span_12](start_span)<div class="card-reason">🧠 長輩底層邏輯：傳統文定宴怕男方「吃過頭」代表把女方吃垮，且不可說再見[span_12](end_span)。</div>
+            <div id="body3" class="card-body hidden">
+                ✨ <strong>現代雙贏提案：</strong> 
+                [span_13](start_span)文定宴上，男方親友與長輩通常在「魚料理」上桌時默默離席、不說再見[span_13](end_span)。但<strong>「新郎本人」可以悄悄折返</strong>，在宴會最後回到新娘身邊，一起大方送客、開心拍滿漂亮的照片！完美兼顧長輩的禮俗與新人的拍照紀錄。
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ by 侑潔 | Wedding-Dobby v1.0</p>
+    </footer>
+</div>
+
+<script>
+    // 控制字卡翻牌
+    function toggleCard(bodyId, btn) {
+        const body = document.getElementById(bodyId);
+        if (body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            btn.innerText = '收合提案';
+            btn.style.backgroundColor = '#AAABD3';
+        } else {
+            body.classList.add('hidden');
+            btn.innerText = '查看雙贏提案';
+            btn.style.backgroundColor = '#ABD0CE';
+        }
+    }
+
+    // 控制聘金行情提示
+    function toggleTips() {
+        const checkbox = document.getElementById('chk-pinhong');
+        const tip = document.getElementById('tip-pinhong');
+        if (checkbox.checked) {
+            tip.classList.remove('hidden');
+        } else {
+            tip.classList.add('hidden');
+        }
+    }
+</script>
+
+</body>
+</html>
