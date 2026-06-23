@@ -1,388 +1,1100 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ 備婚小精靈 | 姊焦過的慮，不允許你們焦 ✨</title>
-    <style>
-        :root {
-            --primary-brown: #D09E88; /* 霧粉褐 */
-            --primary-green: #ABD0CE; /* 灰綠 */
-            --primary-pink: #FADAD8;  /* 柔粉 */
-            --primary-purple: #AAABD3;/* 藍紫 */
-            --bg-light: #F9F6F0;      /* 減壓米白 */
-            --text-dark: #4A4A4A;     /* 深灰 */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="備婚小精靈：婚期倒數、備婚時程、預算追蹤、戒圍、禮俗與結婚登記清單。">
+  <title>✨ 備婚小精靈｜姊焦過的慮，不允許你們焦</title>
+  <style>
+    :root {
+      --primary-brown: #D09E88; /* 霧粉褐 */
+      --primary-green: #ABD0CE; /* 灰綠 */
+      --primary-pink: #FADAD8;  /* 柔粉 */
+      --primary-purple: #AAABD3;/* 藍紫 */
+      --bg-light: #F9F6F0;      /* 減壓米白 */
+      --text-dark: #4A4A4A;     /* 深灰 */
+      --text-muted: #777;
+      --danger: #C94C4C;
+      --warning: #D58C3A;
+      --success: #568D79;
+      --border: #EAE5DF;
+      --shadow: 0 4px 15px rgba(0,0,0,.06);
+    }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; }
-        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; padding: 20px 10px; }
-        
-        .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 24px; }
-        header { text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid var(--primary-pink); }
-        header h1 { color: var(--primary-brown); font-size: 1.5rem; margin-bottom: 8px; }
-        header p { font-size: 0.95rem; color: #8C8C8C; font-weight: bold; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+    }
 
-        /* 💡 RWD 導覽列：電腦版自動換行、手機版支援流暢捲動 */
-        .tabs-container { 
-            display: flex;
-            flex-wrap: wrap; /* 電腦版自動整齊換行 */
-            gap: 6px;
-            background: #F2ECE4; 
-            padding: 8px; 
-            border-radius: 8px; 
-            margin-bottom: 25px; 
-        }
-        
-        .tab-btn { 
-            flex: 1 1 calc(33.33% - 6px); /* 讓按鈕在電腦版有合理的最小寬度 */
-            min-width: 100px;
-            background: none; 
-            border: none; 
-            padding: 10px 8px; 
-            font-size: 0.88rem; 
-            font-weight: bold; 
-            color: #7A7A7A; 
-            cursor: pointer; 
-            border-radius: 6px; 
-            transition: all 0.3s; 
-            text-align: center;
-            white-space: normal; /* 允許文字太長時自動換行 */
-        }
-        
-        .tab-btn.active { background: white; color: var(--primary-brown); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    html { scroll-behavior: smooth; }
 
-        /* 當螢幕比較小（手機版）時，自動切換回左右流暢滑動模式 */
-        @media (max-width: 500px) {
-            .tabs-container {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            .tabs-container::-webkit-scrollbar { display: none; } /* 隱藏手機版醜醜的捲動條 */
-            .tab-btn {
-                flex: 0 0 auto;
-                min-width: max-content;
-                padding: 8px 14px;
-            }
-        }
+    body {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.65;
+      padding: 20px 10px 90px;
+    }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+    button, input, select { font: inherit; }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid rgba(170,171,211,.45);
+      outline-offset: 2px;
+    }
 
-        .section-title { font-size: 1.1rem; color: var(--primary-purple); margin: 25px 0 12px 0; display: flex; align-items: center; border-left: 4px solid var(--primary-green); padding-left: 8px; }
-        .intro-text { background-color: #FFFDF9; border-left: 4px solid var(--primary-brown); padding: 12px; font-size: 0.85rem; border-radius: 4px; margin-bottom: 20px; }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
 
-        .mode-switch-container { display: flex; background: #EAEAEA; padding: 4px; border-radius: 20px; margin-bottom: 15px; }
-        .mode-btn { flex: 1; border: none; background: none; padding: 6px; font-size: 0.85rem; font-weight: bold; color: #666; cursor: pointer; border-radius: 20px; text-align: center; }
-        .mode-btn.active { background: var(--primary-green); color: white; }
+    header {
+      text-align: center;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--primary-pink);
+    }
 
-        .era-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .era-card { padding: 12px; border-radius: 8px; font-size: 0.85rem; }
-        .era-parent { background-color: #F5EBE6; border-top: 3px solid var(--primary-brown); }
-        .era-modern { background-color: #EEF5F5; border-top: 3px solid var(--primary-green); }
-        .era-title { font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+    header h1 {
+      color: var(--primary-brown);
+      font-size: 1.75rem;
+      margin-bottom: 5px;
+    }
 
-        .accounting-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
-        .accounting-table th { background: #F2ECE4; color: #555; padding: 8px; text-align: left; }
-        .accounting-table td { padding: 8px; border-bottom: 1px solid #EEE; }
-        .accounting-table input { width: 100%; padding: 4px; border: 1px solid #CCC; border-radius: 4px; text-align: right; }
+    header p {
+      font-size: .94rem;
+      color: #8C8C8C;
+      font-weight: 700;
+    }
 
-        .input-group { margin-bottom: 12px; background: #FAFAFA; padding: 10px; border-radius: 8px; }
-        .input-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 4px; color: #555; }
-        .input-group input, .input-group select { width: 100%; padding: 8px; border: 1px solid #DDD; border-radius: 4px; font-size: 0.9rem; }
+    .save-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #F3F8F7;
+      color: var(--success);
+      font-size: .75rem;
+      font-weight: 700;
+    }
 
-        .result-box { background: #F4F7F6; padding: 12px; border-radius: 6px; margin-top: 15px; font-size: 0.9rem; border-left: 3px solid var(--primary-green); }
-        .checklist { background: #FAFAFA; padding: 12px; border-radius: 12px; margin-bottom: 20px; }
-        .check-item { display: flex; align-items: flex-start; margin-bottom: 12px; font-size: 0.85rem; cursor: pointer; }
-        .check-item input { margin-right: 8px; margin-top: 3px; width: 15px; height: 15px; accent-color: var(--primary-brown); }
+    /* 💡 完美 RWD 導覽列：電腦版多行排開、手機版流暢捲動 */
+    .tabs-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: #F2ECE4;
+      padding: 8px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+    }
 
-        .flow-step { position: relative; padding-left: 25px; margin-bottom: 15px; border-left: 2px dashed var(--primary-green); }
-        .flow-step:last-child { border-left: none; }
-        .flow-badge { position: absolute; left: -9px; top: 2px; width: 16px; height: 16px; background: var(--primary-purple); color: white; border-radius: 50%; text-align: center; font-size: 0.7rem; line-height: 16px; }
-        .flow-title { font-weight: bold; font-size: 0.9rem; color: #333; }
-        .flow-desc { font-size: 0.8rem; color: #666; background: #FAFAFA; padding: 6px 10px; border-radius: 4px; margin-top: 4px; }
+    .tab-btn {
+      flex: 1 1 calc(16.66% - 6px);
+      min-width: 100px;
+      background: transparent;
+      border: 0;
+      padding: 10px 8px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: #727272;
+      cursor: pointer;
+      border-radius: 7px;
+      transition: .2s ease;
+      text-align: center;
+      white-space: normal;
+    }
 
-        .card { background: #ffffff; border: 1px solid #EAEAEA; border-radius: 10px; padding: 10px; margin-top: 6px; }
-        .card-header { font-weight: bold; color: var(--primary-brown); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
-        .card-toggle-btn { background: var(--primary-green); color: white; border: none; padding: 2px 6px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; }
-        .card-body { margin-top: 6px; padding-top: 6px; border-top: 1px dashed #EAEAEA; color: #555555; font-size: 0.8rem; background-color: #FFF2F2; padding: 8px; border-radius: 6px; }
+    .tab-btn.active {
+      background: white;
+      color: var(--primary-brown);
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
 
-        .alert-error { background-color: #FDE8E8; color: #E02424; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.8rem; display: none; font-weight: bold; }
-        .hidden { display: none; }
-        footer { text-align: center; margin-top: 40px; font-size: 0.75rem; color: #BFBFBF; }
-    </style>
+    @media (max-width: 620px) {
+      .tabs-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-radius: 0 0 10px 10px;
+        margin-left: -14px;
+        margin-right: -14px;
+        padding-left: 14px;
+      }
+      .tab-btn {
+        flex: 0 0 auto;
+        min-width: max-content;
+        padding: 9px 14px;
+      }
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn .2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } }
+
+    .hero-dashboard {
+      background: linear-gradient(135deg, #FFF8F5, #F2F8F7);
+      border: 1px solid #F0E7E1;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .hero-dashboard h2 {
+      font-size: 1.22rem;
+      color: var(--primary-brown);
+      margin-bottom: 6px;
+    }
+
+    .countdown {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #4E4E4E;
+      margin: 9px 0;
+    }
+
+    .countdown small {
+      display: block;
+      font-size: .8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .progress-track {
+      height: 11px;
+      background: #EDE8E4;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 9px 0 5px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary-green), var(--primary-purple));
+      transition: width .35s ease;
+    }
+
+    .progress-text {
+      font-size: .78rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .dashboard-grid, .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+      margin: 14px 0;
+    }
+
+    .metric-card, .feature-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px;
+      background: white;
+    }
+
+    .metric-card span { display: block; color: var(--text-muted); font-size: .76rem; }
+    .metric-card strong { display: block; color: #444; font-size: 1.06rem; margin-top: 3px; }
+
+    .feature-card { width: 100%; text-align: left; cursor: pointer; color: var(--text-dark); transition: .2s; }
+    .feature-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .feature-card strong { display: block; color: var(--primary-brown); margin-bottom: 2px; }
+    .feature-card small { color: var(--text-muted); }
+
+    .section-title {
+      font-size: 1.08rem;
+      color: var(--primary-purple);
+      margin: 25px 0 12px;
+      display: flex;
+      align-items: center;
+      border-left: 4px solid var(--primary-green);
+      padding-left: 8px;
+    }
+
+    .intro-text, .info-note {
+      background: #FFFDF9;
+      border-left: 4px solid var(--primary-brown);
+      padding: 12px;
+      font-size: .85rem;
+      border-radius: 5px;
+      margin-bottom: 18px;
+    }
+
+    .info-note { border-left-color: var(--primary-green); background: #F5FAF9; }
+
+    .tag { display: inline-block; padding: 2px 7px; border-radius: 20px; font-size: .7 glamorous; font-size: .7rem; font-weight: 700; margin-right: 4px; vertical-align: 1px; }
+    .tag-law { background: #EAF1FA; color: #3D6F9B; }
+    .tag-custom { background: #FFF0DC; color: #A66822; }
+    .tag-advice { background: #EFEAFA; color: #675E9D; }
+
+    /* 模式切換按鈕 */
+    .mode-switch-container { display: flex; background: #EAEAEA; padding: 4px; border-radius: 20px; margin-bottom: 15px; }
+    .mode-btn { flex: 1; border: none; background: none; padding: 6px; font-size: 0.85rem; font-weight: bold; color: #666; cursor: pointer; border-radius: 20px; text-align: center; }
+    .mode-btn.active { background: var(--primary-green); color: white; }
+
+    .project-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      background: #FAFAFA;
+      border-radius: 13px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .input-group { margin-bottom: 12px; }
+    .project-form .input-group { margin-bottom: 0; }
+    .input-group label { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 5px; color: #555; }
+    .input-group input, .input-group select { width: 100%; padding: 9px; border: 1px solid #D8D4D0; border-radius: 7px; background: #fff; font-size: .9rem; }
+
+    .full-width { grid-column: 1 / -1; }
+
+    .priority-list { list-style: none; display: grid; gap: 8px; }
+    .priority-list li { display: flex; gap: 9px; align-items: flex-start; padding: 10px 11px; border: 1px solid var(--border); border-radius: 9px; background: #FFF; font-size: .87rem; }
+    .priority-list input { width: 17px; height: 17px; margin-top: 3px; accent-color: var(--primary-brown); flex: 0 0 auto; }
+
+    .era-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+    .era-card { padding: 12px; border-radius: 9px; font-size: .85rem; }
+    .era-parent { background: #F5EBE6; border-top: 3px solid var(--primary-brown); }
+    .era-modern { background: #EEF5F5; border-top: 3px solid var(--primary-green); }
+    .era-title { font-weight: 700; margin-bottom: 5px; font-size: .9rem; }
+
+    .gantt-item {
+      background: #FFFDFB;
+      border-left: 4px solid var(--primary-purple);
+      padding: 13px;
+      border-radius: 0 9px 9px 0;
+      margin-bottom: 12px;
+      border-top: 1px solid #F0F0F0;
+      border-right: 1px solid #F0F0F0;
+      border-bottom: 1px solid #F0F0F0;
+    }
+
+    .gantt-date { font-size: .78rem; color: var(--primary-brown); font-weight: 700; margin-bottom: 4px; }
+    .gantt-title { font-weight: 700; font-size: .94rem; margin-bottom: 4px; }
+    .gantt-desc { font-size: .84rem; color: #666; }
+
+    .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+    .accounting-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .8rem; }
+    .accounting-table th { background: #F2ECE4; color: #555; padding: 9px; text-align: left; white-space: nowrap; }
+    .accounting-table td { padding: 7px; border-bottom: 1px solid #EEE; vertical-align: middle; }
+    .accounting-table input, .accounting-table select { width: 100%; min-width: 85px; padding: 6px; border: 1px solid #D2CECA; border-radius: 5px; }
+
+    .number { text-align: right; }
+    .danger-text { color: var(--danger); font-weight: 700; }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .btn { border: 0; border-radius: 8px; padding: 9px 13px; cursor: pointer; font-weight: 700; font-size: .83rem; }
+    .btn-primary { background: var(--primary-brown); color: #fff; }
+    .btn-secondary { background: var(--primary-green); color: #fff; }
+    .btn-light { background: #F0EDE9; color: #555; }
+    .btn-danger { background: #FBE7E7; color: var(--danger); }
+    .btn-icon { padding: 6px 9px; }
+
+    .result-box { background: #F4F7F6; padding: 13px; border-radius: 7px; margin-top: 14px; font-size: .88rem; border-left: 3px solid var(--primary-green); }
+    .checklist { background: #FAFAFA; padding: 13px; border-radius: 12px; margin-bottom: 20px; }
+    .check-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; font-size: .84rem; cursor: pointer; }
+    .check-item input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--primary-brown); flex: 0 0 auto; }
+
+    .flow-step { position: relative; padding-left: 25px; margin-bottom: 15px; border-left: 2px dashed var(--primary-green); }
+    .flow-step:last-child { border-left: none; }
+    .flow-badge { position: absolute; left: -9px; top: 2px; width: 16px; height: 16px; background: var(--primary-purple); color: white; border-radius: 50%; text-align: center; font-size: 0.7rem; line-height: 16px; }
+    .flow-title { font-weight: bold; font-size: 0.9rem; color: #333; }
+    .flow-desc { font-size: 0.8rem; color: #666; background: #FAFAFA; padding: 6px 10px; border-radius: 4px; margin-top: 4px; }
+
+    .card { background: #fff; border: 1px solid #EAEAEA; border-radius: 10px; padding: 11px; margin-top: 8px; }
+    .card-header { font-weight: 700; color: var(--primary-brown); display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .8rem; }
+    .card-toggle-btn { flex: 0 0 auto; background: var(--primary-green); color: white; border: 0; padding: 4px 8px; border-radius: 20px; font-size: .7rem; cursor: pointer; }
+    .card-body, .card-reason { margin-top: 8px; color: #555; font-size: .8rem; background: #FFF2F2; padding: 9px; border-radius: 6px; }
+
+    .alert-error { background: #FDE8E8; color: #B63A3A; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: .8rem; display: none; font-weight: 700; }
+    .privacy-tools { border-top: 1px dashed var(--border); margin-top: 24px; padding-top: 16px; }
+    .hidden { display: none !important; }
+    footer { text-align: center; margin-top: 38px; font-size: .74rem; color: #AAA; }
+
+    @media (max-width: 620px) {
+      body { padding: 0 0 90px; }
+      .container { border-radius: 0; padding: 18px 14px; min-height: 100vh; }
+      .project-form, .dashboard-grid, .feature-grid { grid-template-columns: 1fr; }
+      .era-box { grid-template-columns: 1fr; }
+      .full-width { grid-column: auto; }
+      .countdown { font-size: 1.45rem; }
+    }
+  </style>
 </head>
 <body>
+<main class="container">
+  <header>
+    <h1>備婚小精靈</h1>
+    <p>💕 姊焦過的慮，不允許你們焦 💕</p>
+    <span class="save-status" id="save-status" aria-live="polite">✓ 資料會自動儲存在這台裝置</span>
+  </header>
 
-<div class="container">
-    <header>
-        <h1>備婚小精靈</h1>
-        <p>♡ 姊焦過的慮，不允許你們焦 ♡</p>
-    </header>
+  <nav class="tabs-container" role="tablist" aria-label="主要功能">
+    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-home" id="btn-tab-home" onclick="switchTab('tab-home', this)">🏠 今日總覽</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-ring" id="btn-tab-ring" onclick="switchTab('tab-ring', this)">🧱 01.求婚前置</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-family" id="btn-tab-family" onclick="switchTab('tab-family', this)">💬 02.提親共識</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-money" id="btn-tab-money" onclick="switchTab('tab-money', this)">💰 03.預算記帳</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-execute" id="btn-tab-execute" onclick="switchTab('tab-execute', this)">🏁 04.文定迎娶</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-register" id="btn-tab-register" onclick="switchTab('tab-register', this)">🏛️ 05.戶政登記</button>
+  </nav>
 
-    <!-- 雙平台優化 5 大階段 Tab 導覽 -->
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="switchTab('tab-ring')"> 💍求婚 </button>
-        <button class="tab-btn" onclick="switchTab('tab-family')"> 🎯提親 </button>
-        <button class="tab-btn" onclick="switchTab('tab-money')"> 💰預算 </button>
-        <button class="tab-btn" onclick="switchTab('tab-execute')"> 💒婚禮 </button>
-        <button class="tab-btn" onclick="switchTab('tab-register')"> 👩‍❤️‍💋‍👨登記 </button>
+  <section id="tab-home" class="tab-content active" role="tabpanel" aria-labelledby="btn-tab-home">
+    <div class="hero-dashboard">
+      <h2 id="dashboard-greeting">嗨，先建立你們的婚禮計畫吧！</h2>
+      <div class="countdown" id="countdown-view">
+        尚未設定婚期
+        <small>填寫下方資料後，小精靈會開始倒數。</small>
+      </div>
+      <div class="progress-track" aria-label="備婚基本進度">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">基本準備進度 0%</div>
     </div>
 
-    <!-- ==================== Tab 01: 求婚💍 ==================== -->
-    <div id="tab-ring" class="tab-content active">
-        <div class="intro-text">📢 <strong>UJ:</strong> 婚禮有千百個待辦事項，但一切的起點，只來自一句：妳願意嗎？</div>
-        
-        <div class="section-title">💍 求婚戒圍秘密對照器</div>
-        <div class="input-group">
-            <label>測量偷撇步：趁她睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上量測「內直徑」[cite: 1]</label>
-            <input type="number" step="0.1" id="ring-input" placeholder="請輸入內直徑 (mm) 例如: 15.2" oninput="calcRingSize()">
-            <div id="ring-result" class="result-box hidden"></div>
-        </div>
-        <div class="card" style="border-left: 3px solid var(--primary-brown); background:#FFFDF9;">
-            <p style="font-size:0.85rem; color:#666;">✨ <strong>小本本安心救援：</strong> 戒指尺寸不合、或怕買了不是她喜歡的款式？別擔心，亞立詩提供「求婚鑽戒外借服務」！只要訂購 GIA 國際認證鑽石即可挑選一款美麗婚戒完成浪漫求婚，之後再帶她回到門市挑選喜愛的款式。若配戴後想修改戒圍，提供了終身免費修改戒圍的服務，只要原尺寸上下 1-3 圍以內都可以進行修改，但有些特殊材質款式不能修改，購買前務必確認清楚喔！</p>
-        </div>
+    <div class="section-title">🪄 建立你們的婚禮專案</div>
+    <div class="project-form">
+      <div class="input-group">
+        <label for="couple-name">新人稱呼</label>
+        <input id="couple-name" type="text" placeholder="例如：侑潔與小明" data-project-field="coupleName">
+      </div>
+      <div class="input-group">
+        <label for="home-wedding-date">預計婚禮日期</label>
+        <input id="home-wedding-date" type="date" data-project-field="weddingDate">
+      </div>
+      <div class="input-group">
+        <label for="wedding-type">婚禮形式</label>
+        <select id="wedding-type" data-project-field="weddingType">
+          <option value="">尚未決定</option>
+          <option>婚宴會館／飯店</option>
+          <option>戶外婚禮</option>
+          <option>家宴</option>
+          <option>登記為主</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="guest-target">預計賓客人數</label>
+        <input id="guest-target" type="number" min="0" placeholder="例如：120" data-project-field="guestTarget">
+      </div>
+      <div class="input-group">
+        <label for="total-budget">婚禮總預算（元）</label>
+        <input id="total-budget" type="number" min="0" placeholder="例如：600000" data-project-field="totalBudget">
+      </div>
+      <div class="input-group">
+        <label for="ceremony-type">儀式需求</label>
+        <select id="ceremony-type" data-project-field="ceremonyType">
+          <option value="">尚未決定</option>
+          <option>訂婚＋迎娶＋宴客</option>
+          <option>訂結同日</option>
+          <option>迎娶＋宴客</option>
+          <option>登記＋宴客</option>
+          <option>僅登記</option>
+        </select>
+      </div>
     </div>
 
-    <!-- ==================== Tab 02: 提親與長輩共識 ==================== -->
-    <div id="tab-family" class="tab-content">
-        <div class="intro-text">📢 <strong>姊的叮嚀：</strong> 提親目的是為了敲定婚事及婚期，也是表達對結婚的重視與雙方家長的尊重。建議於「婚期前半年至一年」進行，避免後續婚禮籌備匆忙。傳統提親古禮「不過中午，亦不留吃午飯」。</div>
-        
-        <div class="section-title">🧭 世代備婚思維大對照</div>
-        <div class="era-box">
-            <div class="era-card era-parent"><div class="era-title">🧓 爸媽年代 (傳統)</div>結婚是兩個家族的大事，流程越繁複隆重、聘金排場擺越大，代表男方越重視女方、雙方長輩有面子。</div>
-            <div class="era-card era-modern"><div class="era-title">🧑 我們這年代 (現代)</div>結婚是新人宣告攜手成家的獨立派對。傾向將繁複古禮簡化或紅包化，把資源留給成家基金或出國蜜月。</div>
-        </div>
+    <div class="section-title">🎯 這週先完成 3 件事</div>
+    <ul class="priority-list">
+      <li><input type="checkbox" data-persist-key="priority-budget"><span><strong>確認婚禮形式與預算上限</strong><br>先決定大方向，後面才不會每個選項都超支。</span></li>
+      <li><input type="checkbox" data-persist-key="priority-guests"><span><strong>建立第一版賓客人數</strong><br>不用列到每個名字，先抓大約人數即可。</span></li>
+      <li><input type="checkbox" data-persist-key="priority-venue"><span><strong>確認宴客地區或場地需求</strong><br>先談地區、桌數與交通，再開始詢問檔期。</span></li>
+    </ul>
 
-        <div class="section-title">📋 提親前「探聽長輩底線」點檢表</div>
-        <div class="checklist">
-            <label class="check-item">
-                <input type="checkbox" id="chk-pinhong" onchange="document.getElementById('tip-ph').classList.toggle('hidden', !this.checked)">
-                <span><strong>大小聘看法：</strong> 探探長輩是否收聘？聘金行情以吉祥雙數為優先。(點擊看小本本行情)</span>
-            </label>
-            <div id="tip-ph" class="card-reason hidden">
-                💡 <strong>小本本行情：</strong> 大聘多為 36、60、66萬為主，一般女方多為檯面上收取，宴客後退還男方；小聘北部稱「做衫錢」是用來給新娘添置衣服，南部客家習俗稱「乳母錢」用以報答養育之恩，多為 10萬、12萬到36萬不等，多流為新人成家基金。
-            </div>
-            <label class="check-item"><input type="checkbox"><span><strong>喜餅決定權：</strong> 喜餅由誰決定？要漢餅或西式禮餅？喜餅的錢由男方負責，有的是男方直接決定，也有的是女方決定，男方出面付款或事後補款。</span></label>
-            <label class="check-item"><input type="checkbox"><span><strong>宴客場地形式：</strong> 提親前需初步詢問家長對於文定宴客場地的想法，基本上女方家宴客遵照女方習俗，男方家宴客遵照男方習俗。</span></label>
-        </div>
+    <div class="dashboard-grid">
+      <div class="metric-card"><span>預算規劃</span><strong id="metric-budget">尚未設定</strong></div>
+      <div class="metric-card"><span>目前已支付</span><strong id="metric-paid">NT$ 0</strong></div>
+      <div class="metric-card"><span>尚待支付</span><strong id="metric-due">NT$ 0</strong></div>
+      <div class="metric-card"><span>預計賓客</span><strong id="metric-guests">尚未設定</strong></div>
     </div>
 
-    <!-- ==================== Tab 03: 預算排坑與記帳 ==================== -->
-    <div id="tab-money" class="tab-content">
-        <div class="intro-text">💡 <strong>付訂追蹤小秘書：</strong> 完整移入小本本預算架構，幫妳即時追蹤已支出訂金與宴客當天需準備的尾款現金，拒減不必要的超支！</div>
-        
-        <table class="accounting-table">
-            <thead>
-                <tr><th>預算項目</th><th>預估總價</th><th>已付訂金</th><th>待付尾款</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>婚宴桌費預估總額</td><td><input type="number" id="acc-pre-1" value="300000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-1" value="30000" oninput="runAccounting()"></td><td id="acc-due-1">0</td></tr>
-                <tr><td>婚紗公司包套</td><td><input type="number" id="acc-pre-2" value="50000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-2" value="15000" oninput="runAccounting()"></td><td id="acc-due-2">0</td></tr>
-                <tr><td>外景拍攝雜費(跟拍/安瓶費)</td><td><input type="number" id="acc-pre-3" value="10000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-3" value="0" oninput="runAccounting()"></td><td id="acc-due-3">0</td></tr>
-                <tr><td>新娘秘書 / 婚禮平面動態攝影</td><td><input type="number" id="acc-pre-4" value="45000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-4" value="10000" oninput="runAccounting()"></td><td id="acc-due-4">0</td></tr>
-                <tr><td>主持人 / 樂團 / 場地佈置</td><td><input type="number" id="acc-pre-5" value="30000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-5" value="5000" oninput="runAccounting()"></td><td id="acc-due-5">0</td></tr>
-                <tr><td>喜餅挑選總額 (中式/西式/綜合)</td><td><input type="number" id="acc-pre-6" value="40000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-6" value="10000" oninput="runAccounting()"></td><td id="acc-due-6">0</td></tr>
-            </tbody>
-        </table>
-
-        <div class="result-box" style="background:#FFF2F2; border-left:3px solid var(--primary-brown);">
-            📌 <strong>動態財務總覽：</strong><br>
-            • 預估總預算：NT$ <span id="acc-total-pre">0</span> 元<br>
-            • 已支出訂金：NT$ <span id="acc-total-pay">0</span> 元<br>
-            • <b>宴客當天需準備尾款現金：NT$ <span id="acc-total-due" style="color:red; font-weight:bold;">0</span> 元</b>
-            <p style="font-size:0.78rem; color:#888; margin-top:6px;">⚠️ 姊的排坑提示：小本本提醒，婚紗公司的「增加拍攝組數、相片加購、安瓶、造型師跟拍」往往是加價大坑，簽約前務必確認清楚額外加價服務！蜜月型態（自助或跟團）與預算也要記得一併納入總規劃喔！</p>
-        </div>
+    <div class="section-title">🧰 常用工具捷徑</div>
+    <div class="feature-grid">
+      <button class="feature-card" onclick="openTabFromCard('tab-ring')"><strong>🧱 01.求婚前置</strong><small>偷量戒圍與求婚外借救援</small></button>
+      <button class="feature-card" onclick="openTabFromCard('tab-family')"><strong>💬 02.提親共識</strong><small>世代思維對照、大小聘看底線</small></button>
+      <button class="feature-card" onclick="openTabFromCard('tab-money')"><strong>💰 03.預算記帳</strong><small>追蹤訂金、成交價與尾款</small></button>
+      <button class="feature-card" onclick="openTabFromCard('tab-execute')"><strong>🏁 04.文定迎娶</strong><small>當天精簡/隆重切換與紅包計算</small></button>
     </div>
 
-    <!-- ==================== Tab 04: 文定迎娶與紅包 ==================== -->
-    <div id="tab-execute" class="tab-content">
-        <div class="intro-text">📢 <strong>姊的叮嚀：</strong> 這是最容易手忙腳亂的一天！這裡完整對齊了文定與迎娶流程、禮俗禁忌，並內建「現代精簡/傳統隆重」一鍵翻牌提案，連當天紅包行情都幫妳算好防錯！</div>
-        
-        <div class="mode-switch-container">
-            <button id="btn-mode-modern" class="mode-btn active" onclick="switchWeddingMode('modern')">✨ 現代精簡版提案 (合辦同天)</button>
-            <button id="btn-mode-traditional" class="mode-btn" onclick="switchWeddingMode('traditional')">👑 傳統隆重版禮俗 (追求周全)</button>
-        </div>
+    <div class="privacy-tools">
+      <div class="section-title">🔐 我的資料備份</div>
+      <div class="info-note">目前資料只會儲存在這台裝置的瀏覽器中，不會上傳到伺服器。更換裝置或清除瀏覽器資料前，請先匯出備份。</div>
+      <div class="btn-row">
+        <button class="btn btn-light" onclick="exportBackup()">匯出 JSON 備份</button>
+        <button class="btn btn-light" onclick="document.getElementById('import-file').click()">匯入備份</button>
+        <input id="import-file" class="hidden" type="file" accept="application/json" onchange="importBackup(event)">
+        <button class="btn btn-danger" onclick="clearAllData()">清除全部資料</button>
+      </div>
+    </div>
+  </section>
 
-        <div class="section-title">⏱️ 儀式流程與禮俗眉角</div>
-        
-        <div class="flow-step">
-            <div class="flow-badge">1</div>
-            <div class="flow-title">男方出發 $\rightarrow$ 納采迎納與雙方鳴炮</div>
-            <div class="flow-desc">男方在家祭祖後出發。抵達時雙方鳴炮，由女方晚輩（小舅子）端當天兩顆水果（蘋果或橘子居多）含紅紙開車門迎接新郎。</div>
-        </div>
+  <section id="tab-ring" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-ring">
+    <div class="intro-text">📢 <strong>姊的開場白：</strong> 恭喜進入備婚的第一站！兩個人聊到結婚，通常第一個具體的關卡就是戒圍。這裡有不被發現的偷量秘訣與救援指南。</div>
+    <div class="section-title">💍 求婚戒圍秘密對照器</div>
+    <div class="input-group">
+      <label for="ring-input">戒指內直徑（mm）</label>
+      <input type="number" step="0.1" id="ring-input" placeholder="例如：15.2">
+      <div id="ring-result" class="result-box hidden" aria-live="polite"></div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--primary-brown);background:#FFFDF9;">
+      <p style="font-size:.84rem;color:#666;">✨ <strong>小本本安心救援 [cite: 7, 17, 18, 19, 20, 21]：</strong> 
+      趁睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上測量內直徑 [cite: 7, 8]。尺寸不合或不是她愛的款式別擔心，亞立詩提供求婚鑽戒外借服務！只要訂購 GIA 國際認證鑽石即可外借婚戒完成浪漫求婚，之後再帶她回門市挑喜愛款式 [cite: 17, 18, 19]。若配戴後想修改戒圍，提供終身免費修改圍數服務，只要原尺寸上下 1-3 圍以內都可以進行修改，但部分特殊材質款式無法修改，購買前務必確認清楚 [cite: 20, 21]。寬版戒指通常需要較寬鬆，結果僅供初步初估 [cite: 5]。
+      </p>
+    </div>
+  </section>
 
-        <div class="flow-step">
-            <div class="flow-badge">2</div>
-            <div class="flow-title">奉甜茶與壓茶甌</div>
-            <div class="flow-desc">女方準備甜茶與茶杯盤組（6或12個）。好命婆牽新娘出場向男方親友奉甜茶、介紹親友，隨後新娘收回茶杯，男方長輩會將紅包捲起壓在杯下（壓茶甌）。</div>
-        </div>
-
-        <div class="flow-step">
-            <div class="flow-badge">3</div>
-            <div class="flow-title">交換戒指與互戴金飾</div>
-            <div class="flow-desc">舉辦戴婚戒儀式，古禮上一金一銅戒指以紅線綁上活結代表姻緣線（永結同心），戴在中指。
-                <div class="card">
-                    <div class="card-header"><span>⚠️ 禮俗眉角：戴婚戒儀式一定要套到底？</span></div>
-                    <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有把對方「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，給彼此留個互相尊重的甜蜜台階。接著由雙方父母為新人戴上金飾見面禮（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環）[cite: 1]。</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="mode-traditional-content" class="hidden">
-            <div class="flow-step">
-                <div class="flow-badge">禮</div>
-                <div class="flow-title">長輩堅持：傳統十二禮品項 check！</div>
-                <div class="flow-desc" style="background:#FFFDF5;">
-                    小本本記載完整十二禮包含：1.盒餅(西式喜餅)、2.日頭餅(中式大餅)、3.大小聘金首飾、4.香炮燭金(敬神祈福)、5.六色喜糖(甜甜蜜蜜)、6.頭尾禮(從頭到腳6或12件衣物)。<br>
-                    <b style="color:var(--primary-brown);">加碼後六禮：</b>7.麵線(美滿姻緣一線牽)、8.木炭(興旺家業)、9.豬肉或火腿、10.閹雞鴨母(起家興業)、11.肚圍(衣食無缺)、12.蓮蕉花芋頭(多子多孫)。女方回禮男方以 6 或 12 盒喜餅及頭尾禮為佳。
-                </div>
-            </div>
-        </div>
-        
-        <div id="mode-modern-content">
-            <div class="card" style="margin-bottom:15px; border-left:3px solid var(--primary-green);">
-                <div class="card-header"><span>💡 後六禮 (木炭、麵線、肚圍、閹雞等) 太難準備？</span></div>
-                <div class="card-body">✨ <strong>姊的簡化提案：</strong> 現代高達 90% 的新人，只要跟長輩講好，後六禮實體物一律改用<strong>「紅包代替」</strong>，在紅包袋上寫明品項與吉祥話即可！省去搬運麻煩，長輩看了一樣紅包大氣有面子。</div>
-            </div>
-        </div>
-
-        <div class="flow-step">
-            <div class="flow-badge">4</div>
-            <div class="flow-title">女方祭祖與文定宴會</div>
-            <div class="flow-desc">新人祭拜女方祖先稟告婚事。文定宴會開席款待親友。
-                <div class="card">
-                    <div class="card-header"><span>⚠️ 禮俗眉角：男方親友吃喜酒不能吃到最後、不可說再見？</span></div>
-                    <div class="card-body" style="background:#FFFDF5;">傳統習俗怕「吃過頭」代表把女方家吃垮，且不說再見代表不想有下一次（重婚意象）。因此男方親友通常在<strong>「魚料理」上桌時必須提前默默離席</strong>。姊提案：新郎本人在長輩離席後可以悄悄折返，留在最後陪新娘一起送客分送贈餅拍美照！</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flow-step">
-            <div class="flow-badge">5</div>
-            <div class="flow-title">迎娶闖關 $\rightarrow$ 拜別父母 $\rightarrow$ 擲扇潑水</div>
-            <div class="flow-desc">男方再次祭祖出發迎娶，新郎經歷伴娘闖關討喜。新娘與新郎跪拜感謝女方父母養育之恩（拜別）。新娘上禮車後出門擲扇（象徵丟掉壞脾氣）、女方家長潑水（象徵大展鴻圖、衣食無缺）。</div>
-        </div>
-
-        <div class="flow-step">
-            <div class="flow-badge">6</div>
-            <div class="flow-title">入家門 $\rightarrow$ 進洞房坐財庫 $\rightarrow$ 吃甜湯圓</div>
-            <div class="flow-desc">抵達男方家由晚輩端水果拜轎迎接。新人改口稱呼、進入洞房「坐財庫」（新郎新娘一起坐在一張墊有新郎長褲的高低椅上）、掀頭紗，隨後互相餵吃甜湯圓，象徵甜蜜圓滿、興旺家業。</div>
-        </div>
-
-        <div class="section-title">🛑 訂婚禮俗當天 3 大終極禁忌</div>
-        <div class="checklist" style="font-size:0.85rem; background:#FFF2F2; padding:12px; border-radius:8px;">
-            <p>❌ <b>喜餅分送眾人，新娘不可吃：</b> 傳統上認為會把自己當天的喜氣與福氣吃掉。</p>
-            <p>❌ <b>男方親友提早離席且不可說再見：</b> 避免重婚意象，默默離席即可。</p>
-            <p>❌ <b>紅包禮金數字選雙數、避開「4」與「單數」：</b> 紅包最低以 NT$600 元起跳，要包得喜氣吉祥。</p>
-        </div>
-
-        <div class="section-title">🧧 當天工作人員紅包行情即時計算 (防錯)</div>
-        <div class="input-group"><label>開新車門 / 壓茶甌 / 小舅子 / 好命婆 人數總和：</label><input type="number" id="hb-count1" value="3" oninput="calcRedEnvelope()"></div>
-        <div class="input-group"><label>單包紅包預算金額 (行情建議 1200 - 3600元)：</label><input type="number" id="hb-money1" value="1200" oninput="calcRedEnvelope()"></div>
-        <div class="input-group"><label>伴郎伴娘 / 花童 / 總招待 / 招待 / 攝影 / 收禮金 人數總和：</label><input type="number" id="hb-count2" value="6" oninput="calcRedEnvelope()"></div>
-        <div class="input-group"><label>單包紅包預算金額 (行情建議 600 - 1200元)：</label><input type="number" id="hb-money2" value="600" oninput="calcRedEnvelope()"></div>
-        <div id="hb-error" class="alert-error"></div>
-        <div class="result-box" style="background:#FFFDF2; border-left:3px solid var(--primary-purple);">
-            💰 <strong>當天預計準備紅包總額：NT$ <span id="total-hb-view">0</span> 元</strong>
-        </div>
+  <section id="tab-family" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-family">
+    <div class="intro-text">📢 <strong>姊的叮嚀 [cite: 34, 35, 38, 39]：</strong> 提親目的是為了敲定婚事及婚期，也是表達對結婚的重視與雙方家長的尊重 [cite: 34, 35]。建議於「婚期前半年至一年」進行，避免後續籌備匆忙 [cite: 38, 39]。傳統提親古禮「不過中午，亦不留吃午飯」 [cite: 39]。</div>
+    
+    <div class="section-title">🧭 世代備婚思維大對照</div>
+    <div class="era-box">
+      <div class="era-card era-parent"><div class="era-title">🧓 傳統思維</div>結婚被視為兩個家族的重要儀式，流程、聘禮與宴客規模也常被解讀為重視程度與家族體面。</div>
+      <div class="era-card era-modern"><div class="era-title">🧑 現代思維</div>結婚是兩人共同建立家庭。新人通常更重視流程效率、個人風格，以及把資源留給婚後生活。</div>
+    </div>
+    <div class="era-box">
+      <div class="era-card era-parent"><div class="era-title">🧓 常見傳統安排 [cite: 56]</div>文定、迎娶與歸寧可能分日辦理；宴客照各方習俗，喜餅重視份量與鄰里分送 [cite: 56]。</div>
+      <div class="era-card era-modern"><div class="era-title">🧑 常見現代安排</div>不少新人選擇訂結同日或精簡儀式；喜餅則常依預算、口味與送禮對象彈性選擇。</div>
     </div>
 
-    <!-- ==================== Tab 05: 戶政登記正式成家 ==================== -->
-    <div id="tab-register" class="tab-content">
-        <div class="intro-text">📢 <strong>姊的完美收尾：</strong> 婚宴辦完，最重要的一步就是完成法律程序。小本本最重要的登記提醒，出門前照著勾選絕對不落勾。</div>
-        
-        <div class="section-title">📌 登記結婚 4 步驟流程</div>
-        <div class="flow-step"><div class="flow-badge">1</div><div class="flow-title">提前致電戶政事務所預約</div><div class="flow-desc">確認登記當天狀況。<b>如果是假日登記，必須提前 3 天以上預約喔！</b>登記結婚當天超過預約時間 15 分鐘則視同取消預約。可以在結婚登記日前 3 個辦公日內，向戶政事務所辦理結婚登記並指定結婚登記日。</div></div>
-        <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌</div><div class="flow-desc">結婚當事人兩位需要親自到辦理，可以任選一間自己方便的事務所登記（除了要遷入戶籍須到戶籍當地事務所）。辦理完成結婚登記才算正式生效！</div></div>
-        <div class="flow-step"><div class="flow-badge">3</div><div class="flow-title">繳交相關文件與結婚書約</div><div class="flow-desc">將填寫好的結婚書約遞交櫃檯。結婚書約上需要有 2 位年滿 20 歲以上且未受監護宣告的證人簽名或蓋章（兩位證人不需要到現場）。</div></div>
-        <div class="flow-step"><div class="flow-badge">4</div><div class="flow-title">繳費、領取正式相關文件與新身分證</div><div class="flow-desc">大功告成！恭喜正式成為合法夫妻！</div></div>
-
-        <div class="section-title">📋 辦理登記證件與規費打包 Checkbox</div>
-        <div class="checklist">
-            <label class="check-item"><input type="checkbox"><span>雙方當事人的國民身分證 (外籍人士需帶護照)</span></label>
-            <label class="check-item"><input type="checkbox"><span>雙方戶口名簿 + 雙方印章</span></label>
-            <label class="check-item"><input type="checkbox"><span>結婚書約 (戶政會收走一份，可以多帶一份方便留做紀念)</span></label>
-            <label class="check-item"><input type="checkbox"><span>2 年內所攝正面半身彩色相片各 1 張 (規格同身分證)</span></label>
-            <label class="check-item"><input type="checkbox"><span>換發國民身分證工本費：每張新臺幣 50 元</span></label>
-            <label class="check-item"><input type="checkbox"><span>換發戶口名簿規費：每份新臺幣 30 元</span></label>
-            <label class="check-item"><input type="checkbox"><span>(選備) 若需結婚證明書：規費為每張新臺幣 100 元</span></label>
-        </div>
+    <div class="section-title">📋 提親前：先探聽長輩底線</div>
+    <div class="checklist">
+      <label class="check-item"><input type="checkbox" data-persist-key="family-pinhong" onchange="toggleRelatedTip(this,'tip-ph')"><span><strong>大小聘看法 [cite: 40, 41, 48, 63, 64]：</strong>是否收聘、是否退聘、金額如何呈現？大聘通常 36、60、66萬為主；小聘多為 10萬到36萬不等 [cite: 48, 63, 64]。北部稱做衫錢、南部客家稱乳母錢 [cite: 61]。</span></label>
+      <div id="tip-ph" class="card-reason hidden">💡 <span class="tag tag-advice">姊的提案 [cite: 48, 59]</span>把「面子」與「實際使用」分開談：一般女方多為檯面上收取大聘，宴客後退還男方（顧足面子） [cite: 48, 59]；小聘則多留給新人作為成家基金。</div>
+      <label class="check-item"><input type="checkbox" data-persist-key="family-cake"><span><strong>喜餅安排 [cite: 51, 52, 54]：</strong>由誰決定款式、要漢餅或西式？喜餅的錢由男方負責，有的直接由男方決定，也有女方決定由男方出面付款或事後補款 [cite: 51, 52, 54]。</span></label>
     </div>
 
-    <footer>
-        <p>Made with ❤️ by 侑潔 | 備婚小精靈 v5.1</p>
-    </footer>
-</div>
+    <div class="section-title">📅 依婚期倒推：四階段時程甘特圖</div>
+    <div id="gantt-container">
+      <p style="text-align:center;color:#999;font-size:.85rem;padding:14px;">請先在首頁設定預計婚期，小精靈會自動在此生成完整的四大破關時程 📅</p>
+    </div>
+  </section>
+
+  <section id="tab-money" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-money">
+    <div class="intro-text">💡 <strong>付訂追蹤：</strong>完整移入小本本第8、9頁花費架構 [cite: 494, 536, 539]。記錄預算、成交價、已付款、付款期限與付款人。尚待支付不一定等於婚宴當天現金，請依合約日期安排。</div>
+    <div class="table-scroll">
+      <table class="accounting-table">
+        <thead>
+          <tr>
+            <th>項目 [cite: 494, 536, 539]</th>
+            <th>原始預算 [cite: 494, 536, 539]</th>
+            <th>成交價 [cite: 494, 536, 539]</th>
+            <th>已付款 [cite: 494, 536, 539]</th>
+            <th>尚待支付 [cite: 494, 536, 539]</th>
+            <th>付款期限</th>
+            <th>付款人</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="budget-body"></tbody>
+      </table>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="addBudgetItem()">＋ 新增預算項目</button>
+      <button class="btn btn-light" onclick="resetBudgetItems()">重設範例項目</button>
+    </div>
+    <div class="result-box">
+      📌 <strong>預算摘要</strong><br>
+      • 原始預算合計：NT$ <span id="acc-total-plan">0</span><br>
+      • 成交價合計：NT$ <span id="acc-total-final">0</span><br>
+      • 已支付：NT$ <span id="acc-total-pay">0</span><br>
+      • <strong>尚待支付：NT$ <span id="acc-total-due" class="danger-text">0</span></strong><br>
+      • 與首頁總預算差額：<span id="budget-gap">尚未設定首頁總預算</span>
+      <p style="font-size:.76rem;color:#777;margin-top:6px;">🧚 姊的排坑提醒 [cite: 494, 495]：簽約前務必確認清楚額外加價服務！婚紗公司的增加拍攝組數、造型師跟拍、外景拍攝雜費、安瓶等都是隱形加價坑 [cite: 494, 495]。</p>
+    </div>
+  </section>
+
+  <section id="tab-execute" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-execute">
+    <div class="intro-text">💡 <strong>當天定心丸：</strong>民俗提醒、工作人員紅包估算，一鍵切換「精簡版」或「傳統隆重十二禮版」。</div>
+
+    <div class="mode-switch-container">
+      <button id="btn-mode-modern" class="mode-btn active" onclick="switchWeddingMode('modern')">✨ 現代精簡版提案 (合辦同天)</button>
+      <button id="btn-mode-traditional" class="mode-btn" onclick="switchWeddingMode('traditional')">👑 傳統隆重版禮俗 (追求周全)</button>
+    </div>
+
+    <div class="section-title">⏱️ 儀式流程與禮俗眉角 [cite: 13, 23, 24, 26, 27, 28, 90, 131, 142, 145]</div>
+    
+    <div class="flow-step">
+      <div class="flow-badge">1</div>
+      <div class="flow-title">男方出發 $\rightarrow$ 納采迎納與雙方鳴炮 [cite: 71, 83, 88]</div>
+      <div class="flow-desc">男方祭祖出發 [cite: 71]。抵達時雙方鳴炮迎接 [cite: 88]，由女方晚輩（小舅子）端當天兩顆水果（蘋果或橘子居多）含紅紙拜轎迎新郎 [cite: 88, 163]。</div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-badge">2</div>
+      <div class="flow-title">奉甜茶與壓茶甌 [cite: 89, 99, 100]</div>
+      <div class="flow-desc">準備甜茶與茶杯盤組（6或12個） [cite: 89, 187]。好命婆牽新娘奉甜茶、介紹親友 [cite: 95, 99]，隨後新娘收杯，男方親友會將紅包壓在杯下（壓茶甌） [cite: 100]。</div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-badge">3</div>
+      <div class="flow-title">交換戒指與互戴金飾 [cite: 13, 101, 102]</div>
+      <div class="flow-desc">古禮上一金一銅戒指以紅線綁上活結代表姻緣線（永結同心），戴在中指 [cite: 24, 25, 26]。
+        <div class="card">
+          <div class="card-header"><span>⚠️ 禮俗眉角：戒指套到底？ [cite: 27, 28]</span></div>
+          <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，代表彼此尊重 [cite: 27, 28]。接著由雙方父母幫新人戴上金飾（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環） [cite: 13]。</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mode-traditional-content" class="hidden">
+      <div class="flow-step">
+        <div class="flow-badge">禮</div>
+        <div class="flow-title">長輩堅持：傳統十二禮品項 check！ [cite: 77, 80, 90]</div>
+        <div class="flow-desc" style="background:#FFFDF5;">
+          小本本隆重版完整十二禮包含 [cite: 80, 90]：1.盒餅(西式喜餅)、2.日頭餅(中式大餅)、3.大小聘金首飾、4.香炮燭金(敬神祈福)、5.六色喜糖(甜甜蜜蜜)、6.頭尾禮(從頭到腳6或12件衣物) [cite: 90]。<br>
+          <b style="color:var(--primary-brown);">後六禮品項 [cite: 90]：</b>7.麵線(美滿姻緣)、8.木炭(興旺家業)、9.豬肉或火腿、10.閹雞鴨母(起家興業)、11.肚圍(衣食無缺)、12.蓮蕉花芋頭粗米(多子多孫) [cite: 90]。女方回禮男方以 6 或 12 盒為佳 [cite: 91]。
+        </div>
+      </div>
+    </div>
+    
+    <div id="mode-modern-content">
+      <div class="card" style="margin-bottom:15px; border-left:3px solid var(--primary-green);">
+        <div class="card-header"><span>💡 後六禮（木炭、麵線、肚圍等）太繁複？ [cite: 90]</span></div>
+        <div class="card-body">✨ <strong>姊的簡化提案 [cite: 90]：</strong> 只要與家長達成共識，後六禮太難買或不實用的實體物品，現代高達 90% 的新人都直接改用<strong>「紅包代替」</strong>，在袋上寫上品項名稱與吉祥話即可 [cite: 90]。</div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-badge">4</div>
+      <div class="flow-title">女方祭祖與文定宴會 [cite: 56, 113, 130]</div>
+      <div class="flow-desc">新人祭拜女方祖先稟告婚事 [cite: 113]。文定宴會開席款待親友 [cite: 130, 133]。
+        <div class="card">
+          <div class="card-header"><span>⚠️ 禮俗眉角：男方親友提早離席，不可說再見？ [cite: 145]</span></div>
+          <div class="card-body" style="background:#FFFDF5;">文定主要是女方負責 [cite: 56]。傳統部分文定宴男方親友有在「魚料理」上桌時提早低調離席、且不可說再見的習慣，表示不想有下一次 [cite: 145]。姊提案：新郎本人在長輩離席後可以悄悄折返，留在最後陪新娘一起送客分送贈餅拍美照 [cite: 137]！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-badge">5</div>
+      <div class="flow-title">迎娶闖關 $\rightarrow$ 拜別父母 $\rightarrow$ 出門擲扇潑水 [cite: 96, 105, 108]</div>
+      <div class="flow-desc">男方再次出發迎娶並進行闖關討喜 [cite: 74, 96]。新人跪拜感謝女方父母養育之恩（拜別） [cite: 105]。新娘上禮車後出門擲扇（丟掉壞脾氣）、女方家長潑水燃炮（大展鴻圖、衣食無缺） [cite: 108]。</div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-badge">6</div>
+      <div class="flow-title">入家門 $\rightarrow$ 進洞房坐財庫 $\rightarrow$ 吃甜湯圓 [cite: 116, 119, 131, 138]</div>
+      <div class="flow-desc">抵達男方家拜轎迎接 [cite: 112]，新娘入家門、進洞房 [cite: 116, 119]。新郎新娘一起坐在墊有新郎長褲的高低椅上（坐財庫） [cite: 131, 185]，掀頭紗並互相餵吃甜湯圓，用以拜告祖先與互相祝福，象徵甜蜜圓滿 [cite: 120, 134, 138]。</div>
+    </div>
+
+    <div class="section-title">🛑 婚禮當天常見民俗提醒</div>
+    <div class="checklist" style="font-size:.84rem;background:#FFF8F4;">
+      <p><span class="tag tag-custom">民俗信仰</span><b>新娘是否吃自己的喜餅 [cite: 142]：</b>喜餅分送眾人，新娘不可吃，部分家庭認為會「吃掉喜氣」 [cite: 142]。</p>
+      <p><span class="tag tag-custom">民俗信仰</span><b>男方親友是否提早離席 [cite: 145]：</b>部分文定宴有不說再見、低調離席的習慣 [cite: 145]。</p>
+      <p><span class="tag tag-custom">民俗信仰</span><b>戒指是否套到底 [cite: 27]：</b>套到底有「壓到底」之意，保留一點空間（戴到第二指節）象徵彼此尊重 [cite: 27, 28]。</p>
+    </div>
+
+    <div class="section-title">🧧 工作人員紅包估算</div>
+    <div class="project-form">
+      <div class="input-group"><label for="hb-count1">好命婆／開車門／小舅子等人數 [cite: 623]</label><input type="number" id="hb-count1" min="0" value="3"></div>
+      <div class="input-group"><label for="hb-money1">單包預算金額 (小本本建議 1200–3600元) [cite: 623]</label><input type="number" id="hb-money1" min="0" value="1200"></div>
+      <div class="input-group"><label for="hb-count2">伴郎伴娘／招待／收禮金人數 [cite: 623]</label><input type="number" id="hb-count2" min="0" value="6"></div>
+      <div class="input-group"><label for="hb-money2">單包預算金額 (小本本建議 600–1200元) [cite: 623]</label><input type="number" id="hb-money2" min="0" value="600"></div>
+    </div>
+    <div id="hb-error" class="alert-error" aria-live="polite"></div>
+    <div class="result-box">💰 預計準備紅包總額：NT$ <span id="total-hb-view">0</span><br><span style="font-size:.74rem;color:#888;">小本本叮嚀 [cite: 623]：紅包最低以 NT$600 元起跳，並且記得選雙數，絕對要避開「4」跟單數喔 [cite: 623]！</span></div>
+  </section>
+
+  <section id="tab-register" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-register">
+    <div class="intro-text">📢 <strong>姊的完美收尾 [cite: 221]：</strong> 婚宴辦完，最重要的一步就是完成法律程序。結婚當事人都需親自到戶政事務所辦理登記，結婚才算正式生效喔 [cite: 221]。</div>
+    
+    <div class="section-title">📌 登記結婚 4 步驟流程 [cite: 152]</div>
+    <div class="flow-step"><div class="flow-badge">1</div><div class="flow-title">提前致電戶政事務所預約 [cite: 157, 158]</div><div class="flow-desc">確認登記當天狀況。<b>如果是假日登記，必須提前 3 天以上預約喔！</b>超過預約時間 15 分鐘則視同取消預約 [cite: 158, 161]。</div></div>
+    <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌 [cite: 165]</div><div class="flow-desc">除了要遷入戶籍須到戶籍當地事務所登記，結婚當事人是可以任選一間自己方便的事務所登記 [cite: 206, 207, 208]。</div></div>
+    <div class="flow-step"><div class="flow-badge">3</div><div class="flow-title">繳交相關文件與結婚書約 [cite: 172]</div><div class="flow-desc">將填寫好的結婚書約遞交櫃檯。書約上需要有 2 位年滿 20 歲以上且未受監護宣告的證人簽名或蓋章（兩位證人不需要到現場） [cite: 199, 200, 201, 216]。可在登記日前 3 個辦公日內辦理並指定結婚登記日 [cite: 212, 213]。</div></div>
+    <div class="flow-step"><div class="flow-badge">4</div><div class="flow-title">繳費、領取正式相關文件與新身分證 [cite: 177]</div><div class="flow-desc">換發新證，正式大功告成！恭喜升級成為正式合法夫妻 [cite: 193]！</div></div>
+
+    <div class="section-title">📋 辦理登記證件與規費打包 Checkbox [cite: 209]</div>
+    <div class="info-note"><span class="tag tag-law">行政規定</span>戶政規定及規費可能調整，辦理前請再向預計前往的戶政事務所確認最新要求與預約方式 [cite: 213]。</div>
+    <div class="checklist">
+      <label class="check-item"><input type="checkbox" data-persist-key="register-id"><span>雙方當事人的國民身分證（外籍人士持護照）及戶口名簿、印章 [cite: 210, 211, 591]</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="register-photo"><span>2 年內所攝正面半身彩色相片各 1 張（規格同身分證） [cite: 214]</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="register-form"><span>結婚書約（建議多帶一份自己留做紀念，戶政會收走一份） [cite: 216, 219, 220]</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="register-fee"><span>準備規費：換發身分證工本費（50元/張）＋換發戶口名簿規費（30元/份） [cite: 215, 217]</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="register-cert"><span>(選備) 若需結婚證明書規費為每張新臺幣 100 元 [cite: 218]</span></label>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ by 侑潔｜備婚小精靈 v5.2</p>
+  </footer>
+</main>
 
 <script>
-    // Tab 切換控制
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-        window.scrollTo(0, 0);
-    }
+  const STORAGE_KEY = 'weddingDobbyV5_2';
 
-    // 現代精簡與傳統隆重模式切換
-    function switchWeddingMode(mode) {
-        document.getElementById('btn-mode-modern').classList.toggle('active', mode === 'modern');
-        document.getElementById('btn-mode-traditional').classList.toggle('active', mode === 'traditional');
-        
-        document.getElementById('mode-modern-content').classList.toggle('hidden', mode !== 'modern');
-        document.getElementById('mode-traditional-content').classList.toggle('hidden', mode !== 'traditional');
-    }
+  const DEFAULT_BUDGET_ITEMS = [
+    { id: cryptoId(), name: '宴客桌費總額', plan: 300000, final: 300000, paid: 30000, dueDate: '', payer: '共同' },
+    { id: cryptoId(), name: '婚紗公司包套', plan: 50000, final: 50000, paid: 15000, dueDate: '', payer: '共同' },
+    { id: cryptoId(), name: '額外拍攝雜費(跟拍/安瓶)', plan: 10000, final: 10000, paid: 0, dueDate: '', payer: '共同' },
+    { id: cryptoId(), name: '新秘／婚攝／錄影', plan: 45000, final: 45000, paid: 10000, dueDate: '', payer: '共同' },
+    { id: cryptoId(), name: '主持／樂團／佈置', plan: 30000, final: 30000, paid: 5000, dueDate: '', payer: '共同' },
+    { id: cryptoId(), name: '喜餅費用總額', plan: 40000, final: 40000, paid: 10000, dueDate: '', payer: '共同' }
+  ];
 
-    // 戒圍即時對照矩陣 (精準對齊小本本第2頁數據)
-    const ringData = [
-        { d: 14.2, h: 6, e: 45, j: 4, i: 8.5 }, { d: 14.4, h: 7, e: 46, j: 5, i: 7 }, { d: 14.6, h: 8, e: 47, j: 6, i: 8 },
-        { d: 14.8, h: 9, e: 40, j: 7, i: 8.5 }, { d: 15.2, h: 10, e: 49, j: 7.25, i: 8.5 }, { d: 15.5, h: 11, e: 50, j: 8.25, i: 9.25 },
-        { d: 15.9, h: 12, e: 51, j: 9.5, i: 10 }, { d: 16.5, h: 13, e: 52, j: 10.5, i: 10.75 }, { d: 16.8, h: 14, e: 59, j: 11.5, i: 11.5 },
-        { d: 16.9, h: 15, e: 54, j: 12.5, i: 12.5 }, { d: 17.2, h: 16, e: 55, j: 13.5, i: 13 }, { d: 17.6, h: 17, e: 56, j: 14.75, i: 13.5 },
-        { d: 18.0, h: 18, e: 57, j: 15.75, i: 14 }
-    ];
-    function calcRingSize() {
-        const val = parseFloat(document.getElementById('ring-input').value);
-        const resBox = document.getElementById('ring-result');
-        if (!val) { resBox.classList.add('hidden'); return; }
-        let closest = ringData.reduce((prev, curr) => Math.abs(curr.d - val) < Math.abs(prev.d - val) ? curr : prev);
-        resBox.innerHTML = `🔮 <strong>最接近的戒圍對照結果 (內直徑約 ${closest.d}mm)：</strong><br>
-            • 國際戒圍：<b>${closest.i}</b><br>• 香港戒圖：<b>${closest.h} 號</b><br>
-            • 歐洲戒圍：<b>${closest.e}</b><br>• 日本戒圍：<b>${closest.j} 號</b>`;
-        resBox.classList.remove('hidden');
-    }
+  let appState = {
+    project: {
+      coupleName: '',
+      weddingDate: '',
+      weddingType: '',
+      guestTarget: '',
+      totalBudget: '',
+      ceremonyType: ''
+    },
+    budgetItems: structuredCloneSafe(DEFAULT_BUDGET_ITEMS),
+    checks: {},
+    redEnvelope: { c1: 3, m1: 1200, c2: 6, m2: 600 },
+    ringInput: '',
+    activeTab: 'tab-home'
+  };
 
-    // 預算與動態記帳追蹤邏輯
-    function runAccounting() {
-        let totalPre = 0, totalPay = 0, totalDue = 0;
-        for(let i=1; i<=6; i++) {
-            let pre = parseInt(document.getElementById(`acc-pre-${i}`).value)||0;
-            let pay = parseInt(document.getElementById(`acc-pay-${i}`).value)||0;
-            let due = pre - pay;
-            document.getElementById(`acc-due-${i}`).innerText = due.toLocaleString();
-            totalPre += pre; totalPay += pay; totalDue += due;
+  function cryptoId() {
+    return 'id-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  function structuredCloneSafe(value) {
+    return JSON.parse(JSON.stringify(value));
+  }
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      const parsed = JSON.parse(saved);
+      appState = {
+        ...appState,
+        ...parsed,
+        project: { ...appState.project, ...(parsed.project || {}) },
+        checks: parsed.checks || {},
+        redEnvelope: { ...appState.redEnvelope, ...(parsed.redEnvelope || {}) },
+        budgetItems: Array.isArray(parsed.budgetItems) && parsed.budgetItems.length ? parsed.budgetItems : structuredCloneSafe(DEFAULT_BUDGET_ITEMS)
+      };
+    } catch (error) {
+      console.warn('無法讀取儲存資料：', error);
+    }
+  }
+
+  let saveTimer;
+  function saveState() {
+    clearTimeout(saveTimer);
+    const status = document.getElementById('save-status');
+    status.textContent = '儲存中…';
+    saveTimer = setTimeout(() => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      status.textContent = '✓ 已自動儲存在這台裝置';
+    }, 250);
+  }
+
+  function switchTab(tabId, button, shouldSave = true) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => {
+      el.classList.remove('active');
+      el.setAttribute('aria-selected', 'false');
+    });
+
+    const panel = document.getElementById(tabId);
+    const tabButton = button || document.getElementById(`btn-${tabId}`);
+    if (!panel || !tabButton) return;
+
+    panel.classList.add('active');
+    tabButton.classList.add('active');
+    tabButton.setAttribute('aria-selected', 'true');
+    appState.activeTab = tabId;
+    tabButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (shouldSave) saveState();
+  }
+
+  function openTabFromCard(tabId) {
+    switchTab(tabId, document.getElementById(`btn-${tabId}`));
+  }
+
+  // 現代精簡與傳統隆重儀式模式切換
+  function switchWeddingMode(mode) {
+    document.getElementById('btn-mode-modern').classList.toggle('active', mode === 'modern');
+    document.getElementById('btn-mode-traditional').classList.toggle('active', mode === 'traditional');
+    
+    document.getElementById('mode-modern-content').classList.toggle('hidden', mode !== 'modern');
+    document.getElementById('mode-traditional-content').classList.toggle('hidden', mode !== 'traditional');
+  }
+
+  function bindProjectFields() {
+    document.querySelectorAll('[data-project-field]').forEach(input => {
+      const key = input.dataset.projectField;
+      input.value = appState.project[key] ?? '';
+      input.addEventListener('input', () => {
+        appState.project[key] = input.value;
+        if (key === 'weddingDate') {
+          generateGantt();
         }
-        document.getElementById('acc-total-pre').innerText = totalPre.toLocaleString();
-        document.getElementById('acc-total-pay').innerText = totalPay.toLocaleString();
-        document.getElementById('acc-total-due').innerText = totalDue.toLocaleString();
+        updateDashboard();
+        runAccounting();
+        saveState();
+      });
+    });
+  }
+
+  function bindPersistentChecks() {
+    document.querySelectorAll('[data-persist-key]').forEach(check => {
+      const key = check.dataset.persistKey;
+      check.checked = Boolean(appState.checks[key]);
+      check.addEventListener('change', () => {
+        appState.checks[key] = check.checked;
+        updateDashboard();
+        saveState();
+      });
+    });
+
+    const pinhong = document.querySelector('[data-persist-key="family-pinhong"]');
+    if (pinhong?.checked) document.getElementById('tip-ph').classList.remove('hidden');
+  }
+
+  function toggleRelatedTip(check, tipId) {
+    document.getElementById(tipId).classList.toggle('hidden', !check.checked);
+  }
+
+  function updateDashboard() {
+    const p = appState.project;
+    const greeting = document.getElementById('dashboard-greeting');
+    greeting.textContent = p.coupleName ? `${p.coupleName}，今天也一起往前一點點。` : '嗨，先建立你們的婚禮計畫吧！';
+
+    const countdown = document.getElementById('countdown-view');
+    if (p.weddingDate) {
+      const target = parseLocalDate(p.weddingDate);
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const days = Math.ceil((target - today) / 86400000);
+      if (days > 0) countdown.innerHTML = `距離婚禮還有 ${days.toLocaleString()} 天<small>${formatDate(target)}，不用一次做完，先處理眼前最重要的事。</small>`;
+      else if (days === 0) countdown.innerHTML = `就是今天！祝你們婚禮順利 💕<small>${formatDate(target)}</small>`;
+      else countdown.innerHTML = `婚禮已經過了 ${Math.abs(days).toLocaleString()} 天<small>也別忘了整理照片、款項與感謝名單。</small>`;
+    } else {
+      countdown.innerHTML = `尚未設定婚期<small>填寫下方資料後，小精靈會開始倒數。</small>`;
     }
 
-    // 紅包行情即時加總與禮俗防錯
-    function calcRedEnvelope() {
-        const c1 = parseInt(document.getElementById('hb-count1').value)||0; const m1 = parseInt(document.getElementById('hb-money1').value)||0;
-        const c2 = parseInt(document.getElementById('hb-count2').value)||0; const m2 = parseInt(document.getElementById('hb-money2').value)||0;
-        document.getElementById('total-hb-view').innerText = ((c1 * m1) + (c2 * m2)).toLocaleString();
-        const errBox = document.getElementById('hb-error'); errBox.style.display = 'none';
-        if ((m1 > 0 && (m1 < 600 || m1 % 2 !== 0 || m1.toString().includes('4'))) || (m2 > 0 && (m2 < 600 || m2 % 2 !== 0 || m2.toString().includes('4')))) {
-            errBox.innerHTML = `⚠️ 💡 姊的雷達提醒：紅包金額包錯囉！最低要 600 元起跳、必須是雙數，且絕對要避開數字「4」喔！請再調整一下金額。`; errBox.style.display = 'block';
-        }
+    const projectKeys = ['weddingDate', 'weddingType', 'guestTarget', 'totalBudget', 'ceremonyType'];
+    const projectDone = projectKeys.filter(k => String(p[k] || '').trim()).length;
+    const priorityKeys = ['priority-budget', 'priority-guests', 'priority-venue'];
+    const priorityDone = priorityKeys.filter(k => appState.checks[k]).length;
+    const completed = projectDone + priorityDone;
+    const total = projectKeys.length + priorityKeys.length;
+    const percent = Math.round(completed / total * 100);
+
+    document.getElementById('progress-bar').style.width = `${percent}%`;
+    document.getElementById('progress-text').textContent = `基本準備進度 ${percent}%（${completed}/${total}）`;
+
+    document.getElementById('metric-budget').textContent = p.totalBudget ? `NT$ ${formatMoney(p.totalBudget)}` : '尚未設定';
+    document.getElementById('metric-guests').textContent = p.guestTarget ? `${formatMoney(p.guestTarget)} 人` : '尚未設定';
+  }
+
+  // 互補融合：依據小本本時程與今日總覽婚期自動連動甘特圖
+  function generateGantt() {
+    const dateVal = appState.project.weddingDate;
+    const container = document.getElementById('gantt-container');
+    if (!dateVal) {
+      container.innerHTML = '<p style="text-align:center;color:#999;font-size:.85rem;padding:20px;">請先在首頁設定婚期，即可在此生成專屬階梯時程 📅</p>';
+      return;
     }
 
-    // 初始化動態數據
+    const weddingDate = parseLocalDate(dateVal);
+    const p1Start = addMonths(weddingDate, -12);
+    const p1End = addMonths(weddingDate, -9);
+    const p2Start = addMonths(weddingDate, -9);
+    const p2End = addMonths(weddingDate, -6);
+    const p3Start = addMonths(weddingDate, -6);
+    const p3End = addMonths(weddingDate, -2);
+    const p4Start = addMonths(weddingDate, -2);
+    const reserveDate = addDays(weddingDate, -7);
+
+    container.innerHTML = `
+      ${ganttCard(`${formatDate(p1Start)}～${formatDate(p1End)}`, '階段一：方向與共識 (婚前 6-12 個月)', '確認婚禮形式、總預算、賓客規模及雙方家庭期待。小倆口在此階段應對預算大項達成共識，並秘密測量初估戒圍。')}
+      ${ganttCard(`${formatDate(p2Start)}～${formatDate(p2End)}`, '階段二：場地與提親長輩戰役 (婚前 4-6 個月)', '建議於婚期前半年至一年安排正式提親，確認大小聘金、喜餅錢主導與發送形式。同步開始詢問場地，接洽婚紗、新秘與婚攝。')}
+      ${ganttCard(`${formatDate(p3Start)}～${formatDate(p3End)}`, '階段三：細節魔鬼期 (婚前 1-2 個月)', '整理精準賓客名單、寄發喜帖、確認女方喜餅發送總數。排定當天所有總招待、伴郎娘、司儀分工，打包六禮或十二禮紅包代替物。')}
+      ${ganttCard(`${formatDate(p4Start)}～${formatDate(weddingDate)}`, '階段四：當天執行與法律登記 (最終倒數)', '最終核對流程表、款項。<b>有假日登記需求者，必須依規定在登記日前3天以上預約！</b>打包身分證、戶口名簿、照片與書約大功告成。')}
+      <div class="info-note">🧚 姊的提醒：建議在 <strong>${formatDate(reserveDate)}</strong> 前完成所有物品與付款清單的最後核對，留一週給自己解壓調適。</div>
+    `;
+  }
+
+  function ganttCard(dateText, title, desc) {
+    return `<article class="gantt-item"><div class="gantt-date">📅 建議區間：${dateText}</div><div class="gantt-title">🥊 ${title}</div><div class="gantt-desc">${desc}</div></article>`;
+  }
+
+  function addMonths(date, amount) {
+    const d = new Date(date);
+    const day = d.getDate();
+    d.setDate(1);
+    d.setMonth(d.getMonth() + amount);
+    const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    d.setDate(Math.min(day, lastDay));
+    return d;
+  }
+
+  function addDays(date, amount) {
+    const d = new Date(date);
+    d.setDate(d.getDate() + amount);
+    return d;
+  }
+
+  function parseLocalDate(value) {
+    const [y,m,d] = value.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  function formatDate(date) {
+    return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,'0')}/${String(date.getDate()).padStart(2,'0')}`;
+  }
+
+  function renderBudgetTable() {
+    const body = document.getElementById('budget-body');
+    if (!body) return;
+    body.innerHTML = appState.budgetItems.map(item => {
+      const due = Math.max(0, Number(item.final || 0) - Number(item.paid || 0));
+      return `
+        <tr data-id="${item.id}">
+          <td><input aria-label="項目名稱" value="${escapeHtml(item.name)}" oninput="updateBudgetItem('${item.id}','name',this.value)"></td>
+          <td><input class="number" aria-label="原始預算" type="number" min="0" value="${item.plan || 0}" oninput="updateBudgetItem('${item.id}','plan',this.value)"></td>
+          <td><input class="number" aria-label="成交價" type="number" min="0" value="${item.final || 0}" oninput="updateBudgetItem('${item.id}','final',this.value)"></td>
+          <td><input class="number" aria-label="已付款" type="number" min="0" value="${item.paid || 0}" oninput="updateBudgetItem('${item.id}','paid',this.value)"></td>
+          <td class="number">${formatMoney(due)}</td>
+          <td><input aria-label="付款期限" type="date" value="${item.dueDate || ''}" oninput="updateBudgetItem('${item.id}','dueDate',this.value)"></td>
+          <td>
+            <select aria-label="付款人" onchange="updateBudgetItem('${item.id}','payer',this.value)">
+              ${['共同','新人A','新人B','男方家庭','女方家庭','其他'].map(v => `<option ${item.payer === v ? 'selected' : ''}>${v}</option>`).join('')}
+            </select>
+          </td>
+          <td><button class="btn btn-danger btn-icon" aria-label="刪除 ${escapeHtml(item.name)}" onclick="deleteBudgetItem('${item.id}')">刪除</button></td>
+        </tr>`;
+    }).join('');
     runAccounting();
-    calcRedEnvelope();
-</script>
+  }
 
+  function updateBudgetItem(id, field, value) {
+    const item = appState.budgetItems.find(x => x.id === id);
+    if (!item) return;
+    item[field] = ['plan','final','paid'].includes(field) ? Math.max(0, Number(value || 0)) : value;
+    renderBudgetTable();
+    saveState();
+  }
+
+  function addBudgetItem() {
+    appState.budgetItems.push({ id: cryptoId(), name: '自訂項目', plan: 0, final: 0, paid: 0, dueDate: '', payer: '共同' });
+    renderBudgetTable();
+    saveState();
+  }
+
+  function deleteBudgetItem(id) {
+    appState.budgetItems = appState.budgetItems.filter(item => item.id !== id);
+    renderBudgetTable();
+    saveState();
+  }
+
+  function resetBudgetItems() {
+    if (!confirm('確定要以範例項目重設目前預算表嗎？')) return;
+    appState.budgetItems = structuredCloneSafe(DEFAULT_BUDGET_ITEMS).map(item => ({...item, id: cryptoId()}));
+    renderBudgetTable();
+    saveState();
+  }
+
+  function runAccounting() {
+    let plan = 0, final = 0, paid = 0;
+    appState.budgetItems.forEach(item => {
+      plan += Number(item.plan || 0);
+      final += Number(item.final || 0);
+      paid += Number(item.paid || 0);
+    });
+    const due = Math.max(0, final - paid);
+    
+    const planEl = document.getElementById('acc-total-plan');
+    if (planEl) planEl.textContent = formatMoney(plan);
+    if (document.getElementById('acc-total-final')) document.getElementById('acc-total-final').textContent = formatMoney(final);
+    if (document.getElementById('acc-total-pay')) document.getElementById('acc-total-pay').textContent = formatMoney(paid);
+    if (document.getElementById('acc-total-due')) document.getElementById('acc-total-due').textContent = formatMoney(due);
+    
+    if (document.getElementById('metric-paid')) document.getElementById('metric-paid').textContent = `NT$ ${formatMoney(paid)}`;
+    if (document.getElementById('metric-due')) document.getElementById('metric-due').textContent = `NT$ ${formatMoney(due)}`;
+
+    const totalBudget = Number(appState.project.totalBudget || 0);
+    const gap = document.getElementById('budget-gap');
+    if (gap) {
+      if (!totalBudget) {
+        gap.textContent = '尚未設定首頁總預算';
+        gap.className = '';
+      } else {
+        const diff = totalBudget - final;
+        gap.textContent = diff >= 0 ? `尚可規劃 NT$ ${formatMoney(diff)}` : `已超出 NT$ ${formatMoney(Math.abs(diff))}`;
+        gap.className = diff >= 0 ? '' : 'danger-text';
+      }
+    }
+  }
+
+  // 🌟 精準對齊小本本第2頁戒圍對照矩陣 [cite: 15]
+  const ringData = [
+    { d: 14.2, h: 6, e: 45, j: 4, i: 8.5 },
+    { d: 14.4, h: 7, e: 46, j: 5, i: 7 },
+    { d: 14.6, h: 8, e: 47, j: 6, i: 8 },
+    { d: 14.8, h: 9, e: 40, j: 7, i: 8.5 },
+    { d: 15.2, h: 10, e: 49, j: 7.25, i: 8.5 },
+    { d: 15.5, h: 11, e: 50, j: 8.25, i: 9.25 },
+    { d: 15.9, h: 12, e: 51, j: 9.5, i: 10 },
+    { d: 16.5, h: 13, e: 52, j: 10.5, i: 10.75 },
+    { d: 16.8, h: 14, e: 59, j: 11.5, i: 11.5 },
+    { d: 16.9, h: 15, e: 54, j: 12.5, i: 12.5 },
+    { d: 17.2, h: 16, e: 55, j: 13.5, i: 13 },
+    { d: 17.6, h: 17, e: 56, j: 14.75, i: 13.5 },
+    { d: 18.0, h: 18, e: 57, j: 15.75, i: 14 }
+  ];
+
+  function calcRingSize() {
+    const input = document.getElementById('ring-input');
+    const val = parseFloat(input.value);
+    const resBox = document.getElementById('ring-result');
+    appState.ringInput = input.value;
+    saveState();
+
+    if (!val) {
+      resBox.classList.add('hidden');
+      return;
+    }
+
+    const closestIndex = ringData.reduce((best, item, index) =>
+      Math.abs(item.d - val) < Math.abs(ringData[best].d - val) ? index : best, 0);
+    const closest = ringData[closestIndex];
+    const lower = ringData[Math.max(0, closestIndex - 1)];
+    const upper = ringData[Math.min(ringData.length - 1, closestIndex + 1)];
+
+    resBox.innerHTML = `
+      🔮 <strong>小本本尺寸初估對照結果 (內直徑約 ${closest.d}mm)：</strong><br>
+      • 香港戒圖：<b>${closest.h} 號</b> (建議試戴範圍 ${lower.h}–${upper.h} 號)<br>
+      • 國際戒圍：<b>${closest.i}</b><br>
+      • 歐洲戒圍：<b>${closest.e}</b><br>
+      • 日本戒圍：<b>${closest.j} 號</b><br>
+      <span style="font-size:.76rem;color:#777;">對照表完全對齊官方求婚手札矩陣規格。</span>`;
+    resBox.classList.remove('hidden');
+  }
+
+  function bindRedEnvelope() {
+    const mapping = {
+      'hb-count1': 'c1',
+      'hb-money1': 'm1',
+      'hb-count2': 'c2',
+      'hb-money2': 'm2'
+    };
+
+    Object.entries(mapping).forEach(([id, key]) => {
+      const input = document.getElementById(id);
+      if(!input) return;
+      input.value = appState.redEnvelope[key];
+      input.addEventListener('input', () => {
+        appState.redEnvelope[key] = Math.max(0, Number(input.value || 0));
+        calcRedEnvelope();
+        saveState();
+      });
+    });
+  }
+
+  function calcRedEnvelope() {
+    const { c1, m1, c2, m2 } = appState.redEnvelope;
+    const view = document.getElementById('total-hb-view');
+    if(view) view.textContent = formatMoney((c1 * m1) + (c2 * m2));
+    
+    const errBox = document.getElementById('hb-error');
+    if(errBox) {
+      const suspicious = [m1, m2].some(m => m > 0 && (m < 600 || m % 2 !== 0 || String(m).includes('4')));
+      errBox.style.display = suspicious ? 'block' : 'none';
+      errBox.textContent = suspicious ? '⚠️ 姊的雷達提醒：部分家庭紅包最低以 NT$600 元起跳，且會避開單數與包含數字「4」的工作紅包；請依雙方習慣再次檢查！' : '';
+    }
+  }
+
+  function toggleCard(id, btn) {
+    const body = document.getElementById(id);
+    const willOpen = body.classList.contains('hidden');
+    body.classList.toggle('hidden', !willOpen);
+    btn.textContent = willOpen ? '收合提示' : '查看簡化提案';
+    btn.setAttribute('aria-expanded', String(willOpen));
+    btn.style.backgroundColor = willOpen ? '#AAABD3' : '#ABD0CE';
+  }
+
+  function exportBackup() {
+    const blob = new Blob([JSON.stringify(appState, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `備婚小精靈備份_${new Date().toISOString().slice(0,10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function importBackup(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+        alert('備份匯入完成，頁面將重新整理。');
+        location.reload();
+      } catch {
+        alert('無法讀取這份備份，請確認檔案格式。');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function clearAllData() {
+    if (!confirm('確定要清除這台裝置上的所有備婚資料嗎？此動作無法復原。')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+
+  function formatMoney(value) {
+    return Number(value || 0).toLocaleString('zh-TW');
+  }
+
+  // HTML 安全防禦
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function init() {
+    loadState();
+    bindProjectFields();
+    bindPersistentChecks();
+    renderBudgetTable();
+    bindRedEnvelope();
+
+    const ringInput = document.getElementById('ring-input');
+    if (ringInput) {
+      ringInput.value = appState.ringInput || '';
+      ringInput.addEventListener('input', calcRingSize);
+      if (ringInput.value) calcRingSize();
+    }
+
+    generateGantt();
+    calcRedEnvelope();
+    updateDashboard();
+    runAccounting();
+
+    const initialTab = document.getElementById(appState.activeTab) ? appState.activeTab : 'tab-home';
+    switchTab(initialTab, document.getElementById(`btn-${initialTab}`), false);
+  }
+
+  init();
+</script>
 </body>
 </html>
