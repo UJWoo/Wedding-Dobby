@@ -22,6 +22,7 @@
     }
 
     * {
+      box-shadow: border-box;
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -84,7 +85,6 @@
       font-weight: 700;
     }
 
-    /* 💡 完美 RWD 導覽列：電腦版多行排開、手機版流暢捲動 */
     .tabs-container {
       display: flex;
       flex-wrap: wrap;
@@ -238,7 +238,6 @@
     .tag-custom { background: #FFF0DC; color: #A66822; }
     .tag-advice { background: #EFEAFA; color: #675E9D; }
 
-    /* 模式切換按鈕 */
     .mode-switch-container { display: flex; background: #EAEAEA; padding: 4px; border-radius: 20px; margin-bottom: 15px; }
     .mode-btn { flex: 1; border: none; background: none; padding: 6px; font-size: 0.85rem; font-weight: bold; color: #666; cursor: pointer; border-radius: 20px; text-align: center; }
     .mode-btn.active { background: var(--primary-green); color: white; }
@@ -253,10 +252,62 @@
       margin-bottom: 16px;
     }
 
-    .input-group { margin-bottom: 12px; }
+    .input-group { margin-bottom: 12px; position: relative; }
     .project-form .input-group { margin-bottom: 0; }
-    .input-group label { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 5px; color: #555; }
+    .input-group label { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; font-weight: 700; margin-bottom: 5px; color: #555; }
     .input-group input, .input-group select { width: 100%; padding: 9px; border: 1px solid #D8D4D0; border-radius: 7px; background: #fff; font-size: .9rem; }
+
+    /* 💡 吉日挑選小技巧小按鈕樣式 */
+    .btn-inline-tip {
+      background: none;
+      border: none;
+      color: var(--primary-brown);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .btn-inline-tip:hover { color: var(--primary-purple); }
+
+    /* 💡 莫蘭迪風格微醺彈跳視窗 (Dialog Modal) 樣式 */
+    .lucky-dialog {
+      border: none;
+      border-radius: 16px;
+      max-width: 520px;
+      width: calc(100% - 30px);
+      max-height: 80vh;
+      margin: auto;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      background: #fff;
+    }
+    .lucky-dialog::backdrop {
+      background: rgba(74, 74, 74, 0.4);
+      backdrop-filter: blur(4px);
+    }
+    .lucky-dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    .lucky-dialog-header h3 { color: var(--primary-brown); font-size: 1.15rem; }
+    .btn-close-dialog { background: none; border: none; font-size: 1.3rem; color: #aaa; cursor: pointer; line-height: 1; }
+    .btn-close-dialog:hover { color: var(--danger); }
+    
+    .lucky-dialog-content {
+      overflow-y: auto;
+      max-height: calc(80vh - 100px);
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      padding-right: 5px;
+    }
+    .lucky-dialog-content h4 { color: var(--primary-purple); margin: 15px 0 6px 0; font-size: 0.95rem; }
+    .lucky-dialog-content ul { padding-left: 18px; margin-bottom: 10px; }
+    .lucky-dialog-content li { margin-bottom: 6px; }
 
     .full-width { grid-column: 1 / -1; }
 
@@ -302,28 +353,9 @@
     .btn-danger { background: #FBE7E7; color: var(--danger); }
     .btn-icon { padding: 6px 9px; }
 
-    /* 💡 底部返回控制台按鈕專用美化樣式 */
-    .back-home-container {
-      margin-top: 35px;
-      padding-top: 15px;
-      border-top: 1px dashed var(--border);
-      text-align: center;
-    }
-    .btn-back-home {
-      background-color: #F0EDE9;
-      color: var(--text-dark);
-      border: 1px solid var(--border);
-      padding: 10px 20px;
-      font-size: 0.88rem;
-      border-radius: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-      transition: all 0.2s;
-    }
-    .btn-back-home:hover {
-      background-color: var(--primary-pink);
-      color: var(--text-dark);
-      transform: translateY(-1px);
-    }
+    .back-home-container { margin-top: 35px; padding-top: 15px; border-top: 1px dashed var(--border); text-align: center; }
+    .btn-back-home { background-color: #F0EDE9; color: var(--text-dark); border: 1px solid var(--border); padding: 10px 20px; font-size: 0.88rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); transition: all 0.2s; }
+    .btn-back-home:hover { background-color: var(--primary-pink); color: var(--text-dark); transform: translateY(-1px); }
 
     .result-box { background: #F4F7F6; padding: 13px; border-radius: 7px; margin-top: 14px; font-size: .88rem; border-left: 3px solid var(--primary-green); }
     .checklist { background: #FAFAFA; padding: 13px; border-radius: 12px; margin-bottom: 20px; }
@@ -373,6 +405,7 @@
     <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-register" id="btn-tab-register" onclick="switchTab('tab-register', this)">🏛️ 05.登記</button>
   </nav>
 
+  <!-- ==================== Tab: 🫶 備婚總覽 ==================== -->
   <section id="tab-home" class="tab-content active" role="tabpanel" aria-labelledby="btn-tab-home">
     <div class="hero-dashboard">
       <h2 id="dashboard-greeting">嗨，先建立你們的婚禮計畫吧！</h2>
@@ -392,8 +425,9 @@
         <label for="couple-name">新人稱呼</label>
         <input id="couple-name" type="text" placeholder="例如：侑潔與小明" data-project-field="coupleName">
       </div>
+      <!-- 💡 新增吉日挑選小技巧小按鈕連動 -->
       <div class="input-group">
-        <label for="home-wedding-date">預計婚禮日期</label>
+        <label for="home-wedding-date">預計婚禮日期 <button class="btn-inline-tip" onclick="openLuckyDialog()">💡 挑選小技巧</button></label>
         <input id="home-wedding-date" type="date" data-project-field="weddingDate">
       </div>
       <div class="input-group">
@@ -432,7 +466,7 @@
     <ul class="priority-list">
       <li><input type="checkbox" data-persist-key="priority-budget"><span><strong>確認婚禮形式與預算上限</strong><br>先決定大方向，後面才不會每個選項都超支。</span></li>
       <li><input type="checkbox" data-persist-key="priority-guests"><span><strong>建立第一版賓客人數</strong><br>不用列到每個名字，先抓大約人數即可。</span></li>
-      <li><input type="checkbox" data-persist-key="priority-venue"><span><strong>確認宴客地區或場地需求</strong><br>先談地區、桌數與交通，再開始詢問檔期.</span></li>
+      <li><input type="checkbox" data-persist-key="priority-venue"><span><strong>確認宴客地區 or 場地需求</strong><br>先談地區、桌數與交通，再開始詢問檔期。</span></li>
     </ul>
 
     <div class="dashboard-grid">
@@ -462,6 +496,7 @@
     </div>
   </section>
 
+  <!-- ==================== Tab 01: 💍 求婚 ==================== -->
   <section id="tab-ring" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-ring">
     <div class="intro-text">📢 <strong>小精靈：</strong> 婚禮有千百個待辦事項，但一切的起點都來自一句：妳願意嗎？</div>
     <div class="section-title">💍 求婚戒圍秘密對照器</div>
@@ -472,7 +507,7 @@
     </div>
     <div class="card" style="border-left:3px solid var(--primary-brown);background:#FFFDF9;">
       <p style="font-size:.84rem;color:#666;">✨ <strong>小本本安心救援：</strong> 
-      趁睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上測量內直徑。尺寸不合或不是她愛的款式別擔心，亞立詩提供求婚鑽戒外借服務！只要訂購 GIA 國際認證鑽石即可外借婚戒完成浪漫求婚，之後再帶她回門市挑喜愛款式。若配戴後想修改戒圍，提供終身免費修改圍數服務，只要原尺寸上下 1-3 圍以內都可以進行修改，但部分特殊材質款式無法修改，購買前務必確認清楚。寬版戒指通常需要較寬鬆，結果僅供初步初估。
+      趁睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上測量內直徑[cite: 1]。尺寸不合或不是她愛的款式別擔心，亞立詩提供求婚鑽戒外借服務！只要訂購 GIA 國際認證鑽石即可外借婚戒完成浪漫求婚，之後再帶她回門市挑喜愛款式。若配戴後想修改戒圍，提供終身免費修改圍數服務，只要原尺寸上下 1-3 圍以內都可以進行修改，但部分特殊材質款式無法修改，購買前務必確認清楚。寬版戒指通常需要較寬鬆，結果僅供初步初估。
       </p>
     </div>
 
@@ -481,6 +516,7 @@
     </div>
   </section>
 
+  <!-- ==================== Tab 02: 🎯 提親 ==================== -->
   <section id="tab-family" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-family">
     <div class="intro-text">📢 <strong>姊的叮嚀：</strong> 提親目的是為了敲定婚事及婚期，也是表達對結婚的重視與雙方家長的尊重。建議於「婚期前半年至一年」進行，避免後續籌備匆忙。傳統提親古禮「不過中午，亦不留吃午飯」。</div>
     
@@ -497,7 +533,7 @@
     <div class="section-title">📋 提親前：先探聽長輩底線</div>
     <div class="checklist">
       <label class="check-item"><input type="checkbox" data-persist-key="family-pinhong" onchange="toggleRelatedTip(this,'tip-ph')"><span><strong>大小聘看法：</strong>是否收聘、是否退聘、金額如何呈現，以及是否轉為成家基金？大聘通常 36、60、66萬為主；小聘多為 10萬到36萬不等。北部稱做衫錢、南部客家稱乳母錢。</span></label>
-      <div id="tip-ph" class="card-reason hidden">💡 <span class="tag tag-advice">姊的提案</span>把「面子」與「實際使用」分開談：一般女方多為檯面上收取大聘，宴客後退還男方（顧足面子）；小聘則多留給新人作為成家基金。</div>
+      <div id="tip-ph" class="card-reason hidden">💡 <span class="tag tag-advice">姊的提案</span>把「面子」與「實際使用」分開談：一般女方多為檯面上收取大聘，宴客後退還男方（顧足面子）; 小聘則多留給新人作為成家基金。</div>
       <label class="check-item"><input type="checkbox" data-persist-key="family-cake"><span><strong>喜餅安排：</strong>由誰決定款式、要漢餅或西式？喜餅的錢由男方負責，有的直接由男方決定，也有東方決定由男方出面付款或事後補款。</span></label>
     </div>
 
@@ -511,8 +547,9 @@
     </div>
   </section>
 
+  <!-- ==================== Tab 03: 💰 帳務 ==================== -->
   <section id="tab-money" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-money">
-    <div class="intro-text">💡 <strong>付訂追蹤：</strong>完整移入小本本第8、9頁花費架構。記錄預算、成交價、已付款、付款期限與付款人。尚待支付不一定等於婚宴當天現金，請依合約日期安排。</div>
+    <div class="intro-text">💡 <strong>付訂追蹤：</strong>完整移入小本本花費架構。記錄預算、成交價、已付款、付款期限與付款人。尚待支付不一定等於婚宴當天現金，請依合約日期安排。</div>
     <div class="table-scroll">
       <table class="accounting-table">
         <thead>
@@ -549,6 +586,7 @@
     </div>
   </section>
 
+  <!-- ==================== Tab 04: 💒 婚禮 ==================== -->
   <section id="tab-execute" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-execute">
     <div class="intro-text">💡 <strong>當天定心丸：</strong>民俗提醒、工作人員紅包估算，一鍵切換「精簡版」或「傳統隆重十二禮版」。</div>
 
@@ -568,7 +606,7 @@
     <div class="flow-step">
       <div class="flow-badge">2</div>
       <div class="flow-title">奉甜茶與壓茶甌</div>
-      <div class="flow-desc">準備甜茶與茶杯盤組（6或12個）。好命婆牽新娘奉甜茶、介紹親友，隨後新娘收杯，男方親友會將紅包壓在杯下（壓茶甌）。</div>
+      <div class="flow-desc">準備甜茶與茶杯盤組（6或12個）。好命婆牽新娘奉甜茶、介紹親友，隨後新娘收杯，男方長輩會將紅包壓在杯下（壓茶甌）。</div>
     </div>
 
     <div class="flow-step">
@@ -577,7 +615,7 @@
       <div class="flow-desc">古禮上一金一銅戒指以紅線綁上活結代表姻緣線（永結同心），戴在中指。
         <div class="card">
           <div class="card-header"><span>⚠️ 禮俗眉角：戒指套到底？</span></div>
-          <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，代表彼此尊重。接著由雙方父母幫新人戴上金飾（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環）。</div>
+          <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，代表彼此尊重。接著由雙方父母幫新人戴上金飾（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環）[cite: 1]。</div>
         </div>
       </div>
     </div>
@@ -633,7 +671,7 @@
     <div class="section-title">🧧 工作人員紅包估算</div>
     <div class="project-form">
       <div class="input-group"><label for="hb-count1">好命婆／開車門／小舅子等人數</label><input type="number" id="hb-count1" min="0" value="3"></div>
-      <div class="input-group"><label for="hb-money1">單包預算金額 (小本本建議 1200–3600元)</label><input type="number" id="hb-money1" min="0" value="1200"></div>
+      <div class="input-group"><label soul for="hb-money1">單包預算金額 (小本本建議 1200–3600元)</label><input type="number" id="hb-money1" min="0" value="1200"></div>
       <div class="input-group"><label for="hb-count2">伴郎伴娘／招待／收禮金人數</label><input type="number" id="hb-count2" min="0" value="6"></div>
       <div class="input-group"><label for="hb-money2">單包預算金額 (小本本建議 600–1200元)</label><input type="number" id="hb-money2" min="0" value="600"></div>
     </div>
@@ -645,12 +683,13 @@
     </div>
   </section>
 
+  <!-- ==================== Tab 05: 🏛️ 登記 ==================== -->
   <section id="tab-register" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-register">
     <div class="intro-text">📢 <strong>姊的完美收尾：</strong> 婚宴辦完，最重要的一步就是完成法律程序。結婚當事人都需親自到戶政事務所辦理登記，結婚才算正式生效喔。</div>
     
     <div class="section-title">📌 登記結婚 4 步驟流程</div>
     <div class="flow-step"><div class="flow-badge">1</div><div class="flow-title">提前致電戶政事務所預約</div><div class="flow-desc">確認登記當天狀況。<b>如果是假日登記，必須提前 3 天以上預約喔！</b>超過預約時間 15 分鐘則視同取消預約。</div></div>
-    <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌</div><div class="flow-desc">除了要遷入戶籍須到戶籍當地事務所登記，結婚當事人是可以任選一間自己方便的事務所登記。</div></div>
+    <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌</div><div class="flow-desc">除了要遷入戶籍須到戶籍當地事務所登記，結婚當事人是可以任選一間自己方便的事事務登記。</div></div>
     <div class="flow-step"><div class="flow-badge">3</div><div class="flow-title">繳交相關文件與結婚書約</div><div class="flow-desc">將填寫好的結婚書約遞交櫃檯。書約上需要有 2 位年滿 20 歲以上且未受監護宣告的證人簽名或蓋章（兩位證人不需要到現場）。可在登記日前 3 個辦公日內辦理並指定結婚登記日。</div></div>
     <div class="flow-step"><div class="flow-badge">4</div><div class="flow-title">繳費、領取正式相關文件與新身分證</div><div class="flow-desc">換發新證，正式大功告成！恭喜升級成為正式合法夫妻！</div></div>
 
@@ -670,9 +709,53 @@
   </section>
 
   <footer>
-    <p>Made with ❤️ by 侑潔｜備婚小精靈 v5.3</p>
+    <p>Made with ❤️ by 侑潔｜備婚小精靈 v5.4</p>
   </footer>
 </main>
+
+<!-- 💡 專屬：吉日挑選小技巧彈跳式視窗 HTML -->
+<dialog id="lucky-day-dialog" class="lucky-dialog">
+  <div class="lucky-dialog-header">
+    <h3>💡 嫁娶吉日挑選小技巧</h3>
+    <button class="btn-close-dialog" onclick="closeLuckyDialog()">×</button>
+  </div>
+  <div class="lucky-dialog-content">
+    <div class="intro-text" style="margin-bottom: 12px;">
+      <strong>step.1:</strong> 觀看農民曆「嫁娶（結婚）吉日」時，先確認日期下方欄位明確標示「宜：嫁娶」。<br>
+      <strong>step.2:</strong> 避開新人雙方的生肖相沖日 及農曆忌日，並優先排除特定禁忌日以求婚姻順遂。
+    </div>
+
+    <h4>📌 挑選嫁娶吉日的具體步驟與注意事項：</h4>
+    <ul>
+      <li><strong>1. 宜嫁娶標示：</strong>可透過翻閱農民曆查看該日是否標示 「宜：嫁娶」，部分農民曆會寫「宜：訂盟、納采、嫁娶」，若有參考多本農民曆，建議以多數版本皆標示為宜的日子為主。</li>
+      <li><strong>2. 避開生肖犯沖：</strong>農民曆每天都會記載該日「沖某生肖」（例如：沖虎、沖馬），請務必確認該日沒有與新郎、新娘及雙方父母的生肖相沖（犯沖）。</li>
+      <li><strong>3. 避開傳統四大禁忌日期：</strong>
+        <p style="margin-top: 4px; padding-left: 10px; font-size: 0.82rem; color: #555;">
+          • <b>雙親生日</b>：避開新人雙方以及雙方父母的農曆生日，傳統認為「喜沖喜」會影響運勢。<br>
+          • <b>三娘煞日</b>：相傳三娘因破壞喜事，傳統上會避開每月農曆初三、初七、十三、十八、廿二及廿七嫁娶。<br>
+          • <b>楊公忌日</b>：農民曆上特定的凶日（依年份不同，通常為正月十三、二月十一、三月初九、四月初七、五月初五、六月初三、七月初一與廿九、八月廿七、九月廿五、十月廿三、十一月廿一、十二月十九），應盡量避開。<br>
+          • <b>習俗月</b>：傳統上多避開農曆七月（俗稱鬼月），但現代新人若選在此月份辦理，多會搭配飯店優惠並避開祭祀相關科儀。
+        </p>
+      </li>
+      <li><strong>4. 挑選適合的生肖月份（非必要，僅供參考）：</strong>若想進一步參考生肖口訣，傳統流傳有12生肖適宜出嫁的月份（農曆）：
+        <p style="margin-top: 4px; padding-left: 10px; font-size: 0.82rem; color: #555;">
+          • 鼠、馬：農曆 6月+12月<br>
+          • 牛、羊：農曆 5月+11月<br>
+          • 虎、猴：農曆 2月+8月<br>
+          • 兔、雞：農曆 1月+7月<br>
+          • 龍、狗：農曆 4月+10月<br>
+          • 蛇、豬：農曆 3月+9月
+        </p>
+      </li>
+    </ul>
+
+    <div class="info-note" style="margin-top:15px; border-left-color: var(--primary-green); background: #F5FAF9;">
+      🎯 <strong>現代新人的彈性作法：</strong><br>
+      現代人為配合婚宴場地與工作時間，若傳統農民曆的好日子較難訂位，常採取 <strong>「好日子登記/儀式，平日補請宴客」</strong> 的策略。<br>
+      結婚登記在法律上只需符合雙方意願，不強制一定要看農民曆吉日。
+    </div>
+  </div>
+</dialog>
 
 <script>
   const STORAGE_KEY = 'weddingDobbyV5_3';
@@ -687,14 +770,7 @@
   ];
 
   let appState = {
-    project: {
-      coupleName: '',
-      weddingDate: '',
-      weddingType: '',
-      guestTarget: '',
-      totalBudget: '',
-      ceremonyType: ''
-    },
+    project: { coupleName: '', weddingDate: '', weddingType: '', guestTarget: '', totalBudget: '', ceremonyType: '' },
     budgetItems: structuredCloneSafe(DEFAULT_BUDGET_ITEMS),
     checks: {},
     redEnvelope: { c1: 3, m1: 1200, c2: 6, m2: 600 },
@@ -702,13 +778,8 @@
     activeTab: 'tab-home'
   };
 
-  function cryptoId() {
-    return 'id-' + Math.random().toString(36).slice(2, 10);
-  }
-
-  function structuredCloneSafe(value) {
-    return JSON.parse(JSON.stringify(value));
-  }
+  function cryptoId() { return 'id-' + Math.random().toString(36).slice(2, 10); }
+  function structuredCloneSafe(value) { return JSON.parse(JSON.stringify(value)); }
 
   function loadState() {
     try {
@@ -723,9 +794,7 @@
         redEnvelope: { ...appState.redEnvelope, ...(parsed.redEnvelope || {}) },
         budgetItems: Array.isArray(parsed.budgetItems) && parsed.budgetItems.length ? parsed.budgetItems : structuredCloneSafe(DEFAULT_BUDGET_ITEMS)
       };
-    } catch (error) {
-      console.warn('無法讀取儲存資料：', error);
-    }
+    } catch (error) { console.warn('無法讀取儲存資料：', error); }
   }
 
   let saveTimer;
@@ -759,20 +828,28 @@
     if (shouldSave) saveState();
   }
 
-  function openTabFromCard(tabId) {
-    switchTab(tabId, document.getElementById(`btn-${tabId}`));
+  function openTabFromCard(tabId) { switchTab(tabId, document.getElementById(`btn-${tabId}`)); }
+  function returnToDashboard() { switchTab('tab-home', document.getElementById('btn-tab-home'), true); }
+
+  /* 💡 彈跳式視窗控制函式 */
+  function openLuckyDialog() {
+    const dialog = document.getElementById('lucky-day-dialog');
+    if (dialog) {
+      dialog.showModal();
+      // 增加點擊外部遮罩自動關閉的流暢設定
+      dialog.addEventListener('click', function(e) {
+        if (e.target === dialog) dialog.close();
+      });
+    }
+  }
+  function closeLuckyDialog() {
+    const dialog = document.getElementById('lucky-day-dialog');
+    if (dialog) dialog.close();
   }
 
-  /* 💡 底部「回到控制台」專用跳轉控制函式 */
-  function returnToDashboard() {
-    switchTab('tab-home', document.getElementById('btn-tab-home'), true);
-  }
-
-  // 現代精簡與傳統隆重儀式模式切換
   function switchWeddingMode(mode) {
     document.getElementById('btn-mode-modern').classList.toggle('active', mode === 'modern');
     document.getElementById('btn-mode-traditional').classList.toggle('active', mode === 'traditional');
-    
     document.getElementById('mode-modern-content').classList.toggle('hidden', mode !== 'modern');
     document.getElementById('mode-traditional-content').classList.toggle('hidden', mode !== 'traditional');
   }
@@ -783,9 +860,7 @@
       input.value = appState.project[key] ?? '';
       input.addEventListener('input', () => {
         appState.project[key] = input.value;
-        if (key === 'weddingDate') {
-          generateGantt();
-        }
+        if (key === 'weddingDate') generateGantt();
         updateDashboard();
         runAccounting();
         saveState();
@@ -803,14 +878,11 @@
         saveState();
       });
     });
-
     const pinhong = document.querySelector('[data-persist-key="family-pinhong"]');
     if (pinhong?.checked) document.getElementById('tip-ph').classList.remove('hidden');
   }
 
-  function toggleRelatedTip(check, tipId) {
-    document.getElementById(tipId).classList.toggle('hidden', !check.checked);
-  }
+  function toggleRelatedTip(check, tipId) { document.getElementById(tipId).classList.toggle('hidden', !check.checked); }
 
   function updateDashboard() {
     const p = appState.project;
@@ -820,8 +892,7 @@
     const countdown = document.getElementById('countdown-view');
     if (p.weddingDate) {
       const target = parseLocalDate(p.weddingDate);
-      const today = new Date();
-      today.setHours(0,0,0,0);
+      const today = new Date(); today.setHours(0,0,0,0);
       const days = Math.ceil((target - today) / 86400000);
       if (days > 0) countdown.innerHTML = `距離婚禮還有 ${days.toLocaleString()} 天<small>${formatDate(target)}，不用一次做完，先處理眼前最重要的事。</small>`;
       else if (days === 0) countdown.innerHTML = `就是今天！祝你們婚禮順利 💕<small>${formatDate(target)}</small>`;
@@ -840,12 +911,10 @@
 
     document.getElementById('progress-bar').style.width = `${percent}%`;
     document.getElementById('progress-text').textContent = `基本準備進度 ${percent}%（${completed}/${total}）`;
-
     document.getElementById('metric-budget').textContent = p.totalBudget ? `NT$ ${formatMoney(p.totalBudget)}` : '尚未設定';
     document.getElementById('metric-guests').textContent = p.guestTarget ? `${formatMoney(p.guestTarget)} 人` : '尚未設定';
   }
 
-  // 互補融合：依據小本本時程與今日總覽婚期自動連動甘特圖
   function generateGantt() {
     const dateVal = appState.project.weddingDate;
     const container = document.getElementById('gantt-container');
@@ -855,56 +924,28 @@
     }
 
     const weddingDate = parseLocalDate(dateVal);
-    const p1Start = addMonths(weddingDate, -12);
-    const p1End = addMonths(weddingDate, -9);
-    const p2Start = addMonths(weddingDate, -9);
-    const p2End = addMonths(weddingDate, -6);
-    const p3Start = addMonths(weddingDate, -6);
-    const p3End = addMonths(weddingDate, -2);
-    const p4Start = addMonths(weddingDate, -2);
-    const reserveDate = addDays(weddingDate, -7);
+    const p1Start = addMonths(weddingDate, -12); const p1End = addMonths(weddingDate, -9);
+    const p2Start = addMonths(weddingDate, -9); const p2End = addMonths(weddingDate, -6);
+    const p3Start = addMonths(weddingDate, -6); const p3End = addMonths(weddingDate, -2);
+    const p4Start = addMonths(weddingDate, -2); const reserveDate = addDays(weddingDate, -7);
 
     container.innerHTML = `
       ${ganttCard(`${formatDate(p1Start)}～${formatDate(p1End)}`, '階段一：方向與共識', '確認婚禮形式、總預算、賓客規模及雙方家庭期待；需要傳統儀式者，可同步討論提親與婚期。')}
-      ${ganttCard(`${formatDate(p2Start)}～${formatDate(p2End)}`, '階段二：場地與提親長輩戰役 (婚前 4-6 個月)', '建議於婚期前半年至一年安排正式提親，確認大小聘金、喜餅錢主導與發送形式。同步開始詢問場地，接洽婚紗、新秘與婚攝。')}
+      ${ganttCard(`${formatDate(p2Start)}～${formatDate(p2End)}`, '階段二：場地與提親長輩戰役 (婚前 4-6 個月)', '建議於婚期前半年至一年安排正式提親，確認大小聘金、喜餅錢主導與發送形式。同步開始詢詢場地，接洽婚紗、新秘與婚攝。')}
       ${ganttCard(`${formatDate(p3Start)}～${formatDate(p3End)}`, '階段三：細節魔鬼期 (婚前 1-2 個月)', '整理精準賓客名單、寄發喜帖、確認女方喜餅發送總數。排定當天所有總招待、伴郎娘、司儀分工，打包六禮或十二禮紅包代替物。')}
       ${ganttCard(`${formatDate(p4Start)}～${formatDate(weddingDate)}`, '階段四：當天執行與法律登記 (最終倒數)', '最終核對流程表、款項。<b>有假日登記需求者，必須依規定在登記日前3天以上預約！</b>打包身分證、戶口名簿、照片與書約大功告成。')}
       <div class="info-note">🧚 姊的提醒：建議在 <strong>${formatDate(reserveDate)}</strong> 前完成所有物品與付款清單的最後核對，留一週給自己解壓調適。</div>
     `;
   }
 
-  function ganttCard(dateText, title, desc) {
-    return `<article class="gantt-item"><div class="gantt-date">📅 建議區間：${dateText}</div><div class="gantt-title">🥊 ${title}</div><div class="gantt-desc">${desc}</div></article>`;
-  }
-
-  function addMonths(date, amount) {
-    const d = new Date(date);
-    const day = d.getDate();
-    d.setDate(1);
-    d.setMonth(d.getMonth() + amount);
-    const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-    d.setDate(Math.min(day, lastDay));
-    return d;
-  }
-
-  function addDays(date, amount) {
-    const d = new Date(date);
-    d.setDate(d.getDate() + amount);
-    return d;
-  }
-
-  function parseLocalDate(value) {
-    const [y,m,d] = value.split('-').map(Number);
-    return new Date(y, m - 1, d);
-  }
-
-  function formatDate(date) {
-    return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,'0')}/${String(date.getDate()).padStart(2,'0')}`;
-  }
+  function ganttCard(dateText, title, desc) { return `<article class="gantt-item"><div class="gantt-date">📅 建議區間：${dateText}</div><div class="gantt-title">🥊 ${title}</div><div class="gantt-desc">${desc}</div></article>`; }
+  function addMonths(date, amount) { const d = new Date(date); const day = d.getDate(); d.setDate(1); d.setMonth(d.getMonth() + amount); const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(); d.setDate(Math.min(day, lastDay)); return d; }
+  function addDays(date, amount) { const d = new Date(date); d.setDate(d.getDate() + amount); return d; }
+  function parseLocalDate(value) { const [y,m,d] = value.split('-').map(Number); return new Date(y, m - 1, d); }
+  function formatDate(date) { return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,'0')}/${String(date.getDate()).padStart(2,'0')}`; }
 
   function renderBudgetTable() {
-    const body = document.getElementById('budget-body');
-    if (!body) return;
+    const body = document.getElementById('budget-body'); if (!body) return;
     body.innerHTML = appState.budgetItems.map(item => {
       const due = Math.max(0, Number(item.final || 0) - Number(item.paid || 0));
       return `
@@ -927,134 +968,61 @@
   }
 
   function updateBudgetItem(id, field, value) {
-    const item = appState.budgetItems.find(x => x.id === id);
-    if (!item) return;
+    const item = appState.budgetItems.find(x => x.id === id); if (!item) return;
     item[field] = ['plan','final','paid'].includes(field) ? Math.max(0, Number(value || 0)) : value;
-    renderBudgetTable();
-    saveState();
+    renderBudgetTable(); saveState();
   }
 
-  function addBudgetItem() {
-    appState.budgetItems.push({ id: cryptoId(), name: '自訂項目', plan: 0, final: 0, paid: 0, dueDate: '', payer: '共同' });
-    renderBudgetTable();
-    saveState();
-  }
-
-  function deleteBudgetItem(id) {
-    appState.budgetItems = appState.budgetItems.filter(item => item.id !== id);
-    renderBudgetTable();
-    saveState();
-  }
-
-  function resetBudgetItems() {
-    if (!confirm('確定要以範例項目重設目前預算表嗎？')) return;
-    appState.budgetItems = structuredCloneSafe(DEFAULT_BUDGET_ITEMS).map(item => ({...item, id: cryptoId()}));
-    renderBudgetTable();
-    saveState();
-  }
+  function addBudgetItem() { appState.budgetItems.push({ id: cryptoId(), name: '自訂項目', plan: 0, final: 0, paid: 0, dueDate: '', payer: '共同' }); renderBudgetTable(); saveState(); }
+  function deleteBudgetItem(id) { appState.budgetItems = appState.budgetItems.filter(item => item.id !== id); renderBudgetTable(); saveState(); }
+  function resetBudgetItems() { if (!confirm('確定要以範例項目重設目前預算表嗎？')) return; appState.budgetItems = structuredCloneSafe(DEFAULT_BUDGET_ITEMS).map(item => ({...item, id: cryptoId()})); renderBudgetTable(); saveState(); }
 
   function runAccounting() {
     let plan = 0, final = 0, paid = 0;
-    appState.budgetItems.forEach(item => {
-      plan += Number(item.plan || 0);
-      final += Number(item.final || 0);
-      paid += Number(item.paid || 0);
-    });
+    appState.budgetItems.forEach(item => { plan += Number(item.plan || 0); final += Number(item.final || 0); paid += Number(item.paid || 0); });
     const due = Math.max(0, final - paid);
-    
     const planEl = document.getElementById('acc-total-plan');
     if (planEl) planEl.textContent = formatMoney(plan);
     if (document.getElementById('acc-total-final')) document.getElementById('acc-total-final').textContent = formatMoney(final);
     if (document.getElementById('acc-total-pay')) document.getElementById('acc-total-pay').textContent = formatMoney(paid);
     if (document.getElementById('acc-total-due')) document.getElementById('acc-total-due').textContent = formatMoney(due);
-    
     if (document.getElementById('metric-paid')) document.getElementById('metric-paid').textContent = `NT$ ${formatMoney(paid)}`;
     if (document.getElementById('metric-due')) document.getElementById('metric-due').textContent = `NT$ ${formatMoney(due)}`;
 
-    const totalBudget = Number(appState.project.totalBudget || 0);
-    const gap = document.getElementById('budget-gap');
+    const totalBudget = Number(appState.project.totalBudget || 0); const gap = document.getElementById('budget-gap');
     if (gap) {
-      if (!totalBudget) {
-        gap.textContent = '尚未設定首頁總預算';
-        gap.className = '';
-      } else {
-        const diff = totalBudget - final;
-        gap.textContent = diff >= 0 ? `尚可規劃 NT$ ${formatMoney(diff)}` : `已超出 NT$ ${formatMoney(Math.abs(diff))}`;
-        gap.className = diff >= 0 ? '' : 'danger-text';
-      }
+      if (!totalBudget) { gap.textContent = '尚未設定首頁總預算'; gap.className = ''; }
+      else { const diff = totalBudget - final; gap.textContent = diff >= 0 ? `尚可規劃 NT$ ${formatMoney(diff)}` : `已超出 NT$ ${formatMoney(Math.abs(diff))}`; gap.className = diff >= 0 ? '' : 'danger-text'; }
     }
   }
 
-  // 🌟 精準對齊小本本第2頁戒圍對照矩陣
   const ringData = [
-    { d: 14.2, h: 6, e: 45, j: 4, i: 8.5 },
-    { d: 14.4, h: 7, e: 46, j: 5, i: 7 },
-    { d: 14.6, h: 8, e: 47, j: 6, i: 8 },
-    { d: 14.8, h: 9, e: 40, j: 7, i: 8.5 },
-    { d: 15.2, h: 10, e: 49, j: 7.25, i: 8.5 },
-    { d: 15.5, h: 11, e: 50, j: 8.25, i: 9.25 },
-    { d: 15.9, h: 12, e: 51, j: 9.5, i: 10 },
-    { d: 16.5, h: 13, e: 52, j: 10.5, i: 10.75 },
-    { d: 16.8, h: 14, e: 59, j: 11.5, i: 11.5 },
-    { d: 16.9, h: 15, e: 54, j: 12.5, i: 12.5 },
-    { d: 17.2, h: 16, e: 55, j: 13.5, i: 13 },
-    { d: 17.6, h: 17, e: 56, j: 14.75, i: 13.5 },
-    { d: 18.0, h: 18, e: 57, j: 15.75, i: 14 }
+    { d: 14.2, h: 6, e: 45, j: 4, i: 8.5 }, { d: 14.4, h: 7, e: 46, j: 5, i: 7 }, { d: 14.6, h: 8, e: 47, j: 6, i: 8 },
+    { d: 14.8, h: 9, e: 40, j: 7, i: 8.5 }, { d: 15.2, h: 10, e: 49, j: 7.25, i: 8.5 }, { d: 15.5, h: 11, e: 50, j: 8.25, i: 9.25 },
+    { d: 15.9, h: 12, e: 51, j: 9.5, i: 10 }, { d: 16.5, h: 13, e: 52, j: 10.5, i: 10.75 }, { d: 16.8, h: 14, e: 59, j: 11.5, i: 11.5 },
+    { d: 16.9, h: 15, e: 54, j: 12.5, i: 12.5 }, { d: 17.2, h: 16, e: 55, j: 13.5, i: 13 }, { d: 17.6, h: 17, e: 56, j: 14.75, i: 13.5 }, { d: 18.0, h: 18, e: 57, j: 15.75, i: 14 }
   ];
-
   function calcRingSize() {
-    const input = document.getElementById('ring-input');
-    const val = parseFloat(input.value);
-    const resBox = document.getElementById('ring-result');
-    appState.ringInput = input.value;
-    saveState();
-
-    if (!val) {
-      resBox.classList.add('hidden');
-      return;
-    }
-
-    const closestIndex = ringData.reduce((best, item, index) =>
-      Math.abs(item.d - val) < Math.abs(ringData[best].d - val) ? index : best, 0);
-    const closest = ringData[closestIndex];
-    const lower = ringData[Math.max(0, closestIndex - 1)];
-    const upper = ringData[Math.min(ringData.length - 1, closestIndex + 1)];
-
-    resBox.innerHTML = `
-      🔮 <strong>小本本尺寸初估對照結果 (內直徑約 ${closest.d}mm)：</strong><br>
-      • 香港戒圖：<b>${closest.h} 號</b> (建議試戴範圍 ${lower.h}–${upper.h} 號)<br>
-      • 國際戒圍：<b>${closest.i}</b><br>
-      • 歐洲戒圍：<b>${closest.e}</b><br>
-      • 日本戒圍：<b>${closest.j} 號</b><br>
-      <span style="font-size:.76rem;color:#777;">對照表完全對齊官方求婚手札矩陣規格。</span>`;
+    const input = document.getElementById('ring-input'); const val = parseFloat(input.value); const resBox = document.getElementById('ring-result');
+    appState.ringInput = input.value; saveState();
+    if (!val) { resBox.classList.add('hidden'); return; }
+    const closestIndex = ringData.reduce((best, item, index) => Math.abs(item.d - val) < Math.abs(ringData[best].d - val) ? index : best, 0);
+    const closest = ringData[closestIndex]; const lower = ringData[Math.max(0, closestIndex - 1)]; const upper = ringData[Math.min(ringData.length - 1, closestIndex + 1)];
+    resBox.innerHTML = `🔮 <strong>小本本尺寸初估對照結果 (內直徑約 ${closest.d}mm)：</strong><br>• 香港戒圖：<b>${closest.h} 號</b> (建議試戴範圍 ${lower.h}–${upper.h} 號)<br>• 國際戒圍：<b>${closest.i}</b><br>• 歐洲戒圍：<b>${closest.e}</b><br>• 日本戒圍：<b>${closest.j} 號</b><br><span style="font-size:.76rem;color:#777;">對照表完全對齊官方求婚手札矩陣規格。</span>`;
     resBox.classList.remove('hidden');
   }
 
   function bindRedEnvelope() {
-    const mapping = {
-      'hb-count1': 'c1',
-      'hb-money1': 'm1',
-      'hb-count2': 'c2',
-      'hb-money2': 'm2'
-    };
-
+    const mapping = { 'hb-count1': 'c1', 'hb-money1': 'm1', 'hb-count2': 'c2', 'hb-money2': 'm2' };
     Object.entries(mapping).forEach(([id, key]) => {
-      const input = document.getElementById(id);
-      if(!input) return;
+      const input = document.getElementById(id); if(!input) return;
       input.value = appState.redEnvelope[key];
-      input.addEventListener('input', () => {
-        appState.redEnvelope[key] = Math.max(0, Number(input.value || 0));
-        calcRedEnvelope();
-        saveState();
-      });
+      input.addEventListener('input', () => { appState.redEnvelope[key] = Math.max(0, Number(input.value || 0)); calcRedEnvelope(); saveState(); });
     });
   }
 
   function calcRedEnvelope() {
-    const { c1, m1, c2, m2 } = appState.redEnvelope;
-    const view = document.getElementById('total-hb-view');
-    if(view) view.textContent = formatMoney((c1 * m1) + (c2 * m2));
-    
+    const { c1, m1, c2, m2 } = appState.redEnvelope; const view = document.getElementById('total-hb-view'); if(view) view.textContent = formatMoney((c1 * m1) + (c2 * m2));
     const errBox = document.getElementById('hb-error');
     if(errBox) {
       const suspicious = [m1, m2].some(m => m > 0 && (m < 600 || m % 2 !== 0 || String(m).includes('4')));
@@ -1063,84 +1031,20 @@
     }
   }
 
-  function toggleCard(id, btn) {
-    const body = document.getElementById(id);
-    const willOpen = body.classList.contains('hidden');
-    body.classList.toggle('hidden', !willOpen);
-    btn.textContent = willOpen ? '收合提示' : '查看簡化提案';
-    btn.setAttribute('aria-expanded', String(willOpen));
-    btn.style.backgroundColor = willOpen ? '#AAABD3' : '#ABD0CE';
-  }
-
-  function exportBackup() {
-    const blob = new Blob([JSON.stringify(appState, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `備婚小精靈備份_${new Date().toISOString().slice(0,10)}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function importBackup(event) {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const parsed = JSON.parse(reader.result);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
-        alert('備份匯入完成，頁面將重新整理。');
-        location.reload();
-      } catch {
-        alert('無法讀取這份備份，請確認檔案格式。');
-      }
-    };
-    reader.readAsText(file);
-  }
-
-  function clearAllData() {
-    if (!confirm('確定要清除這台裝置上的所有備婚資料嗎？此動作無法復原。')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    location.reload();
-  }
-
-  function formatMoney(value) {
-    return Number(value || 0).toLocaleString('zh-TW');
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? '')
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#039;');
-  }
+  function toggleCard(id, btn) { const body = document.getElementById(id); const willOpen = body.classList.contains('hidden'); body.classList.toggle('hidden', !willOpen); btn.textContent = willOpen ? '收合提示' : '查看簡化提案'; btn.setAttribute('aria-expanded', String(willOpen)); btn.style.backgroundColor = willOpen ? '#AAABD3' : '#ABD0CE'; }
+  function exportBackup() { const blob = new Blob([JSON.stringify(appState, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = `備婚小精靈備份_${new Date().toISOString().slice(0,10)}.json`; link.click(); URL.revokeObjectURL(url); }
+  function importBackup(event) { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => { try { const parsed = JSON.parse(reader.result); localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed)); alert('備份匯入完成，頁面將重新整理。'); location.reload(); } catch { alert('無法讀取這份備份，請確認檔案格式。'); } }; reader.readAsText(file); }
+  function clearAllData() { if (!confirm('確定要清除這台裝置上的所有備婚資料嗎？此動作無法復原。')) return; localStorage.removeItem(STORAGE_KEY); location.reload(); }
+  function formatMoney(value) { return Number(value || 0).toLocaleString('zh-TW'); }
+  function escapeHtml(value) { return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;'); }
 
   function init() {
-    loadState();
-    bindProjectFields();
-    bindPersistentChecks();
-    renderBudgetTable();
-    bindRedEnvelope();
-
-    const ringInput = document.getElementById('ring-input');
-    if (ringInput) {
-      ringInput.value = appState.ringInput || '';
-      ringInput.addEventListener('input', calcRingSize);
-      if (ringInput.value) calcRingSize();
-    }
-
-    generateGantt();
-    calcRedEnvelope();
-    updateDashboard();
-    runAccounting();
-
+    loadState(); bindProjectFields(); bindPersistentChecks(); renderBudgetTable(); bindRedEnvelope();
+    const ringInput = document.getElementById('ring-input'); if (ringInput) { ringInput.value = appState.ringInput || ''; ringInput.addEventListener('input', calcRingSize); if (ringInput.value) calcRingSize(); }
+    generateGantt(); calcRedEnvelope(); updateDashboard(); runAccounting();
     const initialTab = document.getElementById(appState.activeTab) ? appState.activeTab : 'tab-home';
     switchTab(initialTab, document.getElementById(`btn-${initialTab}`), false);
   }
-
   init();
 </script>
 </body>
