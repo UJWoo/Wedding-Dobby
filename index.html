@@ -19,13 +19,13 @@
         
         .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 24px; }
         header { text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid var(--primary-pink); }
-        header h1 { color: var(--primary-brown); font-size: 1.6rem; margin-bottom: 8px; }
+        header h1 { color: var(--primary-brown); font-size: 1.5rem; margin-bottom: 8px; }
         header p { font-size: 0.95rem; color: #8C8C8C; font-weight: bold; }
 
-        /* 滾動式導覽標籤（適合多Tab在手機上滑動） */
+        /* 5大階段 Tab 導覽 */
         .tabs-container { overflow-x: auto; white-space: nowrap; background: #F2ECE4; padding: 6px; border-radius: 8px; margin-bottom: 25px; -webkit-overflow-scrolling: touch; }
         .tabs-container::-webkit-scrollbar { display: none; }
-        .tab-btn { display: inline-block; background: none; border: none; padding: 8px 16px; font-size: 0.9rem; font-weight: bold; color: #7A7A7A; cursor: pointer; border-radius: 6px; transition: all 0.3s; margin-right: 5px; }
+        .tab-btn { display: inline-block; background: none; border: none; padding: 8px 14px; font-size: 0.88rem; font-weight: bold; color: #7A7A7A; cursor: pointer; border-radius: 6px; transition: all 0.3s; margin-right: 5px; }
         .tab-btn.active { background: white; color: var(--primary-brown); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
 
         .tab-content { display: none; }
@@ -34,19 +34,17 @@
         .section-title { font-size: 1.1rem; color: var(--primary-purple); margin: 25px 0 12px 0; display: flex; align-items: center; border-left: 4px solid var(--primary-green); padding-left: 8px; }
         .intro-text { background-color: #FFFDF9; border-left: 4px solid var(--primary-brown); padding: 12px; font-size: 0.85rem; border-radius: 4px; margin-bottom: 20px; }
 
+        /* 模式切換按鈕樣式 */
+        .mode-switch-container { display: flex; background: #EAEAEA; padding: 4px; border-radius: 20px; margin-bottom: 15px; }
+        .mode-btn { flex: 1; border: none; background: none; padding: 6px; font-size: 0.85rem; font-weight: bold; color: #666; cursor: pointer; border-radius: 20px; text-align: center; }
+        .mode-btn.active { background: var(--primary-green); color: white; }
+
         .era-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
         .era-card { padding: 12px; border-radius: 8px; font-size: 0.85rem; }
         .era-parent { background-color: #F5EBE6; border-top: 3px solid var(--primary-brown); }
         .era-modern { background-color: #EEF5F5; border-top: 3px solid var(--primary-green); }
         .era-title { font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
 
-        /* 甘特圖樣式 */
-        .gantt-item { background: #FFFDFB; border-left: 4px solid var(--primary-purple); padding: 12px; border-radius: 0 8px 8px 0; margin-bottom: 12px; border-top: 1px solid #F0F0F0; border-right: 1px solid #F0F0F0; border-bottom: 1px solid #F0F0F0; }
-        .gantt-date { font-size: 0.8rem; color: var(--primary-brown); font-weight: bold; margin-bottom: 4px; }
-        .gantt-title { font-weight: bold; font-size: 0.95rem; margin-bottom: 4px; }
-        .gantt-desc { font-size: 0.85rem; color: #666; }
-
-        /* 記帳表格樣式 */
         .accounting-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
         .accounting-table th { background: #F2ECE4; color: #555; padding: 8px; text-align: left; }
         .accounting-table td { padding: 8px; border-bottom: 1px solid #EEE; }
@@ -86,132 +84,196 @@
     </header>
 
     <div class="tabs-container">
-        <button class="tab-btn active" onclick="switchTab('tab-era')">🕊️ 01.世代對照</button>
-        <button class="tab-btn" onclick="switchTab('tab-gantt')">📅 02.備婚甘特圖</button>
-        <button class="tab-btn" onclick="switchTab('tab-ring')">💍 03.戒圍救援</button>
-        <button class="tab-btn" onclick="switchTab('tab-money')">💰 04.預算與記帳</button>
-        <button class="tab-btn" onclick="switchTab('tab-family')">💬 05.提親與禮俗</button>
-        <button class="tab-btn" onclick="switchTab('tab-execute')">🏁 06.當天與登記</button>
+        <button class="tab-btn active" onclick="switchTab('tab-ring')">🧱 01.求婚前置準備</button>
+        <button class="tab-btn" onclick="switchTab('tab-family')">💬 02.提親與長輩共識</button>
+        <button class="tab-btn" onclick="switchTab('tab-money')">💰 03.預算排坑與記帳</button>
+        <button class="tab-btn" onclick="switchTab('tab-execute')">🏁 04.文定迎娶與紅包</button>
+        <button class="tab-btn" onclick="switchTab('tab-register')">🏛️ 05.戶政登記正式成家</button>
     </div>
 
-    <div id="tab-era" class="tab-content active">
-        <div class="intro-text">💡 <strong>建立同理心：</strong> 讓新人快速看懂「為什麼爸媽會這樣想？」了解長輩的堅持往往來自當年的時空背景，溝通才能雙贏。</div>
-        <div class="section-title">💡 核心思維對照</div>
-        <div class="era-box">
-            <div class="era-card era-parent"><div class="era-title">🧓 傳統思維</div>結婚是兩個家族結盟的大事，流程越繁複隆重、聘金排場越大，越代表男方重視女方、長輩有面子。</div>
-            <div class="era-card era-modern"><div class="era-title">🧑 現代思維</div>結婚是新人宣告成家的獨立派對。傾向將古禮精簡或紅包化，把資源留給成家基金或出國蜜月。</div>
-        </div>
-        <div class="section-title">⏱️ 流程與喜餅型態對照</div>
-        <div class="era-box">
-            <div class="era-card era-parent"><div class="era-title">🧓 傳統流程</div>文定、迎娶、歸寧大動員分兩三天辦。禮車需要 6 台或 12 台長途奔波，喜餅講求扎實大漢餅且數量要大。</div>
-            <div class="era-card era-modern"><div class="era-title">🧑 現代流程</div>高達八成訂結同天。在飯店一小時內優雅奉茶拜別、下樓宴客。喜餅改以中西綜合的手工精緻禮盒為主。</div>
-        </div>
-    </div>
-
-    <div id="tab-gantt" class="tab-content">
-        <div class="intro-text">💡 <strong>動態推算功能：</strong> 輸入妳預計的婚期，小精靈會自動幫妳排好小本本規範的四大階段階梯時程，不上演焦慮大戰！</div>
+    <div id="tab-ring" class="tab-content active">
+        <div class="intro-text">📢 <strong>姊的開場白：</strong> 恭喜進入備婚的第一站！兩個人聊到結婚，通常第一個具體的關卡就是戒圍。這裡有不被發現的偷量秘訣與救援指南。</div>
+        
+        <div class="section-title">💍 求婚戒圍秘密對照器</div>
         <div class="input-group">
-            <label>請輸入預計婚禮日期：</label>
-            <input type="date" id="wedding-date-input" onchange="generateGantt()">
-        </div>
-        <div id="gantt-container">
-            <p style="text-align:center; color:#999; font-size:0.85rem; padding:20px;">請先在上方選擇婚期，即可動態生成專屬甘特圖 📅</p>
-        </div>
-    </div>
-
-    <div id="tab-ring" class="tab-content">
-        <div class="intro-text">💡 <strong>精準尺寸對照：</strong> 趁她睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上量測「內直徑」，即可對照小本本第二頁的完整規格。</div>
-        <div class="input-group">
-            <label>請輸入戒指內直徑 (mm)：</label>
-            <input type="number" step="0.1" id="ring-input" placeholder="例如: 15.2" oninput="calcRingSize()">
+            <label>測量偷撇步：趁她睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上量測「內直徑」</label>
+            <input type="number" step="0.1" id="ring-input" placeholder="請輸入內直徑 (mm) 例如: 15.2" oninput="calcRingSize()">
             <div id="ring-result" class="result-box hidden"></div>
         </div>
         <div class="card" style="border-left: 3px solid var(--primary-brown); background:#FFFDF9;">
-            <p style="font-size:0.85rem; color:#666;">✨ <strong>小本本求婚救援：</strong> 戒指尺寸不合或不是她愛的款式？別擔心，亞立詩提供求婚鑽戒外借服務！只要訂購 GIA 國際認證鑽石即可挑一款美麗婚戒完成浪漫求婚，之後再帶她回門市挑喜愛款式。若配戴後想修改戒圍，提供終身免費修改服務（原尺寸上下 1-3 圍以內可進行修改），但部分特殊材質款式無法修改，購買前務必確認清楚。</p>
-        </div>
-    </div>
-
-    <div id="tab-money" class="tab-content">
-        <div class="intro-text">💡 <strong>付訂追蹤系統：</strong> 完整移入手札預算架構，幫妳即時動態追蹤已付的訂金與當天需要準備的尾款現金，拒絕隱形超支。</div>
-        
-        <table class="accounting-table">
-            <thead>
-                <tr><th>項目 (點選輸入)</th><th>預估預算</th><th>已付訂金</th><th>待付尾款</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>宴客桌費總額</td><td><input type="number" id="acc-pre-1" value="300000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-1" value="30000" oninput="runAccounting()"></td><td id="acc-due-1">0</td></tr>
-                <tr><td>婚紗公司包套</td><td><input type="number" id="acc-pre-2" value="50000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-2" value="15000" oninput="runAccounting()"></td><td id="acc-due-2">0</td></tr>
-                <tr><td>額外拍攝雜費(跟拍/安瓶)</td><td><input type="number" id="acc-pre-3" value="10000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-3" value="0" oninput="runAccounting()"></td><td id="acc-due-3">0</td></tr>
-                <tr><td>新秘/平面動態攝影</td><td><input type="number" id="acc-pre-4" value="45000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-4" value="10000" oninput="runAccounting()"></td><td id="acc-due-4">0</td></tr>
-                <tr><td>主持人/樂團/佈置</td><td><input type="number" id="acc-pre-5" value="30000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-5" value="5000" oninput="runAccounting()"></td><td id="acc-due-5">0</td></tr>
-                <tr><td>喜餅費用總額</td><td><input type="number" id="acc-pre-6" value="40000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-6" value="10000" oninput="runAccounting()"></td><td id="acc-due-6">0</td></tr>
-            </tbody>
-        </table>
-
-        <div class="result-box" style="background:#FFF2F2; border-left:3px solid var(--primary-brown);">
-            📌 <strong>動態記帳摘要：</strong><br>
-            • 預估總花費：NT$ <span id="acc-total-pre">0</span> 元<br>
-            • 已支出訂金總額：NT$ <span id="acc-total-pay">0</span> 元<br>
-            • <b>宴客當天需準備尾款現金：NT$ <span id="acc-total-due" style="color:red; font-weight:bold;">0</span> 元</b>
+            <p style="font-size:0.85rem; color:#666;">✨ <strong>小本本安心救援：</strong> 戒指尺寸不合、或怕買了不是她喜歡的款式？別擔心，亞立詩提供「求婚鑽戒外借服務」！只要訂購 GIA 國際認證鑽石即可挑選一款美麗婚戒完成浪漫求婚，之後再帶她回到門市挑選喜愛的款式。若配戴後想修改戒圍，提供了終身免費修改戒圍的服務，只要原尺寸上下 1-3 圍以內都可以進行修改，但有些特殊材質款式不能修改，購買前務必確認清楚喔！</p>
         </div>
     </div>
 
     <div id="tab-family" class="tab-content">
-        <div class="intro-text">💡 <strong>長輩過關指南：</strong> 提親目的是為了敲定婚事及婚期，展現對結婚的重視與對雙方家長的尊重。建議於婚期前半年至一年進行，傳統提親古禮「不過中午，亦不留吃午飯」。</div>
+        <div class="intro-text">📢 <strong>姊的叮嚀：</strong> 提親目的是為了敲定婚事及婚期，也是表達對結婚的重視與雙方家長的尊重。建議於「婚期前半年至一年」進行，避免後續婚禮籌備匆忙。傳統提親古禮「不過中午，亦不留吃午飯」。</div>
         
-        <div class="section-title">📋 提親前「探聽長輩底線」小表</div>
-        <div class="checklist">
-            <label class="check-item"><input type="checkbox" id="chk-pinhong" onchange="document.getElementById('tip-ph').classList.toggle('hidden', !this.checked)"><span><strong>大小聘看法：</strong> 家長是否收聘？大小聘都吉祥雙數為主，大聘通常 36、60、66萬為主（檯面上收取宴客後退還）；小聘北部稱做衫錢、南部客家習俗稱乳母錢，多為 10萬、12萬到36萬不等，用以答謝家長養育之恩。(點擊展開)</span></label>
-            <div id="tip-ph" class="card-reason hidden">💡 姊的提案：大聘做足面子擺出來拍照，宴客後退回；小聘轉為你們的成家基金，雙方父母都體面！</div>
-            <label class="check-item"><input type="checkbox"><span><strong>喜餅費用：</strong> 喜餅由誰決定？漢餅或西式？喜餅的錢由男方負責，有的是男方直接決定，也有的是女方決定男方事後付款。</span></label>
+        <div class="section-title">🧭 世代備婚思維大對照</div>
+        <div class="era-box">
+            <div class="era-card era-parent"><div class="era-title">🧓 爸媽年代 (傳統)</div>結婚是兩個家族的大事，流程越繁複隆重、聘金排場擺越大，代表男方越重視女方、雙方長輩有面子。</div>
+            <div class="era-card era-modern"><div class="era-title">🧑 我們這年代 (現代)</div>結婚是新人宣告攜手成家的獨立派對。傾向將繁複古禮簡化或紅包化，把資源留給成家基金或出國蜜月。</div>
         </div>
 
-        <div class="section-title">⚖️ 禮俗品項吉祥涵義（基本六禮 v.s 隆重十二禮）</div>
-        <div class="checklist" style="font-size:0.85rem;">
-            <p><b>1. 盒餅 / 2. 日頭餅：</b> 象徵甜甜重重，敬告祖先與分送親友。</p>
-            <p><b>3. 大小聘金與首飾：</b> 長輩對新人的見面禮。男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環。</p>
-            <p><b>4. 香炮燭金：</b> 意在敬神祈福，平安幸福。</p>
-            <p><b>5. 六色喜糖：</b> 象徵甜甜蜜蜜。</p>
-            <p><b>6. 頭尾禮：</b> 象徵錦衣玉食、富貴吉祥。從頭到腳的 6 或 12 件衣物，女方回禮男方 6 或 12 盒為佳。</p>
-            <div class="card">
-                <div class="card-header"><span>🏮 額外 7-12 禮 (麵線、木炭、豬肉、閹雞、肚圍等) 太繁複？</span><button class="card-toggle-btn" onclick="toggleCard('body-12', this)">查看簡化提案</button></div>
-                <div id="body-12" class="card-body hidden">✨ <strong>姊的雙贏提案：</strong> 後續增加的十二禮（象徵美滿姻緣、興旺家業、衣食無缺等），現代高達 90% 的新人都改用<strong>「紅包代替」</strong>，在紅包袋上寫明品項名稱，好準備又不浪費。</div>
+        <div class="section-title">📋 提親前「探聽長輩底線」點檢表</div>
+        <div class="checklist">
+            <label class="check-item">
+                <input type="checkbox" id="chk-pinhong" onchange="document.getElementById('tip-ph').classList.toggle('hidden', !this.checked)">
+                <span><strong>大小聘看法：</strong> 探探長輩是否收聘？聘金行情以吉祥雙數為優先。(點擊看小本本行情)</span>
+            </label>
+            <div id="tip-ph" class="card-reason hidden">
+                💡 <strong>小本本行情：</strong> 大聘多為 36、60、66萬為主，一般女方多為檯面上收取，宴客後退還男方；小聘北部稱「做衫錢」是用來給新娘添置衣服，南部客家習俗稱「乳母錢」用以報答養育之恩，多為 10萬、12萬到36萬不等，多流為新人成家基金。
             </div>
+            <label class="check-item"><input type="checkbox"><span><strong>喜餅決定權：</strong> 喜餅由誰決定？要漢餅或西式禮餅？喜餅的錢由男方負責，有的是男方直接決定，也有的是女方決定，男方出面付款或事後補款。</span></label>
+            <label class="check-item"><input type="checkbox"><span><strong>宴客場地形式：</strong> 提親前需初步詢問家長對於文定宴客場地的想法，基本上女方家宴客遵照女方習俗，男方家宴客遵照男方習俗。</span></label>
+        </div>
+    </div>
+
+    <div id="tab-money" class="tab-content">
+        <div class="intro-text">💡 <strong>付訂追蹤小秘書：</strong> 完整移入小本本預算架構，幫妳即時追蹤已支出訂金與宴客當天需準備的尾款現金，拒絕隱形超支！</div>
+        
+        <table class="accounting-table">
+            <thead>
+                <tr><th>預算項目 (點選可修改數字)</th><th>預估總價</th><th>已付訂金</th><th>待付尾款</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>婚宴桌費預估總額</td><td><input type="number" id="acc-pre-1" value="300000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-1" value="30000" oninput="runAccounting()"></td><td id="acc-due-1">0</td></tr>
+                <tr><td>婚紗公司包套</td><td><input type="number" id="acc-pre-2" value="50000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-2" value="15000" oninput="runAccounting()"></td><td id="acc-due-2">0</td></tr>
+                <tr><td>外景拍攝雜費(跟拍/安瓶費)</td><td><input type="number" id="acc-pre-3" value="10000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-3" value="0" oninput="runAccounting()"></td><td id="acc-due-3">0</td></tr>
+                <tr><td>新娘秘書 (日) / 婚禮平面動態攝影</td><td><input type="number" id="acc-pre-4" value="45000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-4" value="10000" oninput="runAccounting()"></td><td id="acc-due-4">0</td></tr>
+                <tr><td>主持人 / 樂團 / 場地佈置</td><td><input type="number" id="acc-pre-5" value="30000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-5" value="5000" oninput="runAccounting()"></td><td id="acc-due-5">0</td></tr>
+                <tr><td>喜餅挑選總額 (中式/西式/綜合)</td><td><input type="number" id="acc-pre-6" value="40000" oninput="runAccounting()"></td><td><input type="number" id="acc-pay-6" value="10000" oninput="runAccounting()"></td><td id="acc-due-6">0</td></tr>
+            </tbody>
+        </table>
+
+        <div class="result-box" style="background:#FFF2F2; border-left:3px solid var(--primary-brown);">
+            📌 <strong>動態財務總覽：</strong><br>
+            • 預估總預算：NT$ <span id="acc-total-pre">0</span> 元<br>
+            • 已支出訂金：NT$ <span id="acc-total-pay">0</span> 元<br>
+            • <b>宴客當天需準備尾款現金：NT$ <span id="acc-total-due" style="color:red; font-weight:bold;">0</span> 元</b>
+            <p style="font-size:0.78rem; color:#888; margin-top:6px;">⚠️ 姊的排坑提示：小本本提醒，婚紗公司的「增加拍攝組數、相片加購、安瓶、造型師跟拍」往往是加價大坑，簽約前務必確認清楚額外加價服務！蜜月型態（自助或跟團）與預算也要記得一併納入總規劃喔！</p>
         </div>
     </div>
 
     <div id="tab-execute" class="tab-content">
-        <div class="intro-text">💡 <strong>當天定心丸：</strong> 包含手札文定迎娶三大禁忌提示，以及結婚登記 4 步驟打包清單。</div>
+        <div class="intro-text">📢 <strong>姊的叮嚀：</strong> 這是最容易手忙腳亂的一天！這裡完整對齊了文定與迎娶流程、禮俗禁忌，並內建「現代精簡/傳統隆重」一鍵翻牌提案，連當天紅包行情都幫妳算好防錯！</div>
         
-        <div class="section-title">🛑 訂婚禮俗與當天 3 大禁忌</div>
-        <div class="checklist" style="font-size:0.85rem; background:#FFF2F2;">
-            <p>❌ <b>喜餅分送眾人，新娘不可吃：</b> 否則會把自己的喜氣吃掉。</p>
-            <p>❌ <b>男方親友提早離席，不可說再見：</b> 文定宴男方親友通常在魚料理上桌時默默離席，不可說再見，代表不想有下一次（重婚）。（姊提案：新郎送客前再悄悄折返拍照即可！）</p>
-            <p>❌ <b>戴戒指不可套到底：</b> 傳統古禮一金一銅以紅線綁活結代表永結同心，戴在中指，套到底有「壓到底」的意思，大多戴到第二指節。</p>
+        <div class="mode-switch-container">
+            <button id="btn-mode-modern" class="mode-btn active" onclick="switchWeddingMode('modern')">✨ 現代精簡版提案 (合辦同天)</button>
+            <button id="btn-mode-traditional" class="mode-btn" onclick="switchWeddingMode('traditional')">👑 傳統隆重版禮俗 (追求周全)</button>
         </div>
 
-        <div class="section-title">🧧 當天工作人員紅包即時計算（依俗防錯）</div>
-        <div class="input-group"><label>好命婆 / 開新車門 / 小舅子 人數總和：</label><input type="number" id="hb-count1" value="3" oninput="calcRedEnvelope()"></div>
-        <div class="input-group"><label>單包紅包預算金額 (行情 1200 - 3600元)：</label><input type="number" id="hb-money1" value="1200" oninput="calcRedEnvelope()"></div>
-        <div class="input-group"><label>伴郎伴娘 / 招待 / 收禮 / 攝影人數總和：</label><input type="number" id="hb-count2" value="6" oninput="calcRedEnvelope()"></div>
-        <div class="input-group"><label>單包紅包預算金額 (行情 600 - 1200元)：</label><input type="number" id="hb-money2" value="600" oninput="calcRedEnvelope()"></div>
-        <div id="hb-error" class="alert-error"></div>
-        <div class="result-box">💰 預計準備紅包總額：NT$ <span id="total-hb-view">0</span> 元<br><span style="font-size:0.75rem; color:#888;">⚠️ 小本本叮嚀：紅包最低 600 元起跳，記得選雙數，且絕對要避開「4」跟「單數」！</span></div>
+        <div class="section-title">⏱️ 儀式流程與禮俗眉角</div>
+        
+        <div class="flow-step">
+            <div class="flow-badge">1</div>
+            <div class="flow-title">男方出發 $\rightarrow$ 納采迎納與雙方鳴炮</div>
+            <div class="flow-desc">男方在家祭祖後出發。抵達時雙方鳴炮，由女方晚輩（小舅子）端當天兩顆水果（蘋果或橘子居多）含紅紙開車門迎接新郎。</div>
+        </div>
 
-        <div class="section-title">🏛️ 結婚登記 4 步驟與證件打包</div>
-        <div class="intro-text">📌 <strong>登記規範：</strong> 當事人兩位必須親自到場辦理才算生效，結婚書約需 2 位年滿 20 歲以上證人簽名（證人當天不需到現場）。<b>假日需提前 3 天以上預約！</b>超過預約 15 分鐘視同取消。</div>
-        <div class="checklist">
-            <label class="check-item"><input type="checkbox"><span>雙方國民身分證 (外籍人士持護照) + 戶口名簿 + 印章</span></label>
-            <label class="check-item"><input type="checkbox"><span>2 年內拍攝正面半身彩色照片各 1 張 (身分證規格)</span></label>
-            <label class="check-item"><input type="checkbox"><span>結婚書約 (建議多帶一份留做紀念，戶政會收走一份)</span></label>
-            <label class="check-item"><input type="checkbox"><span>準備好找零規費：換發身分證 50元/張、換發戶口名簿 30元/份、結婚證明書 100元/張</span></label>
+        <div class="flow-step">
+            <div class="flow-badge">2</div>
+            <div class="flow-title">奉甜茶與壓茶甌</div>
+            <div class="flow-desc">女方準備甜茶與茶杯盤組（6或12個）。好命婆牽新娘出場向男方親友奉甜茶、介紹親友，隨後新娘收回茶杯，男方長輩會將紅包捲起壓在杯下（壓茶甌）。</div>
+        </div>
+
+        <div class="flow-step">
+            <div class="flow-badge">3</div>
+            <div class="flow-title">交換戒指與互戴金飾</div>
+            <div class="flow-desc">古禮上一金一銅戒指以紅線綁上活結代表姻緣線（永結同心），戴在中指。
+                <div class="card">
+                    <div class="card-header"><span>⚠️ 禮俗眉角：戴婚戒儀式一定要套到底？</span></div>
+                    <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有把對方「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，給彼此留個互相尊重的甜蜜台階。接著由雙方父母為新人戴上金飾見見面禮（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環）。</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mode-traditional-content" class="hidden">
+            <div class="flow-step">
+                <div class="flow-badge">禮</div>
+                <div class="flow-title">長輩堅持：傳統十二禮品項 check！</div>
+                <div class="flow-desc" style="background:#FFFDF5;">
+                    小本本記載完整十二禮包含：1.盒餅(西式喜餅)、2.日頭餅(中式大餅)、3.大小聘金首飾、4.香炮燭金(敬神祈福)、5.六色喜糖(甜甜蜜蜜)、6.頭尾禮(從頭到腳6或12件衣物)。<br>
+                    <b style="color:var(--primary-brown);">加碼後六禮：</b>7.麵線(美滿姻緣一線牽)、8.木炭(興旺家業)、9.豬肉或火腿、10.閹雞鴨母(起家興業)、11.肚圍(衣食無缺)、12.蓮蕉花芋頭(多子多孫)。女方回禮男方以 6 或 12 盒喜餅及頭尾禮為佳。
+                </div>
+            </div>
+        </div>
+        
+        <div id="mode-modern-content">
+            <div class="card" style="margin-bottom:15px; border-left:3px solid var(--primary-green);">
+                <div class="card-header"><span>💡 後六禮 (木炭、麵線、肚圍、閹雞等) 太難準備？</span></div>
+                <div class="card-body">✨ <strong>姊的簡化提案：</strong> 現代高達 90% 的新人，只要跟長輩講好，後六禮實體物一律改用<strong>「紅包代替」</strong>，在紅包袋上寫明品項與吉祥話即可！省去搬運麻煩，長輩看了一樣紅包大氣有面子。</div>
+            </div>
+        </div>
+
+        <div class="flow-step">
+            <div class="flow-badge">4</div>
+            <div class="flow-title">女方祭祖與文定宴會</div>
+            <div class="flow-desc">新人祭拜女方祖先稟告婚事。文定宴會開席款待親友。
+                <div class="card">
+                    <div class="card-header"><span>⚠️ 禮俗眉角：男方親友吃喜酒不能吃到最後、不可說再見？</span></div>
+                    <div class="card-body" style="background:#FFFDF5;">傳統習俗怕「吃過頭」代表把女方家吃垮，且不說再見代表不想有下一次（重婚意象）。因此男方親友通常在<strong>「魚料理」上桌時必須提前默默離席</strong>。姊提案：新郎本人在長輩離席後可以悄悄折返，留在最後陪新娘一起送客分送贈餅拍美照！</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flow-step">
+            <div class="flow-badge">5</div>
+            <div class="flow-title">迎娶闖關 $\rightarrow$ 拜別父母 $\rightarrow$ 擲扇潑水</div>
+            <div class="flow-desc">男方再次祭祖出發迎娶，新郎經歷伴娘闖關討喜。新娘與新郎跪拜感謝女方父母養育之恩（拜別）。新娘上禮車後出門擲扇（象徵丟掉壞脾氣）、女方家長潑水（象徵大展鴻圖、衣食無缺）。</div>
+        </div>
+
+        <div class="flow-step">
+            <div class="flow-badge">6</div>
+            <div class="flow-title">入家門 $\rightarrow$ 進洞房坐財庫 $\rightarrow$ 吃甜湯圓</div>
+            <div class="flow-desc">抵達男方家由晚輩端水果拜轎迎接。新人改口稱呼、進入洞房「坐財庫」（新郎新娘一起坐在一張墊有新郎長褲的高低椅上），隨後互相餵吃甜湯圓，象徵甜蜜圓滿、興旺家業。</div>
+        </div>
+
+        <div class="section-title">🛑 訂婚禮俗當天 3 大終極禁忌</div>
+        <div class="checklist" style="font-size:0.85rem; background:#FFF2F2; padding:12px; border-radius:8px;">
+            <p>❌ <b>喜餅分送眾人，新娘不可吃：</b> 傳統上認為會把自己當天的喜氣與福氣吃掉。</p>
+            <p>❌ <b>男方親友提早離席且不可說再見：</b> 避免重婚意象，默默離席即可。</p>
+            <p>❌ <b>紅包禮金數字選雙數、避開「4」與「單數」：</b> 紅包最低以 NT$600 元起跳，要包得喜氣吉祥。</p>
+        </div>
+
+        <div class="section-title">🧧 當天工作人員紅包行情即時計算 (防錯)</div>
+        <div class="input-group"><label>開新車門 / 壓茶甌 / 小舅子 / 好命婆 人數總和：</label><input type="number" id="hb-count1" value="3" oninput="calcRedEnvelope()"></div>
+        <div class="input-group"><label>單包紅包預算金額 (小本本行情建議 1200 - 3600元)：</label><input type="number" id="hb-money1" value="1200" oninput="calcRedEnvelope()"></div>
+        <div class="input-group"><label>伴郎伴娘 / 花童 / 總招待 / 招待 / 攝影 / 收禮金 人數總和：</label><input type="number" id="hb-count2" value="6" oninput="calcRedEnvelope()"></div>
+        <div class="input-group"><label>單包紅包預算金額 (小本本行情建議 600 - 1200元)：</label><input type="number" id="hb-money2" value="600" oninput="calcRedEnvelope()"></div>
+        <div id="hb-error" class="alert-error"></div>
+        <div class="result-box" style="background:#FFFDF2; border-left:3px solid var(--primary-purple);">
+            💰 <strong>當天預計準備紅包總額：NT$ <span id="total-hb-view">0</span> 元</strong>
         </div>
     </div>
 
-    <footer><p>Made with ❤️ by 侑潔 | 備婚小精靈 v4.0</p></footer>
+    <div id="tab-register" class="tab-content">
+        <div class="intro-text">📢 <strong>姊的完美收尾：</strong> 婚宴辦完，最重要的一步就是完成法律程序。小本本最重要的登記提醒，出門前照著勾選絕對不落勾。</div>
+        
+        <div class="section-title">📌 登記結婚 4 步驟流程</div>
+        <div class="flow-step"><div class="flow-badge">1</div><div class="flow-title">提前致電戶政事務所預約</div><div class="flow-desc">確認登記當天狀況。<b>如果是假日登记，必須提前 3 天以上預約喔！</b>登記結婚當天超過預約時間 15 分鐘則視同取消預約。可以在結婚登記日前 3 個辦公日內，向戶政事務所辦理結婚登記並指定結婚登記日。</div></div>
+        <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌</div><div class="flow-desc">結婚當事人兩位需要親自到辦理，可以任選一間自己方便的事務所登記（除了要遷入戶籍須到戶籍當地事務所）。辦理完成結婚登記才算正式生效！</div></div>
+        <div class="flow-step"><div class="flow-badge">3</div><div class="flow-title">繳交相關文件與結婚書約</div><div class="flow-desc">將填寫好的結婚書約遞交櫃檯。結婚書約上需要有 2 位年滿 20 歲以上且未受監護宣告的證人簽名或蓋章（兩位證人不需要到現場）。</div></div>
+        <div class="flow-step"><div class="flow-badge">4</div><div class="flow-title">繳費、領取正式相關文件與新身分證</div><div class="flow-desc">大功告成！恭喜正式成為合法夫妻！</div></div>
+
+        <div class="section-title">📋 辦理登記證件與規費打包 Checkbox</div>
+        <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>雙方當事人的國民身分證 (外籍人士需帶護照)</span></label>
+            <label class="check-item"><input type="checkbox"><span>雙方戶口名簿 + 雙方印章</span></label>
+            <label class="check-item"><input type="checkbox"><span>結婚書約 (戶政會收走一份，可以多帶一份方便留做紀念)</span></label>
+            <label class="check-item"><input type="checkbox"><span>2 年內所攝正面半身彩色相片各 1 張 (規格同身分證)</span></label>
+            <label class="check-item"><input type="checkbox"><span>換發國民身分證工本費：每張新臺幣 50 元</span></label>
+            <label class="check-item"><input type="checkbox"><span>換發戶口名簿規費：每份新臺幣 30 元</span></label>
+            <label class="check-item"><input type="checkbox"><span>(選備) 若需結婚證明書：規費為每張新臺幣 100 元</span></label>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ by 侑潔 | 備婚小精靈 v5.0</p>
+    </footer>
 </div>
 
 <script>
+    // Tab 切換控制
     function switchTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -220,57 +282,16 @@
         window.scrollTo(0, 0);
     }
 
-    function toggleCard(id, btn) {
-        const body = document.getElementById(id);
-        if(body.classList.contains('hidden')) { body.classList.remove('hidden'); btn.innerText = '收合提示'; btn.style.backgroundColor = '#AAABD3'; }
-        else { body.classList.add('hidden'); btn.innerText = '查看簡化提案'; btn.style.backgroundColor = '#ABD0CE'; }
+    // 現代精簡與傳統隆重模式切換
+    function switchWeddingMode(mode) {
+        document.getElementById('btn-mode-modern').classList.toggle('active', mode === 'modern');
+        document.getElementById('btn-mode-traditional').classList.toggle('active', mode === 'traditional');
+        
+        document.getElementById('mode-modern-content').classList.toggle('hidden', mode !== 'modern');
+        document.getElementById('mode-traditional-content').classList.toggle('hidden', mode !== 'traditional');
     }
 
-    // 動態甘特圖生成邏輯（依據小本本時程推算）
-    function generateGantt() {
-        const dateVal = document.getElementById('wedding-date-input').value;
-        const container = document.getElementById('gantt-container');
-        if(!dateVal) return;
-
-        const weddingDate = new Date(dateVal);
-        
-        // 格式化日期函數
-        const fmt = (d) => `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
-        
-        // 計算各階段時間點
-        let p1_start = new Date(weddingDate); p1_start.setMonth(p1_start.getMonth() - 12);
-        let p1_end = new Date(weddingDate); p1_end.setMonth(p1_end.getMonth() - 6);
-        let p2_start = new Date(weddingDate); p2_start.setMonth(p2_start.getMonth() - 6);
-        let p2_end = new Date(weddingDate); p2_end.setMonth(p2_end.getMonth() - 4);
-        let p3_start = new Date(weddingDate); p3_start.setMonth(p3_start.getMonth() - 2);
-        let p3_end = new Date(weddingDate); p3_end.setMonth(p3_end.getMonth() - 1);
-        let p4_date = new Date(weddingDate); p4_date.setDate(p4_date.getDate() - 3);
-
-        container.innerHTML = `
-            <div class="gantt-item">
-                <div class="gantt-date">📅 建議執行區間：${fmt(p1_start)} ~ ${fmt(p1_end)}</div>
-                <div class="gantt-title">🥊 階段一：共識與提親戰役 (婚前 6-12 個月)</div>
-                <div class="gantt-desc">雙方取得成家共識，偷偷測量戒圍。在彼此家庭能配合的時間內（建議半年前至一年）舉辦提親，敲定聘金收退共識、婚期擇日與喜餅概估數量。</div>
-            </div>
-            <div class="gantt-item">
-                <div class="gantt-date">📅 建議執行區間：${fmt(p2_start)} ~ ${fmt(p2_end)}</div>
-                <div class="gantt-title">🥊 階段二：預算與門面戰役 (婚前 4-6 個月)</div>
-                <div class="gantt-desc">下訂夢幻婚宴場地。挑選婚紗公司拍攝（提防造型師跟拍、安瓶等加價坑），搶訂熱門新秘、婚攝與主持人檔期。</div>
-            </div>
-            <div class="gantt-item">
-                <div class="gantt-date">📅 建議執行區間：${fmt(p3_start)} ~ ${fmt(p3_end)}</div>
-                <div class="gantt-title">🥊 階段三：細節與魔鬼戰役 (婚前 1-2 個月)</div>
-                <div class="gantt-desc">寄發喜餅喜帖、確認最終宴客桌數、排定當天所有工作人員名單（司儀、總招、收禮、伴郎娘手機）。打包好文定六禮/十二禮物品，包好各項開門、奉茶紅包。</div>
-            </div>
-            <div class="gantt-item">
-                <div class="gantt-date">📅 最晚預約死線：${fmt(p4_date)} 以前</div>
-                <div class="gantt-title">🏛️ 階段四：法律登記死線 (戶政登記預約)</div>
-                <div class="gantt-desc">若預計於假日至戶政事務所登記結婚，<b>必須提早 3 天以上預約辦理！</b>帶齊身分證、戶口名簿、照片與書約，當天提早出門，超過 15 分鐘會被取消喔！</div>
-            </div>
-        `;
-    }
-
-    // 戒圍對照矩陣
+    // 戒圍即時對照矩陣 (精準對齊小本本第2頁數據)
     const ringData = [
         { d: 14.2, h: 6, e: 45, j: 4, i: 8.5 }, { d: 14.4, h: 7, e: 46, j: 5, i: 7 }, { d: 14.6, h: 8, e: 47, j: 6, i: 8 },
         { d: 14.8, h: 9, e: 40, j: 7, i: 8.5 }, { d: 15.2, h: 10, e: 49, j: 7.25, i: 8.5 }, { d: 15.5, h: 11, e: 50, j: 8.25, i: 9.25 },
@@ -283,11 +304,13 @@
         const resBox = document.getElementById('ring-result');
         if (!val) { resBox.classList.add('hidden'); return; }
         let closest = ringData.reduce((prev, curr) => Math.abs(curr.d - val) < Math.abs(prev.d - val) ? curr : prev);
-        resBox.innerHTML = `🔮 對照結果 (內直徑約 ${closest.d}mm)：<br>• 國際戒圍：<b>${closest.i}</b> | 香港戒圖：<b>${closest.h} 號</b><br>• 歐洲戒圍：<b>${closest.e}</b> | 日本戒圍：<b>${closest.j} 號</b>`;
+        resBox.innerHTML = `🔮 <strong>最接近的戒圍對照結果 (內直徑約 ${closest.d}mm)：</strong><br>
+            • 國際戒圍：<b>${closest.i}</b><br>• 香港戒圖：<b>${closest.h} 號</b><br>
+            • 歐洲戒圍：<b>${closest.e}</b><br>• 日本戒圍：<b>${closest.j} 號</b>`;
         resBox.classList.remove('hidden');
     }
 
-    // 記帳與尾款追蹤邏輯
+    // 預算與動態記帳追蹤邏輯
     function runAccounting() {
         let totalPre = 0, totalPay = 0, totalDue = 0;
         for(let i=1; i<=6; i++) {
@@ -302,18 +325,18 @@
         document.getElementById('acc-total-due').innerText = totalDue.toLocaleString();
     }
 
-    // 紅包計算防錯
+    // 紅包行情即時加總與禮俗防錯
     function calcRedEnvelope() {
         const c1 = parseInt(document.getElementById('hb-count1').value)||0; const m1 = parseInt(document.getElementById('hb-money1').value)||0;
         const c2 = parseInt(document.getElementById('hb-count2').value)||0; const m2 = parseInt(document.getElementById('hb-money2').value)||0;
         document.getElementById('total-hb-view').innerText = ((c1 * m1) + (c2 * m2)).toLocaleString();
         const errBox = document.getElementById('hb-error'); errBox.style.display = 'none';
         if ((m1 > 0 && (m1 < 600 || m1 % 2 !== 0 || m1.toString().includes('4'))) || (m2 > 0 && (m2 < 600 || m2 % 2 !== 0 || m2.toString().includes('4')))) {
-            errBox.innerHTML = `⚠️ 姊的雷達提示：紅包金額要高於 600 元、必須是雙數且避開「4」喔！請再檢查一下預算欄位。`; errBox.style.display = 'block';
+            errBox.innerHTML = `⚠️ 💡 姊的雷達提醒：紅包金額包錯囉！最低要 600 元起跳、必須是雙數，且絕對要避開數字「4」喔！請再調整一下金額。`; errBox.style.display = 'block';
         }
     }
 
-    // 初始計算
+    // 初始化動態數據
     runAccounting();
     calcRedEnvelope();
 </script>
