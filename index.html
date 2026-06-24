@@ -22,7 +22,6 @@
     }
 
     * {
-      box-shadow: border-box;
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -149,61 +148,15 @@
       margin-bottom: 18px;
     }
 
-    .hero-dashboard h2 {
-      font-size: 1.22rem;
-      color: var(--primary-brown);
-      margin-bottom: 6px;
-    }
+    .hero-dashboard h2 { font-size: 1.22rem; color: var(--primary-brown); margin-bottom: 6px; }
+    .countdown { font-size: 1.7rem; font-weight: 800; color: #4E4E4E; margin: 9px 0; }
+    .countdown small { display: block; font-size: .8rem; color: var(--text-muted); font-weight: 500; }
+    .progress-track { height: 11px; background: #EDE8E4; border-radius: 20px; overflow: hidden; margin: 9px 0 5px; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary-green), var(--primary-purple)); transition: width .35s ease; }
+    .progress-text { font-size: .78rem; color: var(--text-muted); text-align: right; }
 
-    .countdown {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: #4E4E4E;
-      margin: 9px 0;
-    }
-
-    .countdown small {
-      display: block;
-      font-size: .8rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .progress-track {
-      height: 11px;
-      background: #EDE8E4;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 9px 0 5px;
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--primary-green), var(--primary-purple));
-      transition: width .35s ease;
-    }
-
-    .progress-text {
-      font-size: .78rem;
-      color: var(--text-muted);
-      text-align: right;
-    }
-
-    .dashboard-grid, .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 11px;
-      margin: 14px 0;
-    }
-
-    .metric-card, .feature-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 13px;
-      background: white;
-    }
-
+    .dashboard-grid, .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; margin: 14px 0; }
+    .metric-card, .feature-card { border: 1px solid var(--border); border-radius: 12px; padding: 13px; background: white; }
     .metric-card span { display: block; color: var(--text-muted); font-size: .76rem; }
     .metric-card strong { display: block; color: #444; font-size: 1.06rem; margin-top: 3px; }
 
@@ -212,25 +165,8 @@
     .feature-card strong { display: block; color: var(--primary-brown); margin-bottom: 2px; }
     .feature-card small { color: var(--text-muted); }
 
-    .section-title {
-      font-size: 1.08rem;
-      color: var(--primary-purple);
-      margin: 25px 0 12px;
-      display: flex;
-      align-items: center;
-      border-left: 4px solid var(--primary-green);
-      padding-left: 8px;
-    }
-
-    .intro-text, .info-note {
-      background: #FFFDF9;
-      border-left: 4px solid var(--primary-brown);
-      padding: 12px;
-      font-size: .85rem;
-      border-radius: 5px;
-      margin-bottom: 18px;
-    }
-
+    .section-title { font-size: 1.08rem; color: var(--primary-purple); margin: 25px 0 12px; display: flex; align-items: center; border-left: 4px solid var(--primary-green); padding-left: 8px; }
+    .intro-text, .info-note { background: #FFFDF9; border-left: 4px solid var(--primary-brown); padding: 12px; font-size: .85rem; border-radius: 5px; margin-bottom: 18px; }
     .info-note { border-left-color: var(--primary-green); background: #F5FAF9; }
 
     .tag { display: inline-block; padding: 2px 7px; border-radius: 20px; font-size: .7rem; font-weight: 700; margin-right: 4px; vertical-align: 1px; }
@@ -242,72 +178,61 @@
     .mode-btn { flex: 1; border: none; background: none; padding: 6px; font-size: 0.85rem; font-weight: bold; color: #666; cursor: pointer; border-radius: 20px; text-align: center; }
     .mode-btn.active { background: var(--primary-green); color: white; }
 
-    .project-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 11px;
-      background: #FAFAFA;
-      border-radius: 13px;
-      padding: 14px;
-      margin-bottom: 16px;
-    }
-
+    .project-form { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; background: #FAFAFA; border-radius: 13px; padding: 14px; margin-bottom: 16px; }
     .input-group { margin-bottom: 12px; position: relative; }
     .project-form .input-group { margin-bottom: 0; }
     .input-group label { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; font-weight: 700; margin-bottom: 5px; color: #555; }
     .input-group input, .input-group select { width: 100%; padding: 9px; border: 1px solid #D8D4D0; border-radius: 7px; background: #fff; font-size: .9rem; }
 
-    /* 💡 吉日挑選小技巧小按鈕樣式 */
-    .btn-inline-tip {
-      background: none;
-      border: none;
-      color: var(--primary-brown);
-      font-size: 0.78rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: underline;
-      padding: 0;
-    }
+    .btn-inline-tip { background: none; border: none; color: var(--primary-brown); font-size: 0.78rem; font-weight: 700; cursor: pointer; text-decoration: underline; padding: 0; }
     .btn-inline-tip:hover { color: var(--primary-purple); }
 
-    /* 💡 莫蘭迪風格微醺彈跳視窗 (Dialog Modal) 樣式 */
-    .lucky-dialog {
-      border: none;
-      border-radius: 16px;
-      max-width: 520px;
-      width: calc(100% - 30px);
-      max-height: 80vh;
-      margin: auto;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      background: #fff;
-    }
-    .lucky-dialog::backdrop {
-      background: rgba(74, 74, 74, 0.4);
-      backdrop-filter: blur(4px);
-    }
-    .lucky-dialog-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-      margin-bottom: 15px;
-    }
+    /* 🎨 記憶基因：莫蘭迪風格微醺磨砂彈跳視窗 (Dialog Modal) */
+    .lucky-dialog { border: none; border-radius: 16px; max-width: 520px; width: calc(100% - 30px); max-height: 80vh; margin: auto; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); background: #fff; }
+    .lucky-dialog::backdrop { background: rgba(74, 74, 74, 0.4); backdrop-filter: blur(4px); }
+    .lucky-dialog-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; }
     .lucky-dialog-header h3 { color: var(--primary-brown); font-size: 1.15rem; }
     .btn-close-dialog { background: none; border: none; font-size: 1.3rem; color: #aaa; cursor: pointer; line-height: 1; }
     .btn-close-dialog:hover { color: var(--danger); }
-    
-    .lucky-dialog-content {
-      overflow-y: auto;
-      max-height: calc(80vh - 100px);
-      font-size: 0.88rem;
-      color: var(--text-dark);
-      padding-right: 5px;
-    }
+    .lucky-dialog-content { overflow-y: auto; max-height: calc(80vh - 100px); font-size: 0.88rem; color: var(--text-dark); padding-right: 5px; }
     .lucky-dialog-content h4 { color: var(--primary-purple); margin: 15px 0 6px 0; font-size: 0.95rem; }
     .lucky-dialog-content ul { padding-left: 18px; margin-bottom: 10px; }
     .lucky-dialog-content li { margin-bottom: 6px; }
+
+    /* 💡 5W1H 專用莫蘭迪收合大字卡 (Details / Summary) 樣式 */
+    .w5h1-details {
+      background: #FAFAFA;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .w5h1-summary {
+      background: #F4EDE7;
+      color: var(--text-dark);
+      padding: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      user-select: none;
+      outline: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .w5h1-summary::-webkit-details-marker { display: none; }
+    .w5h1-summary::after { content: "▼"; font-size: 0.75rem; color: var(--primary-brown); transition: transform 0.2s; }
+    .w5h1-details[open] .w5h1-summary::after { transform: rotate(180deg); }
+    .w5h1-body {
+      padding: 14px;
+      font-size: 0.86rem;
+      color: var(--text-dark);
+      background: #fff;
+    }
+    .w5h1-body h4 { color: var(--primary-brown); margin: 12px 0 4px 0; font-size: 0.9rem; }
+    .w5h1-body p { margin-bottom: 8px; }
+    .w5h1-body ul { padding-left: 18px; margin-bottom: 10px; }
+    .w5h1-body li { margin-bottom: 4px; }
 
     .full-width { grid-column: 1 / -1; }
 
@@ -321,17 +246,7 @@
     .era-modern { background: #EEF5F5; border-top: 3px solid var(--primary-green); }
     .era-title { font-weight: 700; margin-bottom: 5px; font-size: .9rem; }
 
-    .gantt-item {
-      background: #FFFDFB;
-      border-left: 4px solid var(--primary-purple);
-      padding: 13px;
-      border-radius: 0 9px 9px 0;
-      margin-bottom: 12px;
-      border-top: 1px solid #F0F0F0;
-      border-right: 1px solid #F0F0F0;
-      border-bottom: 1px solid #F0F0F0;
-    }
-
+    .gantt-item { background: #FFFDFB; border-left: 4px solid var(--primary-purple); padding: 13px; border-radius: 0 9px 9px 0; margin-bottom: 12px; border-top: 1px solid #F0F0F0; border-right: 1px solid #F0F0F0; border-bottom: 1px solid #F0F0F0; }
     .gantt-date { font-size: .78rem; color: var(--primary-brown); font-weight: 700; margin-bottom: 4px; }
     .gantt-title { font-weight: 700; font-size: .94rem; margin-bottom: 4px; }
     .gantt-desc { font-size: .84rem; color: #666; }
@@ -425,7 +340,6 @@
         <label for="couple-name">新人稱呼</label>
         <input id="couple-name" type="text" placeholder="例如：侑潔與小明" data-project-field="coupleName">
       </div>
-      <!-- 💡 新增吉日挑選小技巧小按鈕連動 -->
       <div class="input-group">
         <label for="home-wedding-date">預計婚禮日期 <button class="btn-inline-tip" onclick="openLuckyDialog()">💡 挑選小技巧</button></label>
         <input id="home-wedding-date" type="date" data-project-field="weddingDate">
@@ -464,7 +378,7 @@
 
     <div class="section-title">🎯 這週先完成 3 件事</div>
     <ul class="priority-list">
-      <li><input type="checkbox" data-persist-key="priority-budget"><span><strong>確認婚禮形式與預算上限</strong><br>先決定大方向，後面才不會每個選項都超支。</span></li>
+      <li><input type="checkbox" data-persist-key="priority-budget"><span><strong>確認婚禮形式與預算上限</strong><br>先決定大方向，後面才不會每個选项都超支。</span></li>
       <li><input type="checkbox" data-persist-key="priority-guests"><span><strong>建立第一版賓客人數</strong><br>不用列到每個名字，先抓大約人數即可。</span></li>
       <li><input type="checkbox" data-persist-key="priority-venue"><span><strong>確認宴客地區 or 場地需求</strong><br>先談地區、桌數與交通，再開始詢問檔期。</span></li>
     </ul>
@@ -478,7 +392,7 @@
 
     <div class="section-title">🧰 常用工具捷徑</div>
     <div class="feature-grid">
-      <button class="feature-card" onclick="openTabFromCard('tab-ring')"><strong>🧱 01.求婚前置</strong><small>偷量戒圍與求婚外借救援</small></button>
+      <button class="feature-card" onclick="openTabFromCard('tab-ring')"><strong>順利求婚</strong><small>求婚 5W1H 與前置檢查</small></button>
       <button class="feature-card" onclick="openTabFromCard('tab-family')"><strong>💬 02.提親共識</strong><small>世代思維對照、大小聘看底線</small></button>
       <button class="feature-card" onclick="openTabFromCard('tab-money')"><strong>💰 03.預算記帳</strong><small>追蹤訂金、成交價與尾款</small></button>
       <button class="feature-card" onclick="openTabFromCard('tab-execute')"><strong>🏁 04.文定迎娶</strong><small>當天精簡/隆重切換與紅包計算</small></button>
@@ -496,19 +410,121 @@
     </div>
   </section>
 
-  <!-- ==================== Tab 01: 💍 求婚 ==================== -->
+  <!-- ==================== Tab 01: 💍 求婚 (5W1H 大升級版) ==================== -->
   <section id="tab-ring" class="tab-content" role="tabpanel" aria-labelledby="btn-tab-ring">
-    <div class="intro-text">📢 <strong>小精靈：</strong> 婚禮有千百個待辦事項，但一切的起點都來自一句：妳願意嗎？</div>
-    <div class="section-title">💍 求婚戒圍秘密對照器</div>
+    <div class="intro-text">📢 <strong>小精靈：</strong> 婚禮有千百個待辦事項，但一切的起點都來自一句：妳願意嗎？求婚不一定要盛大，但一定要「像你們」。真正讓人感動的，通常不是花了多少錢，而是對方能從安排裡感受到：你記得我們的故事，也認真想過我們的未來。</div>
+    
+    <div class="section-title">🧭 求婚前置作業：用 5W1H 排好驚喜</div>
+    <p style="font-size:0.8rem; color:#888; margin-bottom:12px;">💡 點擊下方各項維度翻牌，一一確認細節，避免驚喜變成大型社死現場！</p>
+
+    <!-- WHEN -->
+    <details class="w5h1-details">
+      <summary class="w5h1-summary">🗓️ WHEN ｜ 什麼時候求婚？</summary>
+      <div class="w5h1-body">
+        <p>求婚日期可以有紀念意義，但比挑一個「最浪漫的日子」，更重要的是確認對方當天有沒有心情享受這場驚喜。</p>
+        <h4>✨ 適合考慮的時間點：</h4>
+        <ul>
+          <li><b>重要紀念日</b>：例如交往週年、第一次約會紀念日。這類日期本身就有故事，容易自然安排約會。</li>
+          <li><b>生日</b>：選擇對方生日好用慶生作為理由；選自己生日則能告白：<i>「妳願不願意，送我一份我最期待的生日禮物？」</i></li>
+          <li><b>節日</b>：情人節、聖誕節、跨年等，自帶浪漫氣氛，但熱門餐廳飯店需提早預訂。</li>
+          <li><b>旅行度假</b>：兩人比較沒有工作壓力的週末或出遊，最適合安排。</li>
+        </ul>
+        <div class="card-reason" style="background:#FFF8F4; border-left:3px solid var(--primary-brown);">
+          🧚 <b>姊的提醒</b>：不要只挑「你方便」的時間，也要考慮對方當天的身心狀態。如果對方正忙著衝專案、考試或情緒低落，再完美的驚喜也無法好好投入。另外，求婚日很可能成為未來每年都要慶祝的日子，挑下去前先確認自己記得住！
+        </div>
+      </div>
+    </details>
+
+    <!-- WHERE -->
+    <details class="w5h1-details">
+      <summary class="w5h1-summary">📍 WHERE ｜ 在哪裡求婚？</summary>
+      <div class="w5h1-body">
+        <p>地點不一定越華麗越好，最重要的是符合對方的個性。挑選前先思考：<b>她喜歡被眾人注目，還是重視兩個人的私密時刻？</b></p>
+        <h4>✨ 常見場地選擇：</h4>
+        <ul>
+          <li><b>有紀念意義的地點</b>：第一次見面、牽手、告白的地點，或是特別回憶的校園與街道，具有專屬故事感。</li>
+          <li><b>浪漫景點</b>：海邊、夜景平台、觀景台、法式/Rooftop 餐廳。選擇戶外務必提前準備強風或人潮備案。</li>
+          <li><b>私密空間</b>：兩人的家、飯店客房、餐廳/KTV 包廂。方便布置且減少路人圍觀，特別適合害羞、容易緊張的人。</li>
+        </ul>
+        <button class="btn btn-secondary btn-icon" style="font-size:0.75rem; margin-top:5px; padding:4px 10px;" onclick="openVenueDialog()">💡 點開查看場地現場確認清單</button>
+      </div>
+    </details>
+
+    <!-- WHO -->
+    <details class="w5h1-details">
+      <summary class="w5h1-summary">👥 WHO ｜ 誰要參與？</summary>
+      <div class="w5h1-body">
+        <p>現場有多少人不是看場面夠不夠大，而是看對方會不會自在。</p>
+        <ul>
+          <li><b>適合兩人私下完成</b>：若對方害羞、怕生、不喜歡公開被起鬨，只有兩個人的求婚反而最浪漫。</li>
+          <li><b>適合少數親友陪同</b>：挑選閨蜜、死黨或手足，除了見證還能控場、拍照、幫忙保管戒指花束與布置。</li>
+          <li><b>適合熱鬧型求婚</b>：若另一半喜歡打卡、愛熱鬧，可邀請雙方大量好友或家人。但切記要確認她真的喜歡，而不是只因為「影片看起來很感人」。</li>
+        </ul>
+        <div class="info-note" style="margin-top:8px; padding:8px 12px; font-size:0.8rem;">
+          ⚠️ <b>是否需要邀請長輩？</b>：如果對方家庭較傳統、重視長輩意見，可以評估是否事前知會雙方家長，成功後再行安排見面或視訊祝福。
+        </div>
+      </div>
+    </details>
+
+    <!-- WHAT -->
+    <details class="w5h1-details">
+      <summary class="w5h1-summary">🎁 WHAT ｜ 求婚要準備什麼？</summary>
+      <div class="w5h1-body">
+        <p>重點不是道具越多越好，而是每一項安排都能為故事加分。</p>
+        <h4>1. 求婚戒指</h4>
+        <p>可選擇正式戒指，或是先向亞立詩借用求婚戒，成功後再一起挑款式，甚至用承諾代替。不一定要冒險猜尺寸款式。</p>
+        <h4>2. 花束</h4>
+        <p>依照對方喜愛的花種、代表故事的顏色或婚禮色系。不必為了刻板花語選一束她不喜歡的花。</p>
+        <h4>3. 告白與求婚台詞</h4>
+        <p>真誠的話包含三重點：我為什麼愛你？為什麼想共度未來？願意做出什麼承諾？不用華麗詞藻，具體回憶比網路金句更容易讓人動容。</p>
+        <h4>4. 照片或影片</h4>
+        <p>相識交往過程、日常旅行照片，適合擔心現場太緊張、忘詞或哭出來的人。保留情緒堆疊，避免長到像看紀錄片。</p>
+        <h4>5. 布置道具</h4>
+        <p>氣球、照片牆、音樂、手拿板（Marry me? / Yes, I do!），以及基於安全考量優先推薦的 <b>LED 電子蠟燭</b>。</p>
+      </div>
+    </details>
+
+    <!-- HOW -->
+    <details class="w5h1-details">
+      <summary class="w5h1-summary">🚀 HOW ｜ 求婚流程怎麼安排？</summary>
+      <div class="w5h1-body">
+        <h4>• 第一步：確認結婚意願</h4>
+        <p>求婚可以是驚喜，但「要不要結婚」不應該是驚嚇。兩人最好平時已經對未來方向有基本共識。</p>
+        <h4>• 第二步：決定時間與場地</h4>
+        <p>先確認日期、地點與雨天備案，再開始訂場地、購買道具。</p>
+        <h4>• 第三步：決定參與者與場控</h4>
+        <p>強烈找一位冷靜的朋友擔任總場控，負責掌握時間、確認布置、播放音樂影片、聯絡攝影與提醒戒指放在哪裡。</p>
+        <h4>• 第四步：準備台詞與物品</h4>
+        <p>將花束、相片、音樂、交通逐一核對，建議準備一份流程表，不要只記在腦中。</p>
+        <h4>• 第五步：進行一次技術彩排</h4>
+        <p>確認人從哪裡進場、音樂何時播、親友何時現身、攝影站在哪。流程順過一次，臨場才不慌亂。</p>
+      </div>
+    </details>
+
+    <div class="section-title">💍 求婚戒圍祕密對照器</div>
     <div class="input-group">
-      <label for="ring-input">戒指內直徑（mm）</label>
+      <label for="ring-input">請輸入偷量到的戒指內直徑（mm）</label>
       <input type="number" step="0.1" id="ring-input" placeholder="例如：15.2">
       <div id="ring-result" class="result-box hidden" aria-live="polite"></div>
     </div>
-    <div class="card" style="border-left:3px solid var(--primary-brown);background:#FFFDF9;">
-      <p style="font-size:.84rem;color:#666;">✨ <strong>小本本安心救援：</strong> 
-      趁睡覺時偷偷拿一枚她經常配戴的戒指，平放在尺上測量內直徑[cite: 1]。尺寸不合或不是她愛的款式別擔心，亞立詩提供求婚鑽戒外借服務！只要訂購 GIA 國際認證鑽石即可外借婚戒完成浪漫求婚，之後再帶她回門市挑喜愛款式。若配戴後想修改戒圍，提供終身免費修改圍數服務，只要原尺寸上下 1-3 圍以內都可以進行修改，但部分特殊材質款式無法修改，購買前務必確認清楚。寬版戒指通常需要較寬鬆，結果僅供初步初估。
-      </p>
+
+    <!-- 求婚檢查清單 -->
+    <div class="section-title">📋 求婚前的安全檢查清單</div>
+    <div class="checklist">
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-共識"><span>雙方平時是否已對「結婚意願」達成基本共識（拒絕驚嚇）</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-形式"><span>確認對方是否喜歡（或排斥）公開圍觀型的求婚形式</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-場地"><span>場地是否安全、合法，且已跟主辦方/餐廳確認過布置規定</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-天候"><span>若是安排海邊或山頂等戶外活動，是否有準備好雨天/改場備案</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-保管"><span>最重要的求婚戒指、花束及告白字卡當天是否已指定專人保管</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-紀錄"><span>是否安排好拍照或錄影（無論是找專業婚攝或是親友協助）</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-場控"><span>當天有沒有冷靜的朋友負責擔任總場控幫忙對流程</span></label>
+      <label class="check-item"><input type="checkbox" data-persist-key="ring-check-交通"><span>當天是否已預留好撤場、親友藏匿與交通移動的時間</span></label>
+    </div>
+
+    <div class="card-reason" style="background:#FFF9F2; color:var(--text-dark); border-left:3px solid var(--primary-green);">
+      ❤️ <b>她說願意之後，別急著只顧拍照：</b><br>
+      求婚不是備婚任務的終點，而是兩人確認未來的起點。氣氛稍微平復後，大方和她分享：為什麼想和她結婚、你對婚後生活的想像、接下來想如何與雙方家庭溝通。你不需要在當下拿出一份完整婚禮企劃書，但讓她知道你不只是準備了一場驚喜，也準備好面對接下來的生活，會比任何布置都更讓人安心。<br>
+      <p style="margin-top:6px; font-weight:700; color:var(--primary-brown);">✨ 姊的最後提醒：求婚最重要是讓被求婚的人感到舒服、被理解。不要用眾人起鬨或公開綁架讓對方「只能答應」。最好的求婚，是即使拿掉鮮花燈光，留下來的那段話，仍然足以讓她相信：你真的想和她一起生活。</p>
     </div>
 
     <div class="back-home-container">
@@ -615,7 +631,7 @@
       <div class="flow-desc">古禮上一金一銅戒指以紅線綁上活結代表姻緣線（永結同心），戴在中指。
         <div class="card">
           <div class="card-header"><span>⚠️ 禮俗眉角：戒指套到底？</span></div>
-          <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，代表彼此尊重。接著由雙方父母幫新人戴上金飾（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環）[cite: 1]。</div>
+          <div class="card-body" style="background:#FFFDF5;">傳統上將戒指套到底有「壓到底」的意思，所以大多將戒指戴到<strong>第二指節</strong>就好，代表彼此尊重。接著由雙方父母幫新人戴上金飾（男方準備項鍊戒指；女方準備項鍊、戒指、手鍊、耳環）。</div>
         </div>
       </div>
     </div>
@@ -671,7 +687,7 @@
     <div class="section-title">🧧 工作人員紅包估算</div>
     <div class="project-form">
       <div class="input-group"><label for="hb-count1">好命婆／開車門／小舅子等人數</label><input type="number" id="hb-count1" min="0" value="3"></div>
-      <div class="input-group"><label soul for="hb-money1">單包預算金額 (小本本建議 1200–3600元)</label><input type="number" id="hb-money1" min="0" value="1200"></div>
+      <div class="input-group"><label for="hb-money1">單包預算金額 (小本本建議 1200–3600元)</label><input type="number" id="hb-money1" min="0" value="1200"></div>
       <div class="input-group"><label for="hb-count2">伴郎伴娘／招待／收禮金人數</label><input type="number" id="hb-count2" min="0" value="6"></div>
       <div class="input-group"><label for="hb-money2">單包預算金額 (小本本建議 600–1200元)</label><input type="number" id="hb-money2" min="0" value="600"></div>
     </div>
@@ -689,7 +705,7 @@
     
     <div class="section-title">📌 登記結婚 4 步驟流程</div>
     <div class="flow-step"><div class="flow-badge">1</div><div class="flow-title">提前致電戶政事務所預約</div><div class="flow-desc">確認登記當天狀況。<b>如果是假日登記，必須提前 3 天以上預約喔！</b>超過預約時間 15 分鐘則視同取消預約。</div></div>
-    <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌</div><div class="flow-desc">除了要遷入戶籍須到戶籍當地事務所登記，結婚當事人是可以任選一間自己方便的事事務登記。</div></div>
+    <div class="flow-step"><div class="flow-badge">2</div><div class="flow-title">至戶政事務所抽號碼牌</div><div class="flow-desc">除了要遷入戶籍須到戶籍當地事務所登記，結婚當事人是可以任選一間自己方便的事務所登記。</div></div>
     <div class="flow-step"><div class="flow-badge">3</div><div class="flow-title">繳交相關文件與結婚書約</div><div class="flow-desc">將填寫好的結婚書約遞交櫃檯。書約上需要有 2 位年滿 20 歲以上且未受監護宣告的證人簽名或蓋章（兩位證人不需要到現場）。可在登記日前 3 個辦公日內辦理並指定結婚登記日。</div></div>
     <div class="flow-step"><div class="flow-badge">4</div><div class="flow-title">繳費、領取正式相關文件與新身分證</div><div class="flow-desc">換發新證，正式大功告成！恭喜升級成為正式合法夫妻！</div></div>
 
@@ -709,56 +725,67 @@
   </section>
 
   <footer>
-    <p>Made with ❤️ by 侑潔｜備婚小精靈 v5.4</p>
+    <p>Made with ❤️ by 侑潔｜備婚小精靈 v5.5</p>
   </footer>
 </main>
 
-<!-- 💡專屬：吉日挑選小技巧彈跳式視窗 HTML -->
+<!-- ==================== 彈跳式視窗大對齊 (記憶風格一體化) ==================== -->
+
+<!-- 💡 視窗一：吉日挑選小技巧 -->
 <dialog id="lucky-day-dialog" class="lucky-dialog">
   <div class="lucky-dialog-header">
-    <h3>💡嫁娶吉日挑選小技巧 </h3>
+    <h3>💡 嫁娶吉日挑選小技巧</h3>
     <button class="btn-close-dialog" onclick="closeLuckyDialog()">×</button>
   </div>
   <div class="lucky-dialog-content">
     <div class="intro-text" style="margin-bottom: 12px;">
       <strong>step.1:</strong> 觀看農民曆「嫁娶（結婚）吉日」時，先確認日期下方欄位明確標示「宜：嫁娶」。<br>
-      <strong>step.2:</strong> 避開新人雙方的「生肖相沖日」及「農曆忌日」，並優先排除特定禁忌日以求婚姻順遂。
+      <strong>step.2:</strong> 避開新人雙方的生肖相沖日 及農曆忌日，並優先排除特定禁忌日以求婚姻順遂。
     </div>
-
-    <h4>📌如何挑選嫁娶吉日</h4>
+    <h4>📌 挑選嫁娶吉日的具體步驟與注意事項：</h4>
     <ul>
-      <li><strong>1. 宜嫁娶標示：</strong>可透過翻閱農民曆查看該日是否標示 「宜：嫁娶」，部分農民曆會寫「宜：訂盟、納采、嫁娶」，若有參考多本農民曆，建議以多數版本皆標示為宜的日子為主。</li>
-      <li><strong>2. 避開生肖犯沖：</strong>農民曆每天都會記載該日「沖某生肖」（例：沖虎、沖馬），請務必確認該日沒有與新郎、新娘及雙方父母的生肖相犯沖。</li>
+      <li><strong>1. 宜嫁娶標示：</strong>可透過翻閱農民曆查看該日是否標示 「宜：嫁娶」，建議以多數版本皆標示為宜的日子為主。</li>
+      <li><strong>2. 避開生肖犯沖：</strong>請務必確認該日沒有與新郎、新娘及雙方父母的生肖相沖（犯沖）。</li>
       <li><strong>3. 避開傳統四大禁忌日期：</strong>
         <p style="margin-top: 4px; padding-left: 10px; font-size: 0.82rem; color: #555;">
           • <b>雙親生日</b>：避開新人雙方以及雙方父母的農曆生日，傳統認為「喜沖喜」會影響運勢。<br>
-          • <b>三娘煞日</b>：相傳三娘因破壞喜事，傳統上會避開每月農曆初三、初七、十三、十八、廿二及廿七嫁娶。<br>
-          • <b>楊公忌日</b>：農民曆上特定的凶日（依年份不同，通常為正月十三、二月十一、三月初九、四月初七、五月初五、六月初三、七月初一與廿九、八月廿七、九月廿五、十月廿三、十一月廿一、十二月十九），應盡量避開。<br>
-          • <b>習俗月</b>：傳統上多避開農曆七月（俗稱鬼月），但現代新人若選在此月份辦理，多會搭配飯店優惠並避開祭祀相關科儀。
+          • <b>三娘煞日</b>：傳統上會避開每月農曆初三、初七、十三、十八、廿二及廿七嫁娶。<br>
+          • <b>楊公忌日</b>：農民曆上特定的凶日（正月十三、二月十一、三月初九、四月初七等），應盡量避開。<br>
+          • <b>習俗月</b>：傳統多避開農曆七月，但現代多會搭配飯店優惠並避開祭祀相關科儀。
         </p>
       </li>
-      <li><strong>(參考) 挑選適合的生肖月份：</strong>若想進一步參考生肖口訣，傳統流傳有12生肖適宜出嫁的月份（農曆）：
-        <p style="margin-top: 4px; padding-left: 10px; font-size: 0.82rem; color: #555;">
-          • 鼠、馬：農曆 6月+12月<br>
-          • 牛、羊：農曆 5月+11月<br>
-          • 虎、猴：農曆 2月+8月<br>
-          • 兔、雞：農曆 1月+7月<br>
-          • 龍、狗：農曆 4月+10月<br>
-          • 蛇、豬：農曆 3月+9月
-        </p>
-      </li>
+      <li><strong>4. 適合的生肖月份（農曆）：</strong>鼠馬(6,12月)、牛羊(5,11月)、虎猴(2,8月)、兔雞(1,7月)、龍狗(4,10月)、蛇豬(3,9月)。</li>
     </ul>
+    <div class="info-note" style="margin-top:15px;">
+      🎯 <strong>現代新人的彈性作法：</strong> 配合婚宴場地，常採取「好日子登記/儀式，平日補請宴客」的策略。法律上只需符合雙方意願，不強制一定要看吉日。
+    </div>
+  </div>
+</dialog>
 
-    <div class="info-note" style="margin-top:15px; border-left-color: var(--primary-green); background: #F5FAF9;">
-      🎯 <strong>現代新人的彈性作法：</strong><br>
-      現代人為配合婚宴場地與工作時間，若傳統農民曆的好日子較難訂位，常採取 <strong>「好日子登記/儀式，平日補請宴客」</strong> 的策略。<br>
-      結婚登記在法律上只需符合雙方意願，不強制一定要看農民曆吉日。
+<!-- 💡 視窗二：完美對齊風格 ── 求婚場地確認清單彈窗 -->
+<dialog id="venue-tip-dialog" class="lucky-dialog">
+  <div class="lucky-dialog-header">
+    <h3>🔍 求婚場地現場確認清單</h3>
+    <button class="btn-close-dialog" onclick="closeVenueDialog()">×</button>
+  </div>
+  <div class="lucky-dialog-content">
+    <div class="intro-text" style="margin-bottom: 12px;">📢 <b>選定求婚地點前，請在心理或現場再次核對以下魔鬼細節：</b></div>
+    <ul>
+      <li><strong>1. 包場與預約：</strong>確認場地是否需要提前預約、押金付了沒，或是有沒有低消包場限制。</li>
+      <li><strong>2. 進場布置時間：</strong>能否允許親友、場控或布置團隊提前進場？可預留的布置時間有多長？</li>
+      <li><strong>3. 場地道具限制：</strong>現場能否使用氣球黏貼、點燃非電子蠟燭，或是有沒有音響設備與麥克風可借用？</li>
+      <li><strong>4. 現場光線確認：</strong>拍照、錄影的光線夠不夠？若是較暗的餐廳或夜景，攝影親友的器材是否能拍得清楚？</li>
+      <li><strong>5. 藏匿藏寶空間：</strong>最重要的求婚戒指、大束鮮花、投影筆等大項道具，現場有沒有安全的隱密空間可以先藏好？</li>
+      <li><strong>6. 天候備案計畫：</strong>如果是海邊、山頂或戶外 Rooftop 餐廳，當天若遇大雨、強風、突發低溫或大量人潮圍觀，有沒有改至室內的臨時備案？</li>
+    </ul>
+    <div class="info-note" style="margin-top:15px; border-left-color: var(--primary-purple);">
+      💡 <b>姊的真心話</b>：場地選對、藏好驚喜，求婚就已經成功了一半！害羞的人一律推薦飯店客房或獨立包廂，安全感滿分。
     </div>
   </div>
 </dialog>
 
 <script>
-  const STORAGE_KEY = 'weddingDobbyV5_3';
+  const STORAGE_KEY = 'weddingDobbyV5_5';
 
   const DEFAULT_BUDGET_ITEMS = [
     { id: cryptoId(), name: '宴客桌費總額', plan: 300000, final: 300000, paid: 30000, dueDate: '', payer: '共同' },
@@ -831,21 +858,19 @@
   function openTabFromCard(tabId) { switchTab(tabId, document.getElementById(`btn-${tabId}`)); }
   function returnToDashboard() { switchTab('tab-home', document.getElementById('btn-tab-home'), true); }
 
-  /* 💡 彈跳式視窗控制函式 */
+  /* 💡 彈跳視窗控制一：吉日挑選 */
   function openLuckyDialog() {
     const dialog = document.getElementById('lucky-day-dialog');
-    if (dialog) {
-      dialog.showModal();
-      // 增加點擊外部遮罩自動關閉的流暢設定
-      dialog.addEventListener('click', function(e) {
-        if (e.target === dialog) dialog.close();
-      });
-    }
+    if (dialog) { dialog.showModal(); dialog.addEventListener('click', function(e) { if (e.target === dialog) dialog.close(); }); }
   }
-  function closeLuckyDialog() {
-    const dialog = document.getElementById('lucky-day-dialog');
-    if (dialog) dialog.close();
+  function closeLuckyDialog() { const dialog = document.getElementById('lucky-day-dialog'); if (dialog) dialog.close(); }
+
+  /* 💡 彈跳視窗控制二：完美維持記憶風格的場地清單彈窗 */
+  function openVenueDialog() {
+    const dialog = document.getElementById('venue-tip-dialog');
+    if (dialog) { dialog.showModal(); dialog.addEventListener('click', function(e) { if (e.target === dialog) dialog.close(); }); }
   }
+  function closeVenueDialog() { const dialog = document.getElementById('venue-tip-dialog'); if (dialog) dialog.close(); }
 
   function switchWeddingMode(mode) {
     document.getElementById('btn-mode-modern').classList.toggle('active', mode === 'modern');
@@ -897,14 +922,16 @@
       if (days > 0) countdown.innerHTML = `距離婚禮還有 ${days.toLocaleString()} 天<small>${formatDate(target)}，不用一次做完，先處理眼前最重要的事。</small>`;
       else if (days === 0) countdown.innerHTML = `就是今天！祝你們婚禮順利 💕<small>${formatDate(target)}</small>`;
       else countdown.innerHTML = `婚禮已經過了 ${Math.abs(days).toLocaleString()} 天<small>也別忘了整理照片、款項與感謝名單。</small>`;
-    } else {
-      countdown.innerHTML = `尚未設定婚期<small>填寫下方資料後，小精靈會開始倒數。</small>`;
-    }
+    } else { countdown.innerHTML = `尚未設定婚期<small>填寫下方資料後，小精靈會開始倒數。</small>`; }
 
     const projectKeys = ['weddingDate', 'weddingType', 'guestTarget', 'totalBudget', 'ceremonyType'];
     const projectDone = projectKeys.filter(k => String(p[k] || '').trim()).length;
-    const priorityKeys = ['priority-budget', 'priority-guests', 'priority-venue'];
+    
+    // 將求婚頁面安全清單連動算入總進度條，建立全景 Preview 大局觀
+    const ringChecks = ['ring-check-共識', 'ring-check-形式', 'ring-check-場地', 'ring-check-天候', 'ring-check-保管', 'ring-check-紀錄', 'ring-check-場控', 'ring-check-交通'];
+    const priorityKeys = ['priority-budget', 'priority-guests', 'priority-venue', ...ringChecks];
     const priorityDone = priorityKeys.filter(k => appState.checks[k]).length;
+    
     const completed = projectDone + priorityDone;
     const total = projectKeys.length + priorityKeys.length;
     const percent = Math.round(completed / total * 100);
@@ -916,13 +943,8 @@
   }
 
   function generateGantt() {
-    const dateVal = appState.project.weddingDate;
-    const container = document.getElementById('gantt-container');
-    if (!dateVal) {
-      container.innerHTML = '<p style="text-align:center;color:#999;font-size:.85rem;padding:14px;">請先在首頁設定預計婚期，小精靈會自動在此生成完整的四大破關時程 📅</p>';
-      return;
-    }
-
+    const dateVal = appState.project.weddingDate; const container = document.getElementById('gantt-container');
+    if (!dateVal) { container.innerHTML = '<p style="text-align:center;color:#999;font-size:.85rem;padding:14px;">請先在首頁設定預計婚期，小精靈會自動在此生成完整的四大破關時程 📅</p>'; return; }
     const weddingDate = parseLocalDate(dateVal);
     const p1Start = addMonths(weddingDate, -12); const p1End = addMonths(weddingDate, -9);
     const p2Start = addMonths(weddingDate, -9); const p2End = addMonths(weddingDate, -6);
@@ -931,7 +953,7 @@
 
     container.innerHTML = `
       ${ganttCard(`${formatDate(p1Start)}～${formatDate(p1End)}`, '階段一：方向與共識', '確認婚禮形式、總預算、賓客規模及雙方家庭期待；需要傳統儀式者，可同步討論提親與婚期。')}
-      ${ganttCard(`${formatDate(p2Start)}～${formatDate(p2End)}`, '階段二：場地與提親長輩戰役 (婚前 4-6 個月)', '建議於婚期前半年至一年安排正式提親，確認大小聘金、喜餅錢主導與發送形式。同步開始詢詢場地，接洽婚紗、新秘與婚攝。')}
+      ${ganttCard(`${formatDate(p2Start)}～${formatDate(p2End)}`, '階段交鋒：場地與提親長輩戰役 (婚前 4-6 個月)', '建議於婚期前半年至一年安排正式提親，確認大小聘金、喜餅錢主導與發送形式。同步開始詢問場地，接洽婚紗、新秘與婚攝。')}
       ${ganttCard(`${formatDate(p3Start)}～${formatDate(p3End)}`, '階段三：細節魔鬼期 (婚前 1-2 個月)', '整理精準賓客名單、寄發喜帖、確認女方喜餅發送總數。排定當天所有總招待、伴郎娘、司儀分工，打包六禮或十二禮紅包代替物。')}
       ${ganttCard(`${formatDate(p4Start)}～${formatDate(weddingDate)}`, '階段四：當天執行與法律登記 (最終倒數)', '最終核對流程表、款項。<b>有假日登記需求者，必須依規定在登記日前3天以上預約！</b>打包身分證、戶口名簿、照片與書約大功告成。')}
       <div class="info-note">🧚 姊的提醒：建議在 <strong>${formatDate(reserveDate)}</strong> 前完成所有物品與付款清單的最後核對，留一週給自己解壓調適。</div>
@@ -981,8 +1003,7 @@
     let plan = 0, final = 0, paid = 0;
     appState.budgetItems.forEach(item => { plan += Number(item.plan || 0); final += Number(item.final || 0); paid += Number(item.paid || 0); });
     const due = Math.max(0, final - paid);
-    const planEl = document.getElementById('acc-total-plan');
-    if (planEl) planEl.textContent = formatMoney(plan);
+    if (document.getElementById('acc-total-plan')) document.getElementById('acc-total-plan').textContent = formatMoney(plan);
     if (document.getElementById('acc-total-final')) document.getElementById('acc-total-final').textContent = formatMoney(final);
     if (document.getElementById('acc-total-pay')) document.getElementById('acc-total-pay').textContent = formatMoney(paid);
     if (document.getElementById('acc-total-due')) document.getElementById('acc-total-due').textContent = formatMoney(due);
